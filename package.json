@@ -1,0 +1,52 @@
+{
+  "name": "tailwind",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@headlessui/react": "^1.7.7",
+    "axios": "^0.24.0",
+    "daisyui": "^2.46.0",
+    "formik": "^2.2.9",
+    "headless": "^1.2.0",
+    "horizontal-scroller": "^1.0.7",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-horizontal-scrolling-menu": "^3.2.3",
+    "react-icons": "^4.7.1",
+    "react-scripts": "5.0.1",
+    "tailwind-scrollbar-hide": "^1.1.7",
+    "classnames": "^2.3.2"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.20",
+    "react-router-dom": "^6.5.0",
+    "tailwind-scrollbar": "^2.0.1",
+    "tailwindcss": "^3.2.4"
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "eject": "react-scripts eject"
+  },
+  "keywords": [
+    "Lila"
+  ],
+  "author": "Lila",
+  "license": "ISC",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

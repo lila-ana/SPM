@@ -1,0 +1,13 @@
+
+[
+    {
+        "name": "MDCC",
+        "description": "Modern Datacenter and Cloud (MDCC) begins with IT infrastructure and a fundamental shift from building infrastructure to buying everything possibleand building only unique value to your business. Converged Infrastructure reduces the time and the cost of deploying, configuring and managing hardware and software components separately and increases time to value for IT investments. Lately IT infrastructures want to buy simple, easy-to-deploy infrastructure platforms on which they can quickly build and run core business applications that differentiate their businesses, while also providing a platform for deploying next-generation applications. MDCC automate the delivery of IT services to lines of business and application owners. IT must deliver, at every level, a self-service experience that is built upon a welldesigned, API-driven management and orchestration toolset—one that frees development teams and other innovators from IT roadblocks.",
+        "img":"C:/Users/Lila/spm_client/src/Image/MDCC.png"
+    },
+    {
+        "name": "MDCC",
+        "description": "Modern Datacenter and Cloud (MDCC) begins with IT infrastructure and a fundamental shift from building infrastructure to buying everything possibleand building only unique value to your business. Converged Infrastructure reduces the time and the cost of deploying, configuring and managing hardware and software components separately and increases time to value for IT investments. Lately IT infrastructures want to buy simple, easy-to-deploy infrastructure platforms on which they can quickly build and run core business applications that differentiate their businesses, while also providing a platform for deploying next-generation applications. MDCC automate the delivery of IT services to lines of business and application owners. IT must deliver, at every level, a self-service experience that is built upon a welldesigned, API-driven management and orchestration toolset—one that frees development teams and other innovators from IT roadblocks.",
+        "img":"C:/Users/Lila/spm_client/src/Image/MDCC.png"
+    }
+]
