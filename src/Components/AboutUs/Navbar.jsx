@@ -75,9 +75,9 @@ export default function Navbar() {
             </ul>
           </div>
         </div>
-        <div className='h-screen items-center '>
-            <p className='text-[#1B9C85] text-[50px] text-center font-semibold storke font-sans'> Welcome to IE Networks </p>
-            <p className='text-center text-[24px] font-semibold text-[#1B9C85]'> Get Job Done</p>
+        <div className='grid  justify-center items-center '>
+            <p className='text-[#ffffff] text-[50px] text-center font-semibold storke font-sans'> Welcome to IE Networks </p>
+            <p className='text-center text-[24px] font-semibold text-[#ffffff]'> Get Job Done</p>
         </div>
       </div>
 

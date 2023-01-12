@@ -1,6 +1,6 @@
 import React from 'react'
 import logo from '../../Image/MDCC.png'
-import ScrollButton from '../AboutUs/ScrollButton'
+import ScrollButton from './ScrollButton'
 import description from '../../utils/SolutionDescription.json'
 
 
@@ -14,9 +14,9 @@ return (
       <div>
         {description?.map((items) => (
           <div className='mb-5'>
-            <p className='text-[#1b9c85] font-semibold text-[18px] border-b-2 w-[150px] border-[#1b9c85]'>{items?.name}</p>
+            <p className='text-[#1b9c85] font-semibold text-[18px] border-b-[1.5px] w-[500px] border-[#1b9c85]'>{items?.name}</p>
             <div className='grid grid-cols-12 gap-[20px]'>
-              <div className='col-span-8 flex justify-center pt-[15px] text-[#1b9c85] '>{items?.description} </div>
+              <div className='col-span-8 flex justify-center pt-[15px] text-[#606060]'>{items?.description} </div>
               <div className='col-span-4 flex justify-center'>
                 <img
                   className='w-[200px] h-[200px] '
@@ -29,11 +29,13 @@ return (
           </div>
         ))}
       </div> 
-      <ScrollButton
-            styles ='rounded-sm text-[16px] bg-[#1b9c85] text-[#fcfcfc]'
+          <div className='grid justify-center '>
+      <ScrollButton 
+            styles ='rounded-md text-[16px] bg-[#1b9c85] text-[#fcfcfc] w-[120px] h-[40px] grid justify-center items-center mb-[20px]'
             name='Scroll to top'   
             action={(e)=>scrollback(e,"gelila")}
          /> 
+         </div>
     </div>
   )
 }

@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import detail  from '../../utils/Detail.json'
-import  {AiOutlineLeft, AiOutlineRight} from "react-icons/ai"
+import {AiOutlineLeft, AiOutlineRight} from "react-icons/ai"
 import axios from 'axios';
 
 export default function Projects() {
@@ -8,14 +8,14 @@ export default function Projects() {
         let slider = document.getElementById('slider');
           slider.scrollLeft = slider.scrollLeft - 500;
          };
-         
-       
+            
     const slideRight = () => {
         let slider = document.getElementById('slider');
         slider.scrollLeft = slider.scrollLeft + 500;
       };
+    
       const [data,setData]=useState();
-      axios.get(`http://172.16.34.117:8000/user/all-users`, {
+      axios.get(`http://172.16.34.117:8000/api/v1/client/all-clients`, {
         headers: {
             'Content-Type': 'application/json'
         }
@@ -24,7 +24,7 @@ export default function Projects() {
     }).catch((error) => {
         console.log(error.response);
     });
-    console.log(data,"respons data")
+    console.log(data,"response data")
 
   return (
     <div className='' >
@@ -34,7 +34,7 @@ export default function Projects() {
         <div className='relative flex items-center gap-5'>
         <div className='hover:bg-[#1b9c85] hover:text-white rounded-full '>
         <AiOutlineLeft className="text-2xl" onMouseEnter={slideLeft}/>  
-    </div>   
+        </div>   
         <div id="slider" className='w-full h-full overflow-x-scroll scroll scrollbar-hide  scroll-smooth'>
         <div className='grid grid-flow-col gap-[20px] items-center'>
                

@@ -6,7 +6,7 @@ export default function FoundersStatement() {
     return (   
    
         <>
-        <div className='text-[#1b9c85]'>          
+        <div className='text-[#606060]'>          
           <div className='flex flex-row gap-[50px] '>
             <div className='flex flex-col gap-[20px] '>
                 <div>
@@ -22,7 +22,7 @@ export default function FoundersStatement() {
                 </div>
             </div>
             <div className='p-[5px] m-[10px] font-nunito '>
-                <p className='pl-[8px] text-semibold border-l-4 h-[40px] border-[#1b9c85] text-[24px] items-center justify-center'>Founder's Statement</p>
+                <p className='pl-[8px] text-semibold border-l-4 h-[40px] border-[#1b9c85] text-[24px] items-center justify-center text-[#1b9c85]'>Founder's Statement</p>
                 <p className='pt-[15px]'>"Dream  Big, Start Small" was my favorite quote since my lasy year in college. 
                     Now, I have a second one to add in my top list of wise sayings "Good is the enemy of Great" by Jim Collins.
                 </p><br></br>

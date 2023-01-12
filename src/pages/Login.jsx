@@ -1,127 +1,109 @@
-import React from 'react'
-import { useFormik } from "formik"
-// import * as Success from "success";
+import React, { useState } from 'react'
+import { useFormik } from 'formik'
+import * as Yup from "yup"
+// import FormikControl from "FormikControl"
 
 export default function Login() {
- 
-  const formik = useFormik({
-    
+  
+  // const [userName, setUserName] = useState("");
+  // const [email, setEmail] =useState("");
+  // console.log(userName);
+  // console.log(email);
+
+  const formik  = useFormik ({
     initialValues: {
-      name: "",
-      email: "",
-      password:"",
+      userName:"", 
+      email:"",
+      password:""
     },
 
-    // validationSchema: Success.object({
-    //   name: Success.string()
-    //     .max(20, "Name must be 20 characters or less.")
-    //     .required("Name is required"),
-    //   email: Success.string()
-    //     .email("Invalid email address")
-    //     .required("Email is required"),
-    // }),
+    validationSchema: Yup.object ({
+        userName: Yup.string()
+          .max(15, "Must be 15 characters or less")
+          .required("Required"),
+        email: Yup.string()
+          .email("Invalid email")
+          .required("Required"),
+        password: Yup.string()
+          .required("Required")
+          .min(8, "Must be 8 characters or more")
+          .matches(/[a-z]+/, "One lowercase character")
+          .matches(/[A-Z]+/, "One uppercase character")
+          .matches(/[@$!%*#?&]+/, "One special character")
+          .matches(/\d+/, "One number"),
+    }),
 
-    onSubmit: (values) => {
-      console.log("form submitted");
-      console.log(values);
-      router.push({ pathname: "/success", query: values });
-    },
-  })
+    onSubmit: (values) =>{
+      console.log(values)
+    }
 
+  });
+
+  console.log(formik.errors);
+  // drop-shadow-md
   return (
-    <div className='h-screen flex items-center justify-center border-solid border-[#1b9c85]' >
-        <form 
+    <div className='h-screen grid items-center justify-center '>
+      <form 
         onSubmit={formik.handleSubmit}
-        className="bg-white rounded-lg border-[1px] border-solid border-[#1b9c85] font-nunito p-[40px]"
-        >
-        {/* className='border-solid border-[#1b9c85] */}
-        {/* Name input field */}
-           <div className="pb-2">
-                <label
-                  htmlFor="name"
-                  className={`block font-nunito text-sm pb-2 ${
-                    formik.touched.name && formik.errors.name
-                      ? "text-red-400"
-                      : ""
-                  } `}
-                >
-                  {formik.touched.name && formik.errors.name
-                    ? formik.errors.name
-                    : "" }
-                </label>
-                <p className="text-sm font-nunito text-red-400 "></p>
-                <input
-                  className='border-[1px] border-[#1b9c85] p-2 rounded-[10px]  focus:border-[#1b9c85] focus:ring-[#1b9c85] font-nunito w-[400px]'
-                  type="text"
-                  name="name"
-                  placeholder="Enter your name"
-                  onChange={formik.handleChange}
-                  value={formik.values.name}
-                  onBlur={formik.handleBlur}
-                />
-              </div>
+        className='grid items-center justify-center rounded-[10px] border-solid border-[#1b9c85] border-[1px] w-[400px] h-[300px] '
+      >
+        <div className='m-[10px] drop-shadow-[#1b9c85] '>
+          <div className='m-[10px]'>
+            <input
+              className='border-[1px] border-[#1b9c85] p-2 font-light rounded-[10px] font-nunito w-[300px]'
+              id="userName"
+              name="userName"
+              label='User Name'
+              type="text"
+              placeholder="User Name"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.userName}
+            
+              // onChange= {(e) => setUserName (e.target.value)}
+            />
+            {formik.touched.userName && formik.errors.userName ? <p>{formik.errors.userName}</p> : null}
+          </div>
 
-              {/* Email input field */}
-              <div className="pb-2">
-                <label
-                  htmlFor="email"
-                  className={`block font-nunito text-sm pb-2 ${
-                    formik.touched.email && formik.errors.email
-                      ? "text-re"
-                      : ""
-                  }`}
-                >
-                  {formik.touched.email && formik.errors.email
-                    ? formik.errors.email
-                    : ""}
-                </label>
+          <div className='m-[10px]'>
+            <input
+              className='border-[1px] border-[#1b9c85] font-light p-2 rounded-[10px] font-nunito w-[300px]'
+              id="email"
+              name="email"
+              type="email"
+              placeholder="example@example.com"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.email}
+            />
+              {formik.touched.email && formik.errors.userName ? <p>{formik.errors.userName}</p> : null}
+          </div>
 
-                <p></p>
-                <input
-                  className='border-[1px] border-[#1b9c85] p-2 rounded-[10px]  focus:border-[#1b9c85] focus:ring-[#1b9c85] font-nunito w-[400px]'
-                  type="email"
-                  name="email"
-                  placeholder="Enter your email address"
-                  onChange={formik.handleChange}
-                  value={formik.values.email}
-                  onBlur={formik.handleBlur}
-                />
-              </div>
-
-              {/* password input field */}
-              <div className="pb-2">
-                <label
-                  htmlFor="password"
-                  className={`block font-nunito text-sm pb-2 ${
-                    formik.touched.password && formik.errors.password
-                      ? "text-re"
-                      : ""
-                  }`}
-                >
-                  {formik.touched.password && formik.errors.password
-                    ? formik.errors.password
-                    : ""}
-                </label>
-
-                <p></p>
-                <input
-                  className='border-[1px] border-[#1b9c85] p-2 rounded-[10px]  focus:border-[#1b9c85] focus:ring-[#1b9c85] font-nunito w-[400px]'
-                  type="password"
-                  name="password"
-                  placeholder="Enter your password"
-                  onChange={formik.handleChange}
-                  value={formik.values.password}
-                  onBlur={formik.handleBlur}
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="bg-[#1b9c85] font-nunito text-sm text-white py-3 mt-6 rounded-[12px] w-[150px] justify-center items-center"
-              >
-                Login
-              </button>
-        </form>
+          <div className='m-[10px]'>
+            <input
+              className={`border-[1px] border-[#1b9c85] font-light p-2 rounded-[10px] font-nunito w-[300px] ${
+                formik.touched.name && formik.errors.name? "text-red-400" : null }` }
+              id="password"
+              name="password"
+              type="password"
+              placeholder="Password"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.password}
+            />
+            {formik.touched.password &&formik.errors.password ? <p>{formik.errors.password}</p> : null}
+          </div>
+        </div>
+        <div className='grid items-center justify-center'>
+          <button 
+            type="submit"
+            disabled={formik.isValid}
+            className="bg-[#1b9c85] font-nunito text-sm text-white rounded-[12px]  p-[10px] w-[150px] "
+          >
+            Login
+          </button>
+        </div>  
+      </form>
     </div>
   )
 }

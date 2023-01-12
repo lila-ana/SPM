@@ -5,8 +5,8 @@ export default function ScrollButton(props) {
     
     <div> 
         <button
-            className={props.styles}
-            onClick={props.action}
+                   className={props.styles}
+                onClick={props.action}
          > {props?.name} </button>
     </div>
   )

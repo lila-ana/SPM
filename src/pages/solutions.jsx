@@ -1,13 +1,15 @@
 import React from 'react'
-const Solutions = () => {
+import Detail from '../Components/Solutions/detail'
+import Layout from '../layout'
+
+export default function Solutions() {
   return (
-    <div className="container">
-    
-      <h1 className="text-center" style={{paddingTop: "30%"}}>
-        Solutions
-      </h1>
-      
+    <div>
+      <Layout>
+        <Detail/>
+      </Layout>
+
     </div>
   )
 }
-export default Solutions;
+

@@ -5,6 +5,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.7",
     "axios": "^0.24.0",
+    "classnames": "^2.3.2",
     "daisyui": "^2.46.0",
     "formik": "^2.2.9",
     "headless": "^1.2.0",
@@ -14,8 +15,9 @@
     "react-horizontal-scrolling-menu": "^3.2.3",
     "react-icons": "^4.7.1",
     "react-scripts": "5.0.1",
+    "react-select": "^5.7.0",
     "tailwind-scrollbar-hide": "^1.1.7",
-    "classnames": "^2.3.2"
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.13",
