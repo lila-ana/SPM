@@ -3,14 +3,33 @@ import {useFormik} from 'formik'
 import * as Yup from "yup"
 import axios from 'axios'
 import get from '../../features/get'
+import { API_BASE_URL } from '../../api/endPoint'
 
 export default function ClientFill() {
+  
+  // const BearerToken = localStorage.getItem("accessToken");
+  
   const[name,setName]=useState(null);
   const[website,setWebSite]=useState(null);
   const[email,setEmail]=useState(null);
   const[contact_no,setContact]=useState(null);
   const[address,setAddress]=useState(null);
   const[logo,setLogo]=useState(null);
+
+ const handleChange = (e) => {
+    const img = {
+      name: e?.target?.files[0].name,
+      data: e?.target?.files[0],
+    };
+    setLogo(img);
+  };
+  // const handleApi = () => {
+  //   const formData = new formData ()
+  //   formData.append ('image', image)
+  //   axios.post('url', formData).then((res) => {
+  //     console.log(res)
+  //   })
+  // }
   
   const formik  = useFormik ({
     initialValues: {
@@ -44,22 +63,28 @@ export default function ClientFill() {
       
     }),
 })
+const form = new FormData();
+form.append("name",name)
+form.append("email",email)
+form.append("contact_no",contact_no)
+form.append("logo",logo)
 let client={
 name,
 website,
 email,
-// state,
-// country,
 contact_no,
 address,
 logo,
 }
+console.log(client,"rerttr")
 const HandleSubmit=(e)=>{
   e.preventDefault();
       axios
-      .post(`http://172.16.33.73:8000/api/v1/client/create`, client, {
+      .post(`${API_BASE_URL}client/create`, client, {
         headers: {
-          "Content-Type": "application/json",
+      'Content-type': 'multipart/form-data',
+          // authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjpudWxsLCJsYXN0TmFtZSI6bnVsbCwiZW1haWwiOiJtdWxlc3NAZ21haWwuY29tIiwiZ2VuZGVyIjoiTWFsZSIsImRlcGFydG1lbnQiOiJTYWFTIiwidGVsIjpudWxsLCJwYXNzd29yZCI6IjEyMzhnZmo4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiaXNfZGVsZXRlZCI6dHJ1ZSwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiaWF0IjoxNjczNTk1OTI4LCJleHAiOjE2NzM2ODIzMjh9.XHYs6P7qOADLnWJGePBvJPs0PSqGcyUrY0fKcuUmZjo",
+
         },
       })
       .then(function (response) {
@@ -81,7 +106,7 @@ console.log(client,"formik.errors")
     <div className='grid items-center justify-center '>
       <form 
       onSubmit={HandleSubmit}
-      className='grid items-center justify-center rounded-[10px] border-solid border-[#1b9c85] border-[1px] w-[500px] h-[400px] '
+      className='grid items-center justify-center rounded-[10px] border-solid border-[#1b9c85] border-[1px] w-[500px]'
       >
       <div className='m-[10px]'>
         <div className='m-[10px]'>
@@ -150,24 +175,25 @@ console.log(client,"formik.errors")
           {formik.touched.website && formik.errors.website ? <p>{formik.errors.website}</p> : null}
         </div>
         <div className='m-[10px] flex gap-3 justify-center items-center'>
-          <div className='text-sm border-[1px] border-[#1b9c85] p-2 w-[75px] rounded-[10px] text-nunito text-[#1b9c85] flex justify-center items-center'>
-            Logo
-          </div>
           <input
-            className=' border-[1px] bg-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[260px]'
+            className='border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]'
             id="logo"
             name="logo"
-            type="text"
+            type="file"
             placeholder='Add image'
-            onChange={(e)=>setLogo(e.target.value)}
+            onChange={(e) => {
+              handleChange(e);
+            }}
             onBlur={formik.handleBlur}
           />
           {formik.touched.logo && formik.errors.logo ? <p>{formik.errors.logo}</p> : null}
         </div>
         <div className='flex items-center justify-center gap-[60px] my-[25px]'>
           <button 
+            // onClick={handleApi}
             type="submit"
             className="bg-[#1b9c85] font-nunito text-[15px] font-light text-white rounded-[12px] p-[10px] w-[120px] "
+          
           >
             Submit
           </button>

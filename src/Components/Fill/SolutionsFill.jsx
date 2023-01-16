@@ -7,11 +7,18 @@ import get from '../../features/get'
 
 export default function SolutionsFIll() {
  
+  // const BearerToken = localStorage.getItem("accessToken");
+
   const [name, setName] =useState(null)
   const [logo, setLogo] =useState(null)
-  
+  const handleChange = (e) => {
+    const img = {
+      name: e?.target?.files[0].name,
+      data: e?.target?.files[0],
+    };
+    setLogo(img);
+  };
  
-
   const formik  = useFormik ({
     initialValues: {
       solutionName:"", 
@@ -34,6 +41,8 @@ export default function SolutionsFIll() {
 
 })
 
+
+
 let solution={
   name,
   logo,
@@ -41,9 +50,11 @@ let solution={
 const HandleSubmit=(e)=>{
     e.preventDefault();
         axios
-        .post(`http://172.16.33.73:8000/api/v1/solution/create`, solution, {
+        .post(`http://172.16.34.103:8000/api/v1/solution/create`, solution, {
           headers: {
             "Content-Type": "application/json",
+            // authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6Ik5hb2xsbCIsImVtYWlsIjoiTmFvbGxsQGdtYWlsLmNvbSIsImdlbmRlciI6Im1hbGUiLCJkZXBhcnRtZW50IjoiU29mdHdhcmUgYXMgYSBTZXJ2aWMiLCJqb2IiOiJFUlAiLCJwYXNzd29yZCI6IjEyMzhnZ2ZqOCIsImlzQWRtaW4iOm51bGwsImNyZWF0ZWRfYXQiOm51bGwsInVwZGF0ZWRfYXQiOm51bGwsImlzX2RlbGV0ZWQiOnRydWUsImNyZWF0ZWRfYnkiOjIsInVwZGF0ZWRfYnkiOm51bGwsImlhdCI6MTY3MzUyNDcxOSwiZXhwIjoxNjczNjExMTE5fQ.n8D5nEppe3v49Btx4UZog6csO2gVeJpOKHVKJ5iZLws",
+
           },
         })
         .then(function (response) {
@@ -60,7 +71,7 @@ const HandleSubmit=(e)=>{
     <div className='grid items-center justify-center '>
       <form 
       onSubmit={HandleSubmit}
-      className='grid items-center justify-center rounded-[10px] border-solid border-[#1b9c85] border-[1px] w-[500px] h-[400px] '
+      className='grid items-center justify-center rounded-[10px] border-solid border-[#1b9c85] border-[1px] w-[500px]  '
       >
       <div className='m-[10px]'>
         <div className='m-[10px]'>
@@ -86,6 +97,21 @@ const HandleSubmit=(e)=>{
             onChange={(e)=>setLogo(e.target.value)}
             onBlur={formik.handleBlur}
             // value={formik.values.logo}
+          />
+          {formik.touched.logo && formik.errors.logo ? <p>{formik.errors.logo}</p> : null}
+        </div>
+        <div className='m-[10px] flex gap-3 justify-center items-center'>
+
+          <input
+            className='border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]'
+            id="logo"
+            name="logo"
+            type="file"
+            placeholder='Add image'
+            onChange={(e) => {
+              handleChange(e);
+            }}
+            onBlur={formik.handleBlur}
           />
           {formik.touched.logo && formik.errors.logo ? <p>{formik.errors.logo}</p> : null}
         </div>

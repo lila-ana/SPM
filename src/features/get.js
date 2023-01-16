@@ -15,7 +15,7 @@ function getclient(){
 function getproject(){
     const [data,setData]=useState();
     useEffect(() => {
-        axios.get(`${API_BASE_URL}project/all-projects`)
+        axios.get(`${API_BASE_URL}projectFill`)
         .then(res => setData(res.data?.data))
         .catch(err => console.log(err))
       })
@@ -33,7 +33,7 @@ function getvendor(){
 function getsolutions(){
     const [data,setData]=useState();
     useEffect(() => {
-        axios.get(`${API_BASE_URL}solution/all-solutions`)
+        axios.get(`${API_BASE_URL}solution`)
         .then(res => setData(res.data?.data))
         .catch(err => console.log(err))
       })
@@ -76,6 +76,26 @@ function getposition(){
       return data;
 }
 
+function getContactRole(){
+    const [data,setData]=useState();
+    useEffect(() => {
+        axios.get(`${API_BASE_URL}position/all-positions`)
+        .then(res => setData(res.data?.data))
+        .catch(err => console.log(err))
+      })
+      return data;
+}
+function getemail(){
+    const [data,setData]=useState();
+    useEffect(() => {
+        axios.get(`${API_BASE_URL}position/all-positions`)
+        .then(res => setData(res.data?.data))
+        .catch(err => console.log(err))
+      })
+      return data;
+}
+
+
 export default {
     getclient,
     getproject,
@@ -85,4 +105,8 @@ export default {
     getaddress,
     getposition,
     getcontact,
+    getsolutions,
+    getContactRole,
+    getemail,
+
 }

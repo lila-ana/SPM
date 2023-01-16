@@ -2,14 +2,12 @@ import React, { useEffect, useState, useMemo } from 'react'
 import { useFormik } from 'formik'
 import * as Yup from "yup"
 import axios from 'axios'
-// import getclient from '../../features/get'
 import get from '../../features/get'
 
 export default function ProjectDropDown() {
 //  const data = useMemo(() => get.getproject() , [get.getproject()])
 
   const formik = useFormik ({
-
     
     initialValues: {
       name:"", 
@@ -129,7 +127,7 @@ export default function ProjectDropDown() {
           <label className="block mb-[2px] text-sm font-nunito font-light text-[#696969] w-[120px] dark:text-white">E-mail</label>
           <select  className="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             <option value="" disabled>Choose E-mail</option>
-              {get?.getposition()?.map((items)=>(
+              {get?.getemail()?.map((items)=>(
                 <option value={items?.id}>{items?.name}</option>           
               ))}
           </select>
@@ -140,7 +138,7 @@ export default function ProjectDropDown() {
           <label className="block mb-[2px] text-sm font-nunito font-light text-[#696969] w-[120px] dark:text-white">Vendor</label>
           <select  className="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             <option value="" disabled>Choose Vendor</option>
-              {get?.getposition()?.map((items)=>(
+              {get?.getvendor()?.map((items)=>(
                 <option value={items?.id}>{items?.name}</option>           
               ))}
           </select>
@@ -151,7 +149,7 @@ export default function ProjectDropDown() {
           <label className="block mb-[2px] text-sm font-nunito font-light text-[#696969] w-[120px] dark:text-white">Solution</label>
           <select  className="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             <option value="" disabled>Choose Solution</option>
-              {get?.getposition()?.map((items)=>(
+              {get?.getsolutions()?.map((items)=>(
                 <option value={items?.id}>{items?.name}</option>           
               ))}
           </select>
@@ -162,7 +160,7 @@ export default function ProjectDropDown() {
           <label className="block mb-[2px] text-sm font-nunito font-light text-[#696969] w-[120px] dark:text-white">Contact Role</label>
           <select  className="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             <option value="" disabled>Choose Contact role</option>
-              {get?.getposition()?.map((items)=>(
+              {get?.getContactRole()?.map((items)=>(
                 <option value={items?.id}>{items?.name}</option>           
               ))}
           </select>

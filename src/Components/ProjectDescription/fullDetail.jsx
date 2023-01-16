@@ -60,13 +60,19 @@ export default function FullDetail() {
                     </div>
                   
                 </div>
-               
+                
                 <div className='mx-[100px]'>
                     <div className='font-bold text-[24px] text-[#1b9c85] font-nunito col-span-2'>Contact Person</div>
                     <div className='mt-[20px]'>
                         <div className='flex items-center gap-[10px] m-[10px]'>
                             <FaUserCircle className='fill-[#1b9c85] w-[25px] h-[25px]'/>
-                            <div className='text-[20px] font-normal font-nunito text-[#1b9c85]'>Mr. Daniel Gardew</div>
+                            <div className='text-[20px] font-normal font-nunito text-[#1b9c85]'>
+                                    Mr. Daniel Gardew
+                                    {/* {get?.getproject()?.map((items)=>(
+                                <div 
+                                    value={items?.id}>{items?.name}</div>           
+                                ))} */}
+                            </div>
                         </div>
                         <div className='flex items-center gap-[10px] m-[10px]'>
                             <MdAdminPanelSettings className='fill-[#1b9c85] w-[25px] h-[25px]'/>

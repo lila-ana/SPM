@@ -6,6 +6,8 @@ import get from '../../features/get'
 
 export default function RepresentativeFill() {
  
+  // const BearerToken = localStorage.getItem("accessToken");
+
   const [name, setName]= useState(null);
   const [email, setEmail]= useState(null);
   const [address, setAddress]= useState(null);
@@ -46,9 +48,11 @@ export default function RepresentativeFill() {
       const HandleSubmit=(e)=>{
           e.preventDefault();
               axios
-              .post(`http://172.16.33.73:8000/api/v1/representative/create`, representative, {
+              .post(`http://172.16.34.103:8000/api/v1/representative/create`, representative, {
                 headers: {
                   "Content-Type": "application/json",
+                  // authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6Ik5hb2xsbCIsImVtYWlsIjoiTmFvbGxsQGdtYWlsLmNvbSIsImdlbmRlciI6Im1hbGUiLCJkZXBhcnRtZW50IjoiU29mdHdhcmUgYXMgYSBTZXJ2aWMiLCJqb2IiOiJFUlAiLCJwYXNzd29yZCI6IjEyMzhnZ2ZqOCIsImlzQWRtaW4iOm51bGwsImNyZWF0ZWRfYXQiOm51bGwsInVwZGF0ZWRfYXQiOm51bGwsImlzX2RlbGV0ZWQiOnRydWUsImNyZWF0ZWRfYnkiOjIsInVwZGF0ZWRfYnkiOm51bGwsImlhdCI6MTY3MzUyNDcxOSwiZXhwIjoxNjczNjExMTE5fQ.n8D5nEppe3v49Btx4UZog6csO2gVeJpOKHVKJ5iZLws",
+
                 },
               })
               .then(function (response) {
@@ -61,6 +65,7 @@ export default function RepresentativeFill() {
         }
         
         console.log(get.getrepresentative(),"data")
+        
   
 return (
     <div className='grid items-center justify-center '>
@@ -69,6 +74,19 @@ return (
           className='grid items-center justify-center rounded-[10px] border-solid border-[#1b9c85] border-[1px] w-[500px] h-[400px] '
         >
         <div className='m-[10px]'>
+          {/* <div className='m-[1px] w-[350px] '>
+          <div className='m-[4px] flex justify-center items-center gap-[5px]'>
+            <label className="block mb-[2px] text-sm font-nunito font-light text-[#696969] w-[120px] dark:text-white">Client</label>
+            <select className="block w-full p-2 text-sm font-nunito text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              <option value="" disabled>Choose Client</option>
+                {get?.getclient()?.map((items)=>(
+                  <option 
+                  value={items?.id}>{items?.name}</option>           
+                ))}
+            </select>
+            </div>
+          </div> */}
+          
           <div className='m-[10px]'>
             <input
               className='border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]'

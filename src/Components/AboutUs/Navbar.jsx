@@ -3,6 +3,7 @@ import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import classNames from "classnames";
 import department from "../../utils/Department.json"
+import detail from "../Solutions/detail"
 
 
 export default function Navbar() {
@@ -55,7 +56,7 @@ export default function Navbar() {
                             <Menu.Item>
                             {({ active }) => (
                               <a
-                                href="#"
+                                // href="/detail"
                                 className={classNames(
                                   active ? 'bg-gray-100 text-[#1b9c85]' : 'text-[#1b9c85]',
                                   'block px-4 py-2 text-sm'
@@ -80,6 +81,8 @@ export default function Navbar() {
             <p className='text-center text-[24px] font-semibold text-[#ffffff]'> Get Job Done</p>
         </div>
       </div>
+
+
 
     </div>
       
