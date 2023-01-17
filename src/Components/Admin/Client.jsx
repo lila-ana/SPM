@@ -13,7 +13,7 @@ export default function Client(props) {
    // function scrollback (e,name)  { }
    const [clientmodal,setClientModal]=useState(false)
    const [addModal,setAddModal]=useState(false)
-   const [posts, setPosts] = useState([]);
+   // const [posts, setPosts] = useState([]);
 
    function HandleModal(){
       setClientModal(true)

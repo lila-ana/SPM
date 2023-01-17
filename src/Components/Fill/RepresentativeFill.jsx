@@ -3,6 +3,7 @@ import {useFormik} from 'formik'
 import * as Yup from 'yup';
 import axios from 'axios';
 import get from '../../features/get'
+import { AiFillCloseCircle } from 'react-icons/ai';
 
 export default function RepresentativeFill() {
  
@@ -15,6 +16,9 @@ export default function RepresentativeFill() {
   const [contact_2, setContact_2]= useState(null);
   const [position, setPosition]= useState(null);
   
+  function HandleClose(){
+    props.modal(false)
+  }
 
   const formik  = useFormik ({
     initialValues: {
@@ -75,6 +79,15 @@ export default function RepresentativeFill() {
   
 return (
     <div className='grid items-center justify-center '>
+       
+       <div className="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true shadow dark:bg-gray-700">
+  <div className="fixed inset-0 z-10 overflow-y-auto">
+    <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+      <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 w-[950px] sm:max-w-lg">
+        <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4 rounded-lg shadow dark:bg-gray-700"></div>
+        <h3 onClick={HandleClose} className="text-lg font-medium leading-6 text-gray-900 flex justify-end" id="modal-title">
+            <AiFillCloseCircle className='flex  fill-[#1b9c85] w-[25px] h-[25px] rounded-full'/>
+        </h3>
         <form
           onSubmit={HandleSubmit}
           className='grid items-center justify-center rounded-[10px] border-solid border-[#1b9c85] border-[1px] w-[500px]  '
@@ -93,6 +106,7 @@ return (
             </select>
             </div>
           </div> */}
+ 
           <div className='mx-[20px] mt-[20px] w-[350px] '>
           <div className='m-[4px] flex justify-center items-center gap-[5px]'>
             <label className="block mb-[2px] text-sm font-nunito font-light text-[#696969] w-[80px] dark:text-white">Client</label>
@@ -200,6 +214,14 @@ return (
           </button>
           </div>
         </form>
+    
     </div>
+    </div>
+    </div>
+    </div>
+   </div>
+  
+   
+    
   )
 }
