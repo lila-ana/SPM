@@ -6,7 +6,7 @@ import axios from "axios";
 function getclient(){
     const [data,setData]=useState();
     useEffect(() => {
-        axios.get(`${API_BASE_URL}client/all-clients`)
+        axios.get(`${API_BASE_URL}client`)
         .then(res => setData(res.data?.data))
         .catch(err => console.log(err))
       })

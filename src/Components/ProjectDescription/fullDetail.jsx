@@ -7,7 +7,7 @@ export default function FullDetail() {
     <div>
         <div className='mb-[15px] text-[#4E4E4F] font-bold font-nunito text-[24px] border-b-2 w-[180px] border-[#1b9c85]'>Description</div>
             <div className='grid items-center justify-center grid-cols-5 gap-[5px]'>
-                <div className='flex col-span-3 font-light text-[20px] text-gray'>
+                <div className='flex col-span-3 font-light text-[20px] text-gray p-[10px]'>
                      {/*  detail to be mapped*/}
                     In publishing and graphic design, Lorem ipsum is a placeholder text commonly 
                     used to demonstrate the visual form of a document or a typeface without relying on meaningful content. 

@@ -60,22 +60,9 @@ export default function ProjectDropDown() {
       onSubmit={formik.handleSubmit}
       className='grid items-center justify-center rounded-[10px] border-solid border-[#1b9c85] border-[1px] w-[400px] '
       >
-        <div className='m-[1px] w-[350px] '>
+          <div className='m-[1px] w-[350px] '>
         <div className='m-[4px] flex justify-center items-center gap-[5px]'>
-          <label className="block mb-[2px] text-sm font-nunito font-light text-[#696969] w-[120px] dark:text-white">Project Title</label>
-          <select className="block w-full p-2 text-sm font-nunito text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-            <option value="" disabled>Choose Project</option>
-              {get?.getproject()?.map((items)=>(
-                <option 
-                value={items?.id}>{items?.name}</option>           
-              ))}
-          </select>
-          </div>
-        </div>
-
-        <div className='m-[1px] w-[350px] '>
-        <div className='m-[4px] flex justify-center items-center gap-[5px]'>
-          <label className="block mb-[2px] text-sm font-nunito font-light text-[#696969] w-[120px] dark:text-white">Client</label>
+          <label className="block mb-[2px] text-sm font-nunito font-normal  w-[120px] text-gray-600 dark:text-white">Client</label>
           <select className="block w-full p-2 text-sm font-nunito text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             <option value="" disabled>Choose Client</option>
               {get?.getclient()?.map((items)=>(
@@ -85,57 +72,10 @@ export default function ProjectDropDown() {
           </div>
         </div>
 
-        <div className='m-[1px] w-[350px] '>
-        <div className='m-[4px] flex justify-center items-center gap-[5px]'>
-          <label className="block mb-[2px] text-sm font-nunito font-light text-[#696969] w-[120px] dark:text-white">Address</label>
-          <select className="block w-full p-2 text-sm font-nunito text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-            <option value="" disabled>Choose Address</option>
-              {get.getaddress()?.map((items)=>(
-                <option value={items?.id}>{items?.name}</option>           
-              ))}
-          </select>
-          </div>
-        </div>
         
         <div className='m-[1px] w-[350px] '>
         <div className='m-[4px] flex justify-center items-center gap-[5px]'>
-          <label className="block mb-[2px] text-sm font-nunito font-light text-[#696969] w-[120px] dark:text-white">Contact Person</label>
-          <select className="block w-full p-2 text-sm font-nunito text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-            <option value="" disabled>Choose Contact person</option>
-              {get.getcontact()?.map((items)=>(
-                <option value={items?.id}>{items?.name}</option>           
-              ))}
-          </select>
-          </div>
-        </div>
-        
-     
-        <div className='m-[1px] w-[350px] '>
-        <div className='m-[4px] flex justify-center items-center gap-[5px]'>
-          <label className="block mb-[2px] text-sm font-nunito font-light text-[#696969] w-[120px] dark:text-white">Position</label>
-          <select  className="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-            <option value="" disabled>Choose Position</option>
-              {get.getposition()?.map((items)=>(
-                <option value={items?.id}>{items?.name}</option>           
-              ))}
-          </select>
-          </div>
-        </div>
-  
-        <div className='m-[1px] w-[350px] '>
-        <div className='m-[4px] flex justify-center items-center gap-[5px]'>
-          <label className="block mb-[2px] text-sm font-nunito font-light text-[#696969] w-[120px] dark:text-white">E-mail</label>
-          <select  className="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-            <option value="" disabled>Choose E-mail</option>
-              {get?.getemail()?.map((items)=>(
-                <option value={items?.id}>{items?.name}</option>           
-              ))}
-          </select>
-          </div>
-        </div>
-        <div className='m-[1px] w-[350px] '>
-        <div className='m-[4px] flex justify-center items-center gap-[5px]'>
-          <label className="block mb-[2px] text-sm font-nunito font-light text-[#696969] w-[120px] dark:text-white">Vendor</label>
+          <label className="block mb-[2px] text-sm font-nunito font-normal  w-[120px] text-gray-600 dark:text-white">Vendor</label>
           <select  className="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             <option value="" disabled>Choose Vendor</option>
               {get?.getvendor()?.map((items)=>(
@@ -144,9 +84,11 @@ export default function ProjectDropDown() {
           </select>
           </div>
         </div>
+        
+        
         <div className='m-[1px] w-[350px] '>
-        <div className='m-[4px] flex justify-center items-center gap-[5px]'>
-          <label className="block mb-[2px] text-sm font-nunito font-light text-[#696969] w-[120px] dark:text-white">Solution</label>
+        <div className='m-[4px] flex justify-center items-center gap-[5px] mb-[10px]'>
+          <label className="block mb-[2px] text-sm font-nunito ffont-normal  w-[120px] text-gray-600 dark:text-white">Solution</label>
           <select  className="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             <option value="" disabled>Choose Solution</option>
               {get?.getsolutions()?.map((items)=>(
@@ -155,17 +97,41 @@ export default function ProjectDropDown() {
           </select>
           </div>
         </div>
-        <div className='m-[1px] w-[350px] '>
+
+        <div className='mb-[10px]'>
+          <div className='flex items-center justify=center gap-[5px] mb-[10px]'>
+            <label for="name" className="block mb-2 text-sm font-normal  w-[120px] text-gray-600 dark:text-white">Project Title</label>
+            <input 
+              type="text" 
+              id="name"
+              className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
+          </div>
+
+          <div className='flex items-top justify-top gap-[5px]'>
+            <label for="description" className="block mb-2 text-sm font-normal w-[120px] text-gray-600 dark:text-white">Project description</label>
+            <input 
+              type="text" 
+              id="description"
+              className="block w-full h-[300px] p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
+          </div>
+
+        </div>
+       
+
+
+
+        
+        {/* <div className='m-[1px] w-[350px] '>
         <div className='m-[4px] flex justify-center items-center gap-[5px]'>
           <label className="block mb-[2px] text-sm font-nunito font-light text-[#696969] w-[120px] dark:text-white">Contact Role</label>
           <select  className="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-            <option value="" disabled>Choose Contact role</option>
+            <option value="" disabled>Choose Contract role</option>
               {get?.getContactRole()?.map((items)=>(
                 <option value={items?.id}>{items?.name}</option>           
               ))}
           </select>
           </div>
-        </div>
+        </div> */}
         
 
  

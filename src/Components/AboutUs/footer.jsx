@@ -7,7 +7,7 @@ export default function Footer() {
       <footer class="bg-[#1b9c85] dark:bg-gray-900">
         <div class="px-4 py-6 bg-[#1b9c85] dark:bg-[#1b9c85] md:flex md:items-center md:justify-between">
           <span class="text-white hover:text-gray-900 dark:hover:text-white sm:text-center">
-            © {year} <a href="https://flowbite.com/">Flowbite™</a>. All Rights
+            © {year} <a href="https://www.ienetworksolutions.com//">IE Networks</a>. All Rights
             Reserved.
           </span>
           <div class="flex mt-4 space-x-6 sm:justify-center md:mt-0">

@@ -20,7 +20,13 @@ export default function Heading() {
 	const handleSetting = () => {
 		setSetting(true);
 	};
-
+	const logoutUser = () => {
+		
+			localStorage.clear();
+			window.location.replace("/login");
+		
+	  };
+	
 	return (
 		<div className="m-[20px] flex justify-between border-b-[2px] border-[#1b9c85] mb-[20px] ">
 			<div className="font-medium text-[18px] text-[#1b9c85] font-nunito pl-[10px] pt-[15px]">
@@ -52,11 +58,12 @@ export default function Heading() {
 									<div className="text-nunito text-[#602234] font-light text-[16px]">
 										Software Team Lead
 									</div>
-									           <button
-										className="border-[1px] border-[#1b9c85] w-[40px]" /*  */
-									>
-										Logout
-									</button>
+									<div className="flex items-center justify-center">
+									<button
+										onClick={logoutUser}
+										className="border-[1px] border-[#1b9c85] w-[70px] rounded-[2px] bg-[#1b9c85] text-white flex items-center justify-center" /*  */
+									>Logout</button>
+									</div>
 								</div>
 							</Menu.Item>
 						</div>
