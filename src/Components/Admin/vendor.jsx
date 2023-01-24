@@ -1,23 +1,37 @@
 import { Menu } from '@headlessui/react'
-import React from 'react'
+import React, { useState } from 'react'
 import { MdDelete } from 'react-icons/md'
 import {IoIosCheckmarkCircleOutline} from "react-icons/io"
 import {AiOutlineCloseCircle} from "react-icons/ai"
+import AddButton from '../Common/Button/addButton'
+import VendorFill from '../Fill/VendorFill'
 
 export default function Vendor() {
     
     // function scrollback (e,name)  { }
-    
+    const [addModal,setAddModal]=useState(false)
+
+    function HandleAddModal () {
+      setAddModal(true)
+   }
     return (
     <div className="grid gap-5">
-    <div className='flex justify-center'>
+    {/* <div className='flex justify-center'>
     <button 
     className="bg-[#1b9c85] w-[150px] text-white font-light p-[10px] flex items-center justify-center rounded-[10px]">
     Add Vendor
-    </button>
-       
-    </div> 
+    </button>  
+    </div>  */}
     {/* <div className='flex'> */}
+    <div className='flex justify-center'>
+    <AddButton 
+            styles ='bg-[#1b9c85] w-[150px] text-white font-light p-[10px] flex items-center justify-center rounded-[10px]'
+            name='Add vendor'   
+            action={
+               HandleAddModal
+            }
+         /> 
+    </div>
     <div className='grid grid-cols-12 gap-4'>
       <div className="col-span-4 stroke-[#1b9c85] w-[285px] h-[200px] rounded-sm hover:shadow-[#1b9c8585] ease-in-out duration-300 shadow-xl   text-[#4E4E4F] font-semibold font-nunito text-[20px] border-[#1b9c85] border-[1px]  ">
          <img 
@@ -105,7 +119,7 @@ export default function Vendor() {
    
     </div>
     
-
+    {addModal?<VendorFill modal={setAddModal}/>:""}
 
     </div>
   )

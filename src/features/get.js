@@ -11,6 +11,7 @@ function getclient(){
         .catch(err => console.log(err))
       })
       return data;
+    //   <p>UseEffect!</p>;
 }
 function getproject(){
     const [data,setData]=useState();
