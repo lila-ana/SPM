@@ -59,21 +59,12 @@ export default function Client(props) {
       console.log(get?.getclient(),"get?.getclient()")
    return (
     <div className="grid gap-5">
-    <div className='flex justify-center'>
-    {/* <button 
+      <div className="flex justify-center">
+        {/* <button 
       className="bg-[#1b9c85] w-[150px] text-white font-light p-[10px] flex items-center justify-center rounded-[10px]">
       Add Client
       </button> */}
-      {}
-      
-      <AddButton 
-            styles ='bg-[#1b9c85] w-[150px] text-white font-light p-[10px] flex items-center justify-center rounded-[10px]'
-            name='Add Client'   
-            action={
-               HandleAddModal
-            }
-         /> 
-    </div>
+        {}
 
     {get?.getclient()?.length!==0?
     <div className='grid grid-cols-12 gap-4'>
@@ -138,6 +129,7 @@ export default function Client(props) {
     
 {clientmodal?<ClientPop modal={setClientModal}/>:""}
 {addModal?<ClientFill modal={setAddModal}/>:""}
+</div>
 </div>
   )
 }
