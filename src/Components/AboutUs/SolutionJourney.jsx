@@ -30,7 +30,7 @@ export default function SolutionJourney() {
                                 group-hover:opacity-100
                                 group-hover:translate-y-0"
                     >
-                      <div class="p-2">
+                      <div class="">
                         <p class="text-white text-[11px]">{items?.name}</p>
                       </div>
                     </div>
