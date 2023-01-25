@@ -1,8 +1,9 @@
-import React from "react";
-import { AiFillCloseCircle } from "react-icons/ai";
+import React from 'react'
+import { AiFillCloseCircle } from 'react-icons/ai';
 
-export default function ProjectPop(props) {
-  function HandleClose() {
+export default function RepresentativePop(props) {
+
+function HandleClose() {
     props.modal(false);
   }
   return (
@@ -59,6 +60,7 @@ export default function ProjectPop(props) {
           </div>
         </div>
       </div>
+
     </div>
-  );
+  )
 }
