@@ -62,6 +62,7 @@ export default function ClientFill(props) {
   const form = new FormData();
   form.append("name", name);
   form.append("email", email);
+  form.append("website", website);
   form.append("contact_no", contact_no);
   form.append("logo", logo);
   let client = {
@@ -97,7 +98,7 @@ export default function ClientFill(props) {
 
   return (
     <div
-      onClick={(e) => props?.setmodal(false)}
+      onClick={(HandleClose)}
       className="fixed left-0 right-0 top-0 bottom-0 bg-[#000000cc] flex items-center justify-center "
     >
       <div
@@ -106,7 +107,7 @@ export default function ClientFill(props) {
       >
         <div className="flex pb-4 justify-between">
           <span className="text-[28px] font-semibold">Add Client</span>
-          <div onClick={(e) => props?.setmodal(false)} className="pt-2">
+          <div onClick={HandleClose} className="pt-2">
             <GrClose className="w-[40px] h-[25px]" />
           </div>
         </div>

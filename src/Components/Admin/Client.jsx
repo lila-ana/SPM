@@ -13,8 +13,7 @@ import { API_BASE_URL } from '../../api/endPoint'
 import NoRecord from './noRecord'
 
 export default function Client(props) {
-   
-   // function scrollback (e,name)  { }
+
    
    const [clientmodal,setClientModal]=useState(false)
    const [addModal,setAddModal]=useState(false)
@@ -26,7 +25,6 @@ export default function Client(props) {
       setAddModal(true)
    }
 
- 
    const HandleDelete=(e, id)=>{
       e.preventDefault();
           axios
@@ -47,25 +45,17 @@ export default function Client(props) {
           });
     }
       
-      // const deletePost = (id) => {
-      //    e.preventDefault();
-      //    client.delete(`${id}`);
-      //    setPosts(
-      //       posts.filter((post) => {
-      //          return post.id !== id;
-      //       })
-      //    );
-      // };
+      
       console.log(get?.getclient(),"get?.getclient()")
    return (
     <div className="grid gap-5">
       <div className="flex justify-center">
-        {/* <button 
-      className="bg-[#1b9c85] w-[150px] text-white font-light p-[10px] flex items-center justify-center rounded-[10px]">
-      Add Client
-      </button> */}
-        {}
-
+        <AddButton 
+            styles ='bg-[#1b9c85] w-[150px] text-white font-light p-[10px] flex items-center justify-center rounded-[10px]'
+            name='Add Client'   
+            action={HandleAddModal}
+         /> 
+      </div>
     {get?.getclient()?.length!==0?
     <div className='grid grid-cols-12 gap-4'>
     {get?.getclient()?.map((items)=>(
@@ -80,19 +70,19 @@ export default function Client(props) {
             <div className='text-[#1b9c85] font-semibold text-[18px] hover-pointer'onClick={HandleModal}>{items?.name?.length>=20? items?.name?.slice(0, 20) + "..."
                           : items?.name}</div>
             </Tooltip>
-            
+   
+            <div className='flex justify-center items-center gap-[5px]'>
+            <div className='text-[#1b9c85] rounded-full border-[1px] border-[#1b9c85] w-[40px] h-[40px] grid items-center justify-center shadow-xl'>
+
+                  <AiFillEdit className="fill-[#7c0a02] "/>
+                  </div>
                <div className='text-[#1b9c85] rounded-full border-[1px] border-[#1b9c85] w-[40px] h-[40px] grid items-center justify-center shadow-xl'>
-             
-                  <div>
-                     <div className='flex justify-center items-center'>
-                        <AiFillEdit className="fill-[#7c0a02] "/>
                      <Menu as="div" className="relative inline-block text-left">
 
                         <Menu.Button>
                            <MdDelete className='fill-[#7c0a02]'/>
 					         </Menu.Button>
                         <Menu.Items className="absolute right-0 z-10 mt-2 w-[70px] origin-top-right divide-y divide-[#1b9c85] bg-white shadow-lg ring-opacity-5 focus:outline-none">
-						         {/* <div className="py-1"> */}
 							      <Menu.Item>
 								      <div className="flex rounded-[5px] gap-[15px] items-center justify-center bg-[#1b9c85] ">
 									      <div className="pt-[5px]">
@@ -110,14 +100,12 @@ export default function Client(props) {
 									      
 								      </div>
 							      </Menu.Item>
-						         {/* </div> */}
 					         </Menu.Items>
                      </Menu>
-                     
-                     {/* <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
+
+            {/* <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
                         <span class="font-medium">Successfully deleted!</span> 
                      </div> */}
-            </div>
         </div>
         </div>
         </div>
@@ -129,7 +117,6 @@ export default function Client(props) {
     
 {clientmodal?<ClientPop modal={setClientModal}/>:""}
 {addModal?<ClientFill modal={setAddModal}/>:""}
-</div>
 </div>
   )
 }
