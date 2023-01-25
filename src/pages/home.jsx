@@ -11,7 +11,6 @@ const Home = () => {
     <div>
       <Layout paddings={"px-[0px]"}>
         <div className="px-[100px]">
-          {" "}
           <Projects />
         </div>
         <AutoCounter />
