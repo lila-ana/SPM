@@ -11,6 +11,7 @@ import ProjectDescription from "./pages/ProjectDescription";
 import Modal from "./pages/Modal";
 import RequireAuth from "./Auth/RequireAuth";
 import RequireGuest from "./Auth/RequireGuset";
+import Card from "./Components/Common/card";
 
 const App = () => {
   return (

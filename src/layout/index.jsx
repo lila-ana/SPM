@@ -7,7 +7,13 @@ export default function index(props) {
   return (
     <div className="flex flex-col gap-5">
       <Navbar />
-      <div className="px-[100px]">{props.children}</div>
+      <div
+        className={
+          props?.paddings == undefined ? "px-[100px]" : props?.paddings
+        }
+      >
+        {props.children}
+      </div>
       <Footer />
     </div>
   );
