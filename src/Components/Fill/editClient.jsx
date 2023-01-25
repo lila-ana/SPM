@@ -6,15 +6,15 @@ import get from "../../features/get";
 import { API_BASE_URL } from "../../api/endPoint";
 import { GrClose } from "react-icons/gr";
 
-export default function ClientFill(props) {
+export default function EditClient(props) {
   // const BearerToken = localStorage.getItem("accessToken");
 
-  const [name, setName] = useState(null);
-  const [website, setWebSite] = useState(null);
-  const [email, setEmail] = useState(null);
-  const [contact_no, setContact] = useState(null);
-  const [address, setAddress] = useState(null);
-  const [logo, setLogo] = useState(null);
+  const [name, setName] = useState(props?.data?.name);
+  const [website, setWebSite] = useState(props?.data?.website);
+  const [email, setEmail] = useState(props?.data?.email);
+  const [contact_no, setContact] = useState(props?.data?.contact_no);
+  const [address, setAddress] = useState(props?.data?.address);
+  const [logo, setLogo] = useState(props?.data?.logo);
 
   function HandleClose() {
     props.modal(false);
@@ -62,7 +62,6 @@ export default function ClientFill(props) {
   const form = new FormData();
   form.append("name", name);
   form.append("email", email);
-  form.append("website", website);
   form.append("contact_no", contact_no);
   form.append("logo", logo);
   let client = {
@@ -77,9 +76,9 @@ export default function ClientFill(props) {
   const HandleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post(`${API_BASE_URL}client/create`, form, {
+      .patch(`${API_BASE_URL}client/${props?.data?.id}`, client, {
         headers: {
-          // "Content-Type": "multipart/form-data",
+          //   "Content-Type": "multipart/form-data",
           accept: "multipart/form-data",
           // authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjpudWxsLCJsYXN0TmFtZSI6bnVsbCwiZW1haWwiOiJtdWxlc3NAZ21haWwuY29tIiwiZ2VuZGVyIjoiTWFsZSIsImRlcGFydG1lbnQiOiJTYWFTIiwidGVsIjpudWxsLCJwYXNzd29yZCI6IjEyMzhnZmo4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiaXNfZGVsZXRlZCI6dHJ1ZSwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiaWF0IjoxNjczNTk1OTI4LCJleHAiOjE2NzM2ODIzMjh9.XHYs6P7qOADLnWJGePBvJPs0PSqGcyUrY0fKcuUmZjo",
         },
@@ -96,7 +95,7 @@ export default function ClientFill(props) {
 
   return (
     <div
-      onClick={(e) => props?.setmodal(false)}
+      onClick={HandleClose}
       className="fixed left-0 right-0 top-0 bottom-0 bg-[#000000cc] flex items-center justify-center "
     >
       <div
@@ -104,7 +103,7 @@ export default function ClientFill(props) {
         className="w-[630px] h-[600px]  px-8 py-8 rounded-lg bg-white flex flex-col gap-4 overflow-x-hidden overflow-y-auto"
       >
         <div className="flex pb-4 justify-between">
-          <span className="text-[28px] font-semibold">Add Client</span>
+          <span className="text-[28px] font-semibold">Edit Client</span>
           <div onClick={HandleClose} className="pt-2">
             <GrClose className="w-[40px] h-[25px]" />
           </div>
@@ -124,6 +123,7 @@ export default function ClientFill(props) {
                   placeholder="Full Name"
                   onChange={(e) => setName(e.target.value)}
                   onBlur={formik.handleBlur}
+                  value={name}
                 />
                 {formik.touched.fullName && formik.errors.fullName ? (
                   <p>{formik.errors.fullName}</p>
@@ -138,6 +138,7 @@ export default function ClientFill(props) {
                   placeholder="example@example.com"
                   onChange={(e) => setEmail(e.target.value)}
                   onBlur={formik.handleBlur}
+                  value={email}
                 />
                 {formik.touched.email && formik.errors.email ? (
                   <p>{formik.errors.email}</p>
@@ -152,6 +153,7 @@ export default function ClientFill(props) {
                   placeholder="Address"
                   onChange={(e) => setAddress(e.target.value)}
                   onBlur={formik.handleBlur}
+                  value={address}
                 />
                 {formik.touched.address && formik.errors.address ? (
                   <p>{formik.errors.address}</p>
@@ -166,6 +168,7 @@ export default function ClientFill(props) {
                   placeholder="Contact Number"
                   onChange={(e) => setContact(e.target.value)}
                   onBlur={formik.handleBlur}
+                  value={contact_no}
                 />
                 {formik.touched.contactNumber && formik.errors.contactNumber ? (
                   <p>{formik.errors.contactNumber}</p>
@@ -180,6 +183,7 @@ export default function ClientFill(props) {
                   placeholder="Website"
                   onChange={(e) => setWebSite(e.target.value)}
                   onBlur={formik.handleBlur}
+                  value={website}
                 />
                 {formik.touched.website && formik.errors.website ? (
                   <p>{formik.errors.website}</p>

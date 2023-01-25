@@ -3,14 +3,20 @@ import {useFormik} from 'formik'
 import * as Yup from "yup"
 import axios from 'axios'
 import get from '../../features/get'
+import { GrClose } from 'react-icons/gr'
+import { API_BASE_URL } from '../../api/endPoint'
 
 
-export default function SolutionsFIll() {
+export default function SolutionsFIll(props) {
  
   // const BearerToken = localStorage.getItem("accessToken");
 
   const [name, setName] =useState(null)
-  const [logo, setLogo] =useState(null)
+  const [description, setDescription] =useState(null)
+
+  function HandleClose() {
+    props.modal(false);
+  }
   const handleChange = (e) => {
     const img = {
       name: e?.target?.files[0].name,
@@ -40,35 +46,50 @@ export default function SolutionsFIll() {
     }),
 
 })
-
-
-
+const form = new FormData();
+  form.append("name", name);
+  form.append("description", description);
+  
 let solution={
   name,
-  logo,
+  description,
   }
-const HandleSubmit=(e)=>{
+  const HandleSubmit = (e) => {
     e.preventDefault();
-        axios
-        .post(`http://172.16.34.103:8000/api/v1/solution/create`, solution, {
-          headers: {
-            "Content-Type": "application/json",
-            // authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6Ik5hb2xsbCIsImVtYWlsIjoiTmFvbGxsQGdtYWlsLmNvbSIsImdlbmRlciI6Im1hbGUiLCJkZXBhcnRtZW50IjoiU29mdHdhcmUgYXMgYSBTZXJ2aWMiLCJqb2IiOiJFUlAiLCJwYXNzd29yZCI6IjEyMzhnZ2ZqOCIsImlzQWRtaW4iOm51bGwsImNyZWF0ZWRfYXQiOm51bGwsInVwZGF0ZWRfYXQiOm51bGwsImlzX2RlbGV0ZWQiOnRydWUsImNyZWF0ZWRfYnkiOjIsInVwZGF0ZWRfYnkiOm51bGwsImlhdCI6MTY3MzUyNDcxOSwiZXhwIjoxNjczNjExMTE5fQ.n8D5nEppe3v49Btx4UZog6csO2gVeJpOKHVKJ5iZLws",
-
-          },
-        })
-        .then(function (response) {
-          console.log(response);
-         
-        })
-        .catch(function (error) {
-          console.log(error, "errorrrrrrrrrrrrrrr");
-        });
-  }
+    axios
+      .post(`${API_BASE_URL}solution/create`, form, {
+        headers: {
+          // "Content-Type": "multipart/form-data",
+          accept: "multipart/form-data",
+          // authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjpudWxsLCJsYXN0TmFtZSI6bnVsbCwiZW1haWwiOiJtdWxlc3NAZ21haWwuY29tIiwiZ2VuZGVyIjoiTWFsZSIsImRlcGFydG1lbnQiOiJTYWFTIiwidGVsIjpudWxsLCJwYXNzd29yZCI6IjEyMzhnZmo4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiaXNfZGVsZXRlZCI6dHJ1ZSwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiaWF0IjoxNjczNTk1OTI4LCJleHAiOjE2NzM2ODIzMjh9.XHYs6P7qOADLnWJGePBvJPs0PSqGcyUrY0fKcuUmZjo",
+        },
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error, "errorrrrrrrrrrrrrrr");
+      });
+  };
+  
   console.log(get.getsolutions(),"data")
 
   return (
-    <div className='grid items-center justify-center '>
+    <div
+      onClick={(e) => props?.setmodal(false)}
+      className="fixed left-0 right-0 top-0 bottom-0 bg-[#000000cc] flex items-center justify-center "
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="w-[630px] h-[600px]  px-8 py-8 rounded-lg bg-white flex flex-col gap-4 overflow-x-hidden overflow-y-auto"
+      >
+        <div className="flex pb-4 justify-between">
+          <span className="text-[28px] font-semibold">Add Solution</span>
+          <div onClick={HandleClose} className="pt-2">
+            <GrClose className="w-[40px] h-[25px]" />
+          </div>
+        </div>
+   <div className='grid items-center justify-center '>
       <form 
       onSubmit={HandleSubmit}
       className='grid items-center justify-center rounded-[10px] border-solid border-[#1b9c85] border-[1px] w-[500px]  '
@@ -90,17 +111,17 @@ const HandleSubmit=(e)=>{
         <div className='m-[10px]'>
           <input
             className='border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px] h-[200px] grid justify-start'
-            id="logo"
-            name="logo"
-            type="logo"
+            id="description"
+            name="description"
+            type="description"
             placeholder='Solution Description'
-            onChange={(e)=>setLogo(e.target.value)}
+            onChange={(e)=>setDescription(e.target.value)}
             onBlur={formik.handleBlur}
             // value={formik.values.logo}
           />
           {formik.touched.logo && formik.errors.logo ? <p>{formik.errors.logo}</p> : null}
         </div>
-        <div className='m-[10px] flex gap-3 justify-center items-center'>
+        {/* <div className='m-[10px] flex gap-3 justify-center items-center'>
 
           <input
             className='border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]'
@@ -114,7 +135,7 @@ const HandleSubmit=(e)=>{
             onBlur={formik.handleBlur}
           />
           {formik.touched.logo && formik.errors.logo ? <p>{formik.errors.logo}</p> : null}
-        </div>
+        </div> */}
        
         <div className='flex items-center justify-center gap-[60px] my-[10px]'>
           <button 
@@ -133,6 +154,8 @@ const HandleSubmit=(e)=>{
       </div>
       </form>
 
+    </div>
+    </div>
     </div>
   )
 }

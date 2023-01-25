@@ -25,7 +25,7 @@ function getproject(){
 function getvendor(){
     const [data,setData]=useState();
     useEffect(() => {
-        axios.get(`${API_BASE_URL}vendor/all-vendors`)
+        axios.get(`${API_BASE_URL}vendor`)
         .then(res => setData(res.data?.data))
         .catch(err => console.log(err))
       })
@@ -43,7 +43,7 @@ function getsolutions(){
 function getrepresentative(){
     const [data,setData]=useState();
     useEffect(() => {
-        axios.get(`${API_BASE_URL}representative/all-representatives`)
+        axios.get(`${API_BASE_URL}representative`)
         .then(res => setData(res.data?.data))
         .catch(err => console.log(err))
       })
@@ -52,7 +52,7 @@ function getrepresentative(){
 function getaddress(){
     const [data,setData]=useState();
     useEffect(() => {
-        axios.get(`${API_BASE_URL}address/all-address`)
+        axios.get(`${API_BASE_URL}address`)
         .then(res => setData(res.data?.data))
         .catch(err => console.log(err))
       })
@@ -61,41 +61,23 @@ function getaddress(){
 function getcontact(){
     const [data,setData]=useState();
     useEffect(() => {
-        axios.get(`${API_BASE_URL}contact/all-contacts`)
-        .then(res => setData(res.data?.data))
-        .catch(err => console.log(err))
-      })
-      return data;
-}
-function getposition(){
-    const [data,setData]=useState();
-    useEffect(() => {
-        axios.get(`${API_BASE_URL}position/all-positions`)
+        axios.get(`${API_BASE_URL}contact`)
         .then(res => setData(res.data?.data))
         .catch(err => console.log(err))
       })
       return data;
 }
 
-function getContactRole(){
-    const [data,setData]=useState();
-    useEffect(() => {
-        axios.get(`${API_BASE_URL}position/all-positions`)
-        .then(res => setData(res.data?.data))
-        .catch(err => console.log(err))
-      })
-      return data;
-}
+
 function getemail(){
     const [data,setData]=useState();
     useEffect(() => {
-        axios.get(`${API_BASE_URL}position/all-positions`)
+        axios.get(`${API_BASE_URL}email`)
         .then(res => setData(res.data?.data))
         .catch(err => console.log(err))
       })
       return data;
 }
-
 
 export default {
     getclient,
@@ -104,10 +86,9 @@ export default {
     getrepresentative,
     getsolutions,
     getaddress,
-    getposition,
     getcontact,
     getsolutions,
-    getContactRole,
+    // getContactRole,
     getemail,
 
 }
