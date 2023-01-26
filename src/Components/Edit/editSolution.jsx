@@ -116,13 +116,13 @@ export default function EditSolution(props) {
         <div className='m-[10px]'>
           <input
             className='border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]'
-            id="email"
-            name="email"
-            type="email"
-            placeholder='email'
-            onChange={(e)=>setEmail(e.target.value)}
+            id="description"
+            name="description"
+            type="description"
+            placeholder='description'
+            onChange={(e)=>setDescription(e.target.value)}
             onBlur={formik.handleBlur}
-            value={email}
+            value={description}
           />
         </div>
         

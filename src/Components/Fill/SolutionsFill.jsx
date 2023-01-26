@@ -72,7 +72,7 @@ let solution={
       });
   };
   
-  console.log(get.getsolutions(),"data")
+  console.log(solution, "formik.errors");
 
   return (
     <div
