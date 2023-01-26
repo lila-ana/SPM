@@ -1,5 +1,5 @@
 import { Menu } from '@headlessui/react'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { MdDelete } from 'react-icons/md'
 import {IoIosCheckmarkCircleOutline} from "react-icons/io"
 import {AiFillEdit, AiOutlineCloseCircle} from "react-icons/ai"
@@ -8,12 +8,17 @@ import RepresentativeFill from '../Fill/RepresentativeFill'
 import RepresentativePop from '../modal/representativePop'
 import get from '../../features/get'
 import { Tooltip } from '@mui/material'
+import EditRepresentative from '../Edit/editRepresentative'
+import { API_BASE_URL } from '../../api/endPoint'
+import axios from 'axios'
 
 export default function Representative() {
     
     
     const [addModal,setAddModal]=useState(false)
     const [representativeModal,setRepresentativeModal]=useState(false)
+    const [data, setData] = useState(null);
+    const [editModal, setEditModal] = useState(false);
 
     function HandleModal(){
       setClientModal(true)
@@ -25,6 +30,21 @@ export default function Representative() {
    function RepresentativeModal (){
       setRepresentativeModal (true)
    }
+   function HandleEditModal(e, items) {
+      setEditModal(true);
+      setData(items);
+    }
+      
+      const [datas, setDatas] = useState();
+      useEffect(() => {
+        axios
+          .get(`${API_BASE_URL}representative`)
+          .then((res) => setDatas(res.data?.data))
+          .catch((err) => console.log(err));
+      });
+    function HandleAddModal () {
+      setAddModal(true)
+    }
 
 
     return (
@@ -54,7 +74,9 @@ export default function Representative() {
                           : items?.name}</div>
             </Tooltip>
             <div className='flex justify-center items-center gap-[5px]'>
-             <div className='text-[#1b9c85] rounded-full border-[1px] border-[#1b9c85] w-[40px] h-[40px] grid items-center justify-center shadow-xl'>
+             <div 
+            onClick={(e) => HandleEditModal(e, items)}
+             className='text-[#1b9c85] rounded-full border-[1px] border-[#1b9c85] w-[40px] h-[40px] grid items-center justify-center shadow-xl'>
                   <AiFillEdit className="fill-[#7c0a02] "/>
                   </div>
                {/* <div className='text-[#1b9c85] rounded-full border-[1px] border-[#1b9c85] w-[40px] h-[40px] grid items-center justify-center shadow-xl'>
@@ -108,6 +130,8 @@ export default function Representative() {
     {/* {RepresentativeModal?<RepresentativePop modal={setRepresentativeModal}/>:""} */}
     
 {addModal?<RepresentativeFill modal={setAddModal}/>:""}
+{editModal ? <EditRepresentative modal={setEditModal} data={data} /> : ""}
+
 
     </div>
     

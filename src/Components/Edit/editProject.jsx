@@ -119,7 +119,7 @@ export default function EditProject(props) {
             id="description"
             name="description"
             type="description"
-            placeholder='example@example.com'
+            placeholder='description'
             onChange={(e)=>setDescription(e.target.value)}
             onBlur={formik.handleBlur}
             value={description}
