@@ -5,7 +5,7 @@ import Heading from "../Components/Fill/Heading";
 export default function Admin() {
   return (
     <div>
-      <Heading />
+      {/* <Heading /> */}
       <View />
     </div>
   );

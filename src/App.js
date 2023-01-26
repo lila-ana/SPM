@@ -6,12 +6,12 @@ import Login from "./pages/Login";
 import Solutions from "./pages/solutions";
 import Fill from "./pages/fill";
 import Admin from "./pages/admin";
-import Registration from "./pages/registration";
 import ProjectDescription from "./pages/ProjectDescription";
 import Modal from "./pages/Modal";
 import RequireAuth from "./Auth/RequireAuth";
 import RequireGuest from "./Auth/RequireGuset";
 import Card from "./Components/Common/card";
+import New from "./pages/new";
 
 const App = () => {
   return (
@@ -21,7 +21,7 @@ const App = () => {
           <Route element={<RequireAuth />}>
             <Route path="/fill" element={<Fill />} />
             <Route path="/admin" element={<Admin />} />
-            <Route path="/registration" element={<Registration />} />
+            <Route path="/new" element={<New />} />
             <Route
               path="/projectDescription/:id"
               element={<ProjectDescription />}

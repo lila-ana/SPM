@@ -1,5 +1,5 @@
 import { Menu } from '@headlessui/react'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { MdDelete } from 'react-icons/md'
 import {IoIosCheckmarkCircleOutline} from "react-icons/io"
 import {AiOutlineCloseCircle} from "react-icons/ai"
@@ -7,11 +7,15 @@ import AddButton from '../Common/Button/addButton'
 import get from '../../features/get'
 import ProjectPop from '../modal/projectPop'
 import ProjectFill from '../Fill/projectFill'
+import axios from 'axios'
+import { API_BASE_URL } from '../../api/endPoint'
 
 export default function Projects(props) {
     
    const [projectModal,setProjectModal]=useState(false)
    const [addModal,setAddModal]=useState(false)
+   const [data, setData] = useState(null);
+    const [editModal, setEditModal] = useState(false);
 
    function HandleModal(){
     setProjectModal(true)
@@ -19,6 +23,20 @@ export default function Projects(props) {
    function HandleAddModal () {
       setAddModal(true)
    }
+   function HandleEditModal(e, items) {
+      setEditModal(true);
+      setData(items);
+    }
+      
+      const [datas, setDatas] = useState();
+      useEffect(() => {
+        axios
+          .get(`${API_BASE_URL}project`)
+          .then((res) => setDatas(res.data?.data))
+          .catch((err) => console.log(err));
+      });
+     function HandleModal () {
+        setVendorModal(true)
 
    
    const HandleDelete=(e, id)=>{
@@ -39,8 +57,8 @@ export default function Projects(props) {
           .catch(function (error) {
             console.log(error, "errorrrrrrrrrrrrrrr");
           });
-    }
-    console.log
+         }}
+   //  console.log
     return (
     <div className="grid gap-5">
       <div className='flex justify-center'>
@@ -115,6 +133,7 @@ export default function Projects(props) {
     
 {projectModal?<ProjectPop modal={setProjectModal}/>:""}
 {addModal?<ProjectFill modal={setAddModal}/>:""}
+{editModal ? <EditProject modal={setEditModal} data={data} /> : ""}
 </div>
 
   )
