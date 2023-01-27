@@ -5,10 +5,10 @@ import {IoIosCheckmarkCircleOutline} from "react-icons/io"
 import {AiFillEdit, AiOutlineCloseCircle} from "react-icons/ai"
 import AddButton from '../Common/Button/addButton'
 import RepresentativeFill from '../Fill/RepresentativeFill'
-import RepresentativePop from '../modal/representativePop'
+import RepresentativePop from '../Modal/representativePop'
 import get from '../../features/get'
 import { Tooltip } from '@mui/material'
-import EditRepresentative from '../Edit/editRepresentative'
+import EditRepresentative from '../ModalEdit/editRepresentative'
 import { API_BASE_URL } from '../../api/endPoint'
 import axios from 'axios'
 

@@ -1,85 +1,65 @@
-import { Menu } from "@headlessui/react";
-import React, { useEffect, useState } from "react";
-import { MdDelete } from "react-icons/md";
-import { IoIosCheckmarkCircleOutline } from "react-icons/io";
-import { AiFillEdit, AiOutlineCloseCircle } from "react-icons/ai";
-import ClientPop from "../Modal/clientPop";
-import get from "../../features/get";
-import AddButton from "../Common/Button/addButton";
-import ClientFill from "../Fill/ClientFill";
-import axios from "axios";
-import { Tooltip } from "@mui/material";
-import { API_BASE_URL } from "../../api/endPoint";
-import NoRecord from "./noRecord";
-import EditClient from "../ModalEdit/editClient";
-import Card from "../Common/card";
+import { Menu } from '@headlessui/react';
+import { Tooltip } from '@mui/material';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import { AiFillEdit, AiOutlineCloseCircle } from 'react-icons/ai';
+import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
+import { MdDelete } from 'react-icons/md';
+import { API_BASE_URL } from '../../api/endPoint';
+import AddButton from '../Common/Button/addButton';
+import PartnersFill from '../Fill/partnersFill';
 
-export default function Client(props) {
-  // function scrollback (e,name)  { }
-
-  const [clientmodal, setClientModal] = useState(false);
-  const [data, setData] = useState(null);
-  const [detail, setDetail] = useState(null);
-  const [addModal, setAddModal] = useState(false);
-  const [editModal, setEditModal] = useState(false);
-
-  function HandleModal(e, items) {
-    setClientModal(true);
-    setDetail(items);
-  }
-  function HandleAddModal() {
-    setAddModal(true);
-  }
-  function HandleEditModal(e, items) {
-    setEditModal(true);
-    setData(items);
-  }
-  const [datas, setDatas] = useState();
-  useEffect(() => {
-    axios
-      .get(`${API_BASE_URL}client`)
-      .then((res) => setDatas(res.data?.data))
-      .catch((err) => console.log(err));
-  });
-  const HandleDelete = (e, id) => {
-    e.preventDefault();
-    axios
-      .delete(`${API_BASE_URL}client/${id}`, {
-        headers: {
-          "Content-Type": "application/json",
-          //  accept:"application/json"
-          //   authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjpudWxsLCJsYXN0TmFtZSI6bnVsbCwiZW1haWwiOiJtdWxlc3NAZ21haWwuY29tIiwiZ2VuZGVyIjoiTWFsZSIsImRlcGFydG1lbnQiOiJTYWFTIiwidGVsIjpudWxsLCJwYXNzd29yZCI6IjEyMzhnZmo4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiaXNfZGVsZXRlZCI6dHJ1ZSwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiaWF0IjoxNjczNTk1OTI4LCJleHAiOjE2NzM2ODIzMjh9.XHYs6P7qOADLnWJGePBvJPs0PSqGcyUrY0fKcuUmZjo",
-        },
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error, "errorrrrrrrrrrrrrrr");
+export default function PartnersImage(props) {
+   
+    const [partnerModal, setPartnerModal] = useState(false);
+    const [addModal, setAddModal] = useState(false);
+    const [data, setData] = useState(null);
+    const [editModal, setEditModal] = useState(false);
+    
+    function HandleModal(e, items) {
+        setClientModal(true);
+        setDetail(items);
+      }
+    function HandleAddModal() {
+        setAddModal(true);
+      }
+    function HandleEditModal(e, items) {
+        setEditModal(true);
+        setData(items);
+      }
+      const [datas, setDatas] = useState();
+      useEffect(() => {
+        axios
+          .get(`${API_BASE_URL}partner`)
+          .then((res) => setDatas(res.data?.data))
+          .catch((err) => console.log(err));
       });
-  };
-
-  // const deletePost = (id) => {
-  //    e.preventDefault();
-  //    client.delete(`${id}`);
-  //    setPosts(
-  //       posts.filter((post) => {
-  //          return post.id !== id;
-  //       })
-  //    );
-  // };
-  console.log(detail, "dataddd");
-  return (
-    <div className="grid gap-5">
+      const HandleDelete = (e, id) => {
+        e.preventDefault();
+        axios
+          .delete(`${API_BASE_URL}partner/${id}`, {
+            headers: {
+              "Content-Type": "application/json",
+              //  accept:"application/json"
+              //   authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjpudWxsLCJsYXN0TmFtZSI6bnVsbCwiZW1haWwiOiJtdWxlc3NAZ21haWwuY29tIiwiZ2VuZGVyIjoiTWFsZSIsImRlcGFydG1lbnQiOiJTYWFTIiwidGVsIjpudWxsLCJwYXNzd29yZCI6IjEyMzhnZmo4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiaXNfZGVsZXRlZCI6dHJ1ZSwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiaWF0IjoxNjczNTk1OTI4LCJleHAiOjE2NzM2ODIzMjh9.XHYs6P7qOADLnWJGePBvJPs0PSqGcyUrY0fKcuUmZjo",
+            },
+          })
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error, "errorrrrrrrrrrrrrrr");
+          });
+      };
+    
+    return (
+    <div>
+        <div className="grid gap-5">
       <div className="flex justify-center">
-        {/* <button 
-      className="bg-[#1b9c85] w-[150px] text-white font-light p-[10px] flex items-center justify-center rounded-[10px]">
-      Add Client
-      </button> */}
-        {}
+
         <AddButton
           styles="bg-[#1b9c85] w-[150px] text-white font-light p-[10px] flex items-center justify-center rounded-[10px]"
-          name="Add Client"
+          name="Add Partners"
           action={HandleAddModal}
         />
       </div>
@@ -150,9 +130,10 @@ export default function Client(props) {
         <NoRecord />
       )}
 
-      {clientmodal ? <ClientPop modal={setClientModal} data={detail} /> : ""}
-      {addModal ? <ClientFill modal={setAddModal} /> : ""}
-      {editModal ? <EditClient modal={setEditModal} data={data} /> : ""}
+      {/* {certificateModal ? <CertificatePop modal={setCertificateModal} data={detail} /> : ""} */}
+      {addModal ? <PartnersFill modal={setAddModal} /> : ""}
+      {/* {editModal ? <EditCertificate modal={setEditModal} data={data} /> : ""} */}
     </div>
-  );
+    </div>
+  )
 }

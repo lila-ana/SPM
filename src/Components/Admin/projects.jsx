@@ -5,7 +5,7 @@ import {IoIosCheckmarkCircleOutline} from "react-icons/io"
 import {AiOutlineCloseCircle} from "react-icons/ai"
 import AddButton from '../Common/Button/addButton'
 import get from '../../features/get'
-import ProjectPop from '../modal/projectPop'
+import ProjectPop from '../Modal/projectPop'
 import ProjectFill from '../Fill/projectFill'
 import axios from 'axios'
 import { API_BASE_URL } from '../../api/endPoint'

@@ -11,7 +11,7 @@ import Modal from "./pages/Modal";
 import RequireAuth from "./Auth/RequireAuth";
 import RequireGuest from "./Auth/RequireGuset";
 import Card from "./Components/Common/card";
-import New from "./pages/new";
+import Registration from "./pages/registration";
 
 const App = () => {
   return (
@@ -21,7 +21,7 @@ const App = () => {
           <Route element={<RequireAuth />}>
             <Route path="/fill" element={<Fill />} />
             <Route path="/admin" element={<Admin />} />
-            <Route path="/new" element={<New />} />
+            <Route path="/registration" element={<Registration />} />
             <Route
               path="/projectDescription/:id"
               element={<ProjectDescription />}

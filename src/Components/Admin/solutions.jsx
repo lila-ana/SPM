@@ -7,9 +7,10 @@ import SolutionsFill from '../Fill/SolutionsFill'
 import AddButton from '../Common/Button/addButton'
 import get from '../../features/get'
 import { Tooltip } from '@mui/material'
-import EditSolution from '../Edit/editSolution'
+import EditSolution from '../ModalEdit/editSolution'
 import { API_BASE_URL } from '../../api/endPoint'
 import axios from 'axios'
+import SolutionPop from '../Modal/solutionPop'
 
 export default function Solutions() {
     
