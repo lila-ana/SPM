@@ -1,70 +1,106 @@
-import React, { useState } from "react";
-import clients from "../../utils/Clients.json";
-import certificate1 from "../../Image/Certificate.jpg";
-import certificate2 from "../../Image/Certificate2.webp";
+import React, { Component } from "react";
+import { render } from "react-dom";
+import "../../style/style.css";
 
-import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
-// import axios from 'axios';
+export default function Partner() {
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
 
-export default function Partners() {
-  const slideLeft = () => {
-    let slider = document.getElementById("sliderclient");
-    slider.scrollLeft = slider.scrollLeft - 500;
+  const checkNext = () => {
+    const labels = document.querySelectorAll("#slider label");
+    const nextIndex =
+      selectedIndex === labels.length - 1 ? 0 : selectedIndex + 1;
+    setSelectedIndex(nextIndex);
   };
 
-  const slideRight = () => {
-    let slider = document.getElementById("sliderclient");
-    slider.scrollLeft = slider.scrollLeft + 500;
-  };
-
-  // const [data,setData]=useState();
-  //   axios.get(`http://172.16.34.117:8000/api/v1/client/all-clients`, {
-  //     headers: {
-  //         'Content-Type': 'application/json'
-  //     }
-  // }).then(response => {
-  //     setData(response.data);
-  // }).catch((error) => {
-  //     console.log(error.response);
-  // });
-  // // console.log(clients,"response data")
+  const check = (index) => setSelectedIndex(index);
 
   return (
-    <div className="px-[100px]">
-      <div className="mt-[40px]">
+    <div>
+      <div className="px-[100px] mt-[40px]">
         <h1 className="mb-[30px] text-[#4E4E4F] font-semibold font-nunito text-[24px] border-b-2 w-[150px] border-[#1b9c85]">
-          {" "}
-          Partners{" "}
+          Partners
         </h1>
       </div>
-      <div className="relative flex justify-center items-center gap-5">
-        <div className="hover:bg-[#1b9c85] hover:text-white rounded-full ">
-          <div className="text-2xl" onMouseHover={slideLeft} />
-        </div>
-        <div className="bg-[#1b9c85] w-[350px] h-[350px] rounded-full shadow-xl shadow-[#bfbfbf] ">
+      <div className="flex justify-center flex-wrap sm:-m-0 -mx-4 -mb-10 -mt-4">
+        <div className="  md:w-1/4 py-32 md:mb-0 mb-6 flex flex-col text-center items-center">
           <div
-            id="sliderclient"
-            className="h-[300px] overflow-x-scroll scroll scrollbar-hide  scroll-smooth"
+            onClick={checkNext}
+            className="w-[50px]  h-[50px] inline-flex items-center justify-center rounded-full bg-[#1b9c85] text-white mb-5 flex-shrink-0"
           >
-            <div className="grid grid-flow-col gap-[20px] items-center">
-              {clients?.map((items) => (
-                <div
-                  key={items.id}
-                  className="w-[200px] hover:shadow-[#1b9c8585] inline-block ease-in-out duration-300 shadow-xl  p-[15px] text-[#4E4E4F] font-semibold font-nunito text-[20px] "
-                >
-                  <p className="pb-[10px]">
-                    <img
-                      src={items.id < 4 ? certificate1 : certificate2}
-                      // src={require()}
-                    />
-                  </p>
-                </div>
-              ))}
-            </div>
+            <button>{"<"}</button>
           </div>
         </div>
-        <div className="hover:bg-[#1b9c85] hover:text-white rounded-full ">
-          <div className="text-2xl" onMouseEnter={slideRight} />
+        <div className="bg-[#1b9c85] w-[300px] h-[300px] rounded-full shadow-xl shadow-[#bfbfbf] ml-5">
+          <div className="md:w-2/4 md:mb-0 mb-6 flex flex-col text-center items-center ">
+            <section
+              id="slider"
+              className="w-16 h-20 inline-flex items-center justify-center mb-5 flex-shrink-0 "
+            >
+              <input
+                type="radio"
+                name="slider"
+                id="s1"
+                checked={selectedIndex === 0}
+                onClick={() => check(0)}
+              />
+              <input
+                type="radio"
+                name="slider"
+                id="s2"
+                checked={selectedIndex === 1}
+                onClick={() => check(1)}
+              />
+              <input
+                type="radio"
+                name="slider"
+                id="s3"
+                checked={selectedIndex === 2}
+                onClick={() => check(2)}
+              />
+              <label htmlFor="s1" id="slide1">
+                <img
+                  className="fea"
+                  src="https://picsum.photos/200/200"
+                  style={{
+                    height: "238px !important",
+                    width: "100%",
+                    marginTop: "48px",
+                  }}
+                />
+              </label>
+              <label htmlFor="s2" id="slide2">
+                <img
+                  className="fea"
+                  src="https://picsum.photos/200/200"
+                  style={{
+                    height: "238px !important",
+                    width: "100%",
+                    marginTop: "48px",
+                  }}
+                />
+              </label>
+              <label htmlFor="s3" id="slide3">
+                <img
+                  className="fea"
+                  src="https://picsum.photos/200/200"
+                  style={{
+                    height: "238px !important",
+                    width: "100%",
+                    marginTop: "48px",
+                  }}
+                />
+              </label>
+            </section>
+          </div>
+        </div>
+
+        <div className="md:w-1/4 py-32 md:mb-0 mb-6 flex flex-col text-center items-center">
+          <div
+            onClick={checkNext}
+            className="w-[50px]  h-[50px] inline-flex items-center justify-center rounded-full bg-[#1b9c85] text-white mb-5 flex-shrink-0"
+          >
+            <button>{">"}</button>
+          </div>
         </div>
       </div>
     </div>

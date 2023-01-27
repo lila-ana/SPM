@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
+import { API_BASE_URL } from "../../api/endPoint";
 
-export default function Detail() {
+export default function Detail(props) {
   const [isHovering, setIsHovering] = useState(false);
 
   const handleMouseOver = () => {
@@ -12,13 +14,22 @@ export default function Detail() {
   const handleMouseOut = () => {
     setIsHovering(false);
   };
+  const params = useParams();
 
+  const [data, setData] = useState();
+  useEffect(() => {
+    axios
+      .get(`${API_BASE_URL}solution/${params?.id}`)
+      .then((res) => setData(res.data?.data))
+      .catch((err) => console.log(err));
+  });
+  props?.setName(data?.name);
+  console.log(data, "datadatadatadata");
   return (
     <div>
       <div>
         <h1 className="mb-[30px] text-[#4E4E4F] font-semibold font-nunito text-[24px] border-b-2 w-[150px] border-[#1b9c85] ">
-          {" "}
-          Projects{" "}
+          Projects
         </h1>
       </div>
 

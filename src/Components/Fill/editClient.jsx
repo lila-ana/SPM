@@ -72,26 +72,24 @@ export default function EditClient(props) {
     address,
     logo,
   };
-  console.log(client, "rerttr");
   const HandleSubmit = (e) => {
     e.preventDefault();
     axios
       .patch(`${API_BASE_URL}client/${props?.data?.id}`, client, {
         headers: {
-          //   "Content-Type": "multipart/form-data",
+          "Content-Type": "multipart/form-data",
           accept: "multipart/form-data",
           // authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjpudWxsLCJsYXN0TmFtZSI6bnVsbCwiZW1haWwiOiJtdWxlc3NAZ21haWwuY29tIiwiZ2VuZGVyIjoiTWFsZSIsImRlcGFydG1lbnQiOiJTYWFTIiwidGVsIjpudWxsLCJwYXNzd29yZCI6IjEyMzhnZmo4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiaXNfZGVsZXRlZCI6dHJ1ZSwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiaWF0IjoxNjczNTk1OTI4LCJleHAiOjE2NzM2ODIzMjh9.XHYs6P7qOADLnWJGePBvJPs0PSqGcyUrY0fKcuUmZjo",
         },
       })
       .then(function (response) {
         console.log(response);
+        HandleClose();
       })
       .catch(function (error) {
         console.log(error, "errorrrrrrrrrrrrrrr");
       });
   };
-
-  console.log(client, "formik.errors");
 
   return (
     <div
@@ -116,7 +114,7 @@ export default function EditClient(props) {
             <div className="m-[10px]">
               <div className="m-[10px]">
                 <input
-                  className="border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]"
+                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   id="fullName"
                   name="fullName"
                   type="text"
@@ -125,13 +123,10 @@ export default function EditClient(props) {
                   onBlur={formik.handleBlur}
                   value={name}
                 />
-                {formik.touched.fullName && formik.errors.fullName ? (
-                  <p>{formik.errors.fullName}</p>
-                ) : null}
               </div>
               <div className="m-[10px]">
                 <input
-                  className="border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]"
+                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   id="email"
                   name="email"
                   type="email"
@@ -140,28 +135,11 @@ export default function EditClient(props) {
                   onBlur={formik.handleBlur}
                   value={email}
                 />
-                {formik.touched.email && formik.errors.email ? (
-                  <p>{formik.errors.email}</p>
-                ) : null}
               </div>
+
               <div className="m-[10px]">
                 <input
-                  className="border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]"
-                  id="address"
-                  name="address"
-                  type="text"
-                  placeholder="Address"
-                  onChange={(e) => setAddress(e.target.value)}
-                  onBlur={formik.handleBlur}
-                  value={address}
-                />
-                {formik.touched.address && formik.errors.address ? (
-                  <p>{formik.errors.address}</p>
-                ) : null}
-              </div>
-              <div className="m-[10px]">
-                <input
-                  className="border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]"
+                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   id="contactNumber"
                   name="contactNumber"
                   type="string"
@@ -170,13 +148,10 @@ export default function EditClient(props) {
                   onBlur={formik.handleBlur}
                   value={contact_no}
                 />
-                {formik.touched.contactNumber && formik.errors.contactNumber ? (
-                  <p>{formik.errors.contactNumber}</p>
-                ) : null}
               </div>
               <div className="m-[10px]">
                 <input
-                  className="border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]"
+                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   id="website"
                   name="website"
                   type="text"
@@ -185,13 +160,10 @@ export default function EditClient(props) {
                   onBlur={formik.handleBlur}
                   value={website}
                 />
-                {formik.touched.website && formik.errors.website ? (
-                  <p>{formik.errors.website}</p>
-                ) : null}
               </div>
               <div className="m-[10px] flex gap-3 justify-center items-center">
                 <input
-                  className="border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]"
+                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   id="logo"
                   name="logo"
                   type="file"
@@ -201,9 +173,6 @@ export default function EditClient(props) {
                   }}
                   onBlur={formik.handleBlur}
                 />
-                {formik.touched.logo && formik.errors.logo ? (
-                  <p>{formik.errors.logo}</p>
-                ) : null}
               </div>
               <div className="flex items-center justify-center gap-[60px] my-[25px]">
                 <button

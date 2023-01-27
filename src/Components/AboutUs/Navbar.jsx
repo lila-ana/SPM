@@ -3,7 +3,8 @@ import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import classNames from "classnames";
 import department from "../../utils/Department.json";
-export default function Navbar() {
+import get from "../../features/get";
+export default function Navbar(props) {
   const [show, setShow] = useState(false);
   function handleShow() {
     setShow(true);
@@ -46,11 +47,11 @@ export default function Navbar() {
                   >
                     <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-[#1b9c85] rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <div className="py-1">
-                        {department?.map((items) => (
+                        {get?.getsolutions()?.map((items) => (
                           <Menu.Item>
                             {({ active }) => (
                               <a
-                                href={`solutions/${items?.department}`}
+                                href={`/solutions/${items?.id}`}
                                 className={classNames(
                                   active
                                     ? "bg-gray-100 text-[#1b9c85]"
@@ -58,7 +59,7 @@ export default function Navbar() {
                                   "block px-4 py-2 text-sm"
                                 )}
                               >
-                                {items.department}
+                                {items.name}
                               </a>
                             )}
                           </Menu.Item>
@@ -74,7 +75,7 @@ export default function Navbar() {
         <div className="grid  justify-center items-center ">
           <p className="text-[#ffffff] text-[50px] text-center font-semibold storke font-sans">
             {" "}
-            Welcome to IE Networks{" "}
+            {props?.name == null ? "Welcome to IE Networks" : props?.name}{" "}
           </p>
           <p className="text-center text-[24px] font-semibold text-[#ffffff]">
             {" "}

@@ -73,26 +73,23 @@ export default function ClientFill(props) {
     address,
     logo,
   };
-  console.log(client, "rerttr");
   const HandleSubmit = (e) => {
     e.preventDefault();
     axios
       .post(`${API_BASE_URL}client/create`, form, {
         headers: {
-          // "Content-Type": "multipart/form-data",
           accept: "multipart/form-data",
           // authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjpudWxsLCJsYXN0TmFtZSI6bnVsbCwiZW1haWwiOiJtdWxlc3NAZ21haWwuY29tIiwiZ2VuZGVyIjoiTWFsZSIsImRlcGFydG1lbnQiOiJTYWFTIiwidGVsIjpudWxsLCJwYXNzd29yZCI6IjEyMzhnZmo4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiaXNfZGVsZXRlZCI6dHJ1ZSwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiaWF0IjoxNjczNTk1OTI4LCJleHAiOjE2NzM2ODIzMjh9.XHYs6P7qOADLnWJGePBvJPs0PSqGcyUrY0fKcuUmZjo",
         },
       })
       .then(function (response) {
         console.log(response);
+        HandleClose();
       })
       .catch(function (error) {
         console.log(error, "errorrrrrrrrrrrrrrr");
       });
   };
-
-  console.log(client, "formik.errors");
 
   return (
     <div
@@ -117,35 +114,31 @@ export default function ClientFill(props) {
             <div className="m-[10px]">
               <div className="m-[10px]">
                 <input
-                  className="border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]"
+                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   id="fullName"
                   name="fullName"
                   type="text"
                   placeholder="Full Name"
                   onChange={(e) => setName(e.target.value)}
                   onBlur={formik.handleBlur}
+                  required
                 />
-                {formik.touched.fullName && formik.errors.fullName ? (
-                  <p>{formik.errors.fullName}</p>
-                ) : null}
               </div>
               <div className="m-[10px]">
                 <input
-                  className="border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]"
+                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   id="email"
                   name="email"
                   type="email"
                   placeholder="example@example.com"
                   onChange={(e) => setEmail(e.target.value)}
                   onBlur={formik.handleBlur}
+                  required
                 />
-                {formik.touched.email && formik.errors.email ? (
-                  <p>{formik.errors.email}</p>
-                ) : null}
               </div>
               <div className="m-[10px]">
                 <input
-                  className="border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]"
+                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   id="address"
                   name="address"
                   type="text"
@@ -153,13 +146,10 @@ export default function ClientFill(props) {
                   onChange={(e) => setAddress(e.target.value)}
                   onBlur={formik.handleBlur}
                 />
-                {formik.touched.address && formik.errors.address ? (
-                  <p>{formik.errors.address}</p>
-                ) : null}
               </div>
               <div className="m-[10px]">
                 <input
-                  className="border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]"
+                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   id="contactNumber"
                   name="contactNumber"
                   type="string"
@@ -167,13 +157,10 @@ export default function ClientFill(props) {
                   onChange={(e) => setContact(e.target.value)}
                   onBlur={formik.handleBlur}
                 />
-                {formik.touched.contactNumber && formik.errors.contactNumber ? (
-                  <p>{formik.errors.contactNumber}</p>
-                ) : null}
               </div>
               <div className="m-[10px]">
                 <input
-                  className="border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]"
+                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   id="website"
                   name="website"
                   type="text"
@@ -181,13 +168,10 @@ export default function ClientFill(props) {
                   onChange={(e) => setWebSite(e.target.value)}
                   onBlur={formik.handleBlur}
                 />
-                {formik.touched.website && formik.errors.website ? (
-                  <p>{formik.errors.website}</p>
-                ) : null}
               </div>
-              <div className="m-[10px] flex gap-3 justify-center items-center">
+              <div className="mx-2 grid items-center">
                 <input
-                  className="border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]"
+                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   id="logo"
                   name="logo"
                   type="file"
@@ -197,22 +181,22 @@ export default function ClientFill(props) {
                   }}
                   onBlur={formik.handleBlur}
                 />
-                {formik.touched.logo && formik.errors.logo ? (
-                  <p>{formik.errors.logo}</p>
-                ) : null}
+                <label className="text-sm text-gray-900">Insert image</label>
               </div>
+
               <div className="flex items-center justify-center gap-[60px] my-[25px]">
                 <button
                   // onClick={handleApi}
                   type="submit"
-                  className="bg-[#1b9c85] font-nunito text-[15px] font-light text-white rounded-[12px] p-[10px] w-[120px] "
+                  className="text-[#fff] border-[#ffffff] border-[1px] bg-[#1b9c85] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 >
                   Submit
                 </button>
                 <button
                   type="reset"
-                  className="bg-[#1b9c85] font-nunito text-[15px] font-light text-white rounded-[12px] p-[10px] w-[120px] "
+                  className="text-[#1b9c85] border-[#1b9c85] border-[1px] bg-[#ffffff] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 >
+                  {" "}
                   Cancel
                 </button>
               </div>
