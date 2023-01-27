@@ -6,6 +6,8 @@ import RepresentativeFill from './RepresentativeFill';
 import VendorFill from './VendorFill';
 import SolutionsFill from './SolutionsFill';
 import ProjectFill from './projectFill';
+import Certificate from '../Admin/certificate';
+import Partners from './partnersFill';
 
 export default function SidePanal() {
 
@@ -39,6 +41,16 @@ export default function SidePanal() {
           label: "Vendors",
           available: 4,
           content: <VendorFill/>
+        },
+        {
+          label: "Certificates",
+          available: 5,
+          content: <Certificate/>
+        },
+        {
+          label: "Partner",
+          available: 6,
+          content: <Partners/>
         },
       ];
 

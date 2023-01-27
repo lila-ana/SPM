@@ -9,6 +9,9 @@ import { FaUserCircle } from "react-icons/fa";
 import { MdOutlineNotificationsNone } from "react-icons/md";
 import { AiOutlineSetting } from "react-icons/ai";
 import { Menu } from "@headlessui/react";
+import Certificate from "./certificate";
+import Partners from "../Home/Partners";
+import PartnersImage from "./PartnersImage";
 
 export default function View() {
 	const OpportunityTabData = [
@@ -37,6 +40,16 @@ export default function View() {
 			available: 4,
 			content: <Vendor/>,
 		},
+		{
+			label: "Certificates",
+			available: 5,
+			content: <Certificate/>
+		  },
+		  {
+			label: "Partner",
+			available: 6,
+			content: <PartnersImage/>
+		  },
 	];
 	
 	

@@ -1,6 +1,6 @@
 import React from 'react'
-import ClientPop from '../Components/modal/clientPop'
-import ProjectPop from '../Components/modal/projectPop'
+import ClientPop from '../Components/Modal/clientPop'
+import ProjectPop from '../Components/Modal/projectPop'
 
 export default function Modal() {
   return (

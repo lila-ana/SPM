@@ -9,7 +9,7 @@ import get from '../../features/get'
 import { Tooltip } from '@mui/material'
 import axios from 'axios'
 import { API_BASE_URL } from '../../api/endPoint'
-import EditVendor from '../Edit/editVendor'
+import EditVendor from '../ModalEdit/editVendor'
 
 export default function Vendor(props) {
     

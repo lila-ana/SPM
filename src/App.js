@@ -11,7 +11,7 @@ import Modal from "./pages/Modal";
 import RequireAuth from "./Auth/RequireAuth";
 import RequireGuest from "./Auth/RequireGuset";
 import Card from "./Components/Common/card";
-import New from "./pages/new";
+import Registration from "./pages/registration";
 
 const App = () => {
   return (
