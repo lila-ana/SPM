@@ -72,7 +72,7 @@ export default function EditClient(props) {
     address,
     logo,
   };
-  console.log(client, "rerttr");
+  // console.log(client, "rerttr");
   const HandleSubmit = (e) => {
     e.preventDefault();
     axios
@@ -91,7 +91,7 @@ export default function EditClient(props) {
       });
   };
 
-  console.log(client, "formik.errors");
+  // console.log(client, "formik.errors");
 
   return (
     <div

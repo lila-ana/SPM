@@ -7,7 +7,7 @@ import { API_BASE_URL } from "../../api/endPoint";
 import { GrClose } from "react-icons/gr";
 
 export default function ClientFill(props) {
-  // const BearerToken = localStorage.getItem("accessToken");
+  const BearerToken = localStorage.getItem("accessToken");
 
   const [name, setName] = useState(null);
   const [website, setWebSite] = useState(null);
@@ -63,6 +63,7 @@ export default function ClientFill(props) {
   form.append("name", name);
   form.append("email", email);
   form.append("website", website);
+  form.append("address", address);
   form.append("contact_no", contact_no);
   form.append("logo", logo);
   let client = {
@@ -73,7 +74,7 @@ export default function ClientFill(props) {
     address,
     logo,
   };
-  console.log(client, "rerttr");
+  // console.log(client, "rerttr");
   const HandleSubmit = (e) => {
     e.preventDefault();
     axios
@@ -81,7 +82,7 @@ export default function ClientFill(props) {
         headers: {
           // "Content-Type": "multipart/form-data",
           accept: "multipart/form-data",
-          // authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjpudWxsLCJsYXN0TmFtZSI6bnVsbCwiZW1haWwiOiJtdWxlc3NAZ21haWwuY29tIiwiZ2VuZGVyIjoiTWFsZSIsImRlcGFydG1lbnQiOiJTYWFTIiwidGVsIjpudWxsLCJwYXNzd29yZCI6IjEyMzhnZmo4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiaXNfZGVsZXRlZCI6dHJ1ZSwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiaWF0IjoxNjczNTk1OTI4LCJleHAiOjE2NzM2ODIzMjh9.XHYs6P7qOADLnWJGePBvJPs0PSqGcyUrY0fKcuUmZjo",
+          authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJUZXNmYWh1bkBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiZGVwYXJ0bWVudCI6IlNvZnR3YXJlIGFzIGEgU2VydmljIiwiZmlyc3ROYW1lIjoibmViaXlhdCIsImdlbmRlciI6Im1hbGUiLCJpc19kZWxldGVkIjp0cnVlLCJsYXN0TmFtZSI6Im5lYml5YXQiLCJ0ZWwiOiIwOTc2NTM1MzQzIiwiaWF0IjoxNjc0ODI3MzI5LCJleHAiOjE2NzQ5MTM3Mjl9.82tZr5kmLUJ4R1STgWh--A4IoRy5f95fnwGr1Zc2BwA"
         },
       })
       .then(function (response) {
@@ -92,7 +93,7 @@ export default function ClientFill(props) {
       });
   };
 
-  console.log(client, "formik.errors");
+  // console.log(client, "formik.errors");
 
   return (
     <div

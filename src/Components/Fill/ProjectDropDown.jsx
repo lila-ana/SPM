@@ -41,10 +41,7 @@ export default function ProjectDropDown() {
         .required("Required"),
     }),
 
-    onSubmit: (values) =>{
-      console.log(values)
-    }
-
+    
   })
   // const [data,setData]=useState();
   // useEffect(() => {
@@ -52,7 +49,7 @@ export default function ProjectDropDown() {
   //   .then(res => setData(res.data))
   //   .catch(err => console.log(err))
   // })
-  console.log(get.getproject(),"data")
+  // console.log(get.getproject(),"data")
   
   return (
     <div className='grid items-center justify-center '>

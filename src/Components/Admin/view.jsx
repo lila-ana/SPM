@@ -12,6 +12,7 @@ import { Menu } from "@headlessui/react";
 import Certificate from "./certificate";
 import Partners from "../Home/Partners";
 import PartnersImage from "./PartnersImage";
+import registration from "../../pages/registration";
 
 export default function View() {
 	const OpportunityTabData = [
@@ -52,7 +53,8 @@ export default function View() {
 		  },
 	];
 	
-	
+	const BearerToken = localStorage.getItem("accessToken");
+
 	const [activeTabIndex, setActiveTabIndex] = useState(0);
 	const handleTabChange = (idx) => {
 		          setActiveTabIndex(idx);
@@ -64,6 +66,17 @@ export default function View() {
 		window.location.replace("/login");
 	
   };
+  function getrepresentative(){
+    const [data,setData]=useState();
+    useEffect(() => {
+        axios.get(`${API_BASE_URL}registration`)
+			// authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6Ik5hb2xsbCIsImVtYWlsIjoiTmFvbGxsQGdtYWlsLmNvbSIsImdlbmRlciI6Im1hbGUiLCJkZXBhcnRtZW50IjoiU29mdHdhcmUgYXMgYSBTZXJ2aWMiLCJqb2IiOiJFUlAiLCJwYXNzd29yZCI6IjEyMzhnZ2ZqOCIsImlzQWRtaW4iOm51bGwsImNyZWF0ZWRfYXQiOm51bGwsInVwZGF0ZWRfYXQiOm51bGwsImlzX2RlbGV0ZWQiOnRydWUsImNyZWF0ZWRfYnkiOjIsInVwZGF0ZWRfYnkiOm51bGwsImlhdCI6MTY3MzUyNDcxOSwiZXhwIjoxNjczNjExMTE5fQ.n8D5nEppe3v49Btx4UZog6csO2gVeJpOKHVKJ5iZLws",
+        .then(res => setData(res.data?.data))
+        .catch(err => console.log(err))
+      })
+      return data;
+}
+
 
 	return (
 		
@@ -110,12 +123,18 @@ export default function View() {
 						<div className="py-1">
 							<Menu.Item>
 								<div className="grid m-[5px] gap-[5px] items-center justify-center">
-									<div className="grid justify-center items-center pt-[5px] text-nunito text-[#602234] font-semibold text-[15px]">
-										Hawi Tesfaye
+								{/* {registration?.map((items)=> (  */}
+									<div>
+										<div className="grid justify-center items-center pt-[5px] text-nunito text-[#602234] font-semibold text-[15px]">
+											{/* {items.name} */}
+											Hawi Tesfaye
+										</div>
+										<div className="text-nunito text-[#602234] font-light text-[16px]">
+											{/* {items.department} */}
+											Software Team Lead
+										</div>
 									</div>
-									<div className="text-nunito text-[#602234] font-light text-[16px]">
-										Software Team Lead
-									</div>
+								{/* ))} */}
 									<div className="flex items-center justify-center">
 									<button
 										onClick={logoutUser}

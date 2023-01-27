@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import { API_BASE_URL } from '../api/endPoint';
 
-export default function Registration() {
+export default function Registration(props) {
     // const BearerToken = localStorage.getItem("accessToken");
     const [firstName, setFirstName]=useState("")
     const [lastName, setLastName]=useState("")
@@ -15,8 +15,13 @@ export default function Registration() {
     const [password, setPassword]=useState("")
     const [confirmPassword, setConfirmPassword]=useState("")
 
-    
-
+    view = [
+        {
+            firstName : " ",
+            lastName : " ",
+            department : " ",
+        }
+    ]
     const formik = useFormik ({
         
         initialValues: {
@@ -28,43 +33,6 @@ export default function Registration() {
             password: "",
             confirmPassword: "",
         },
-
-        // validationSchema: Yup.object ({
-        //     name: Yup.string()
-        //         .required("Required"),
-        //     email: Yup.string()
-        //         .email("Invalid email")
-        //         .required("Required"),
-        //     gender: Yup.string()
-        //         .required("Required"),
-        //     department: Yup.string()
-        //         .required("Required"),
-        //     role: Yup.string()
-        //         .required("Required"),
-        //     password: Yup.string()
-        //         .required("Required")
-        //         .min(8, "Must be 8 characters or more")
-        //         .matches(/[a-z]+/, "One lowercase character")
-        //         .matches(/[A-Z]+/, "One uppercase character")
-        //         .matches(/[@$!%*#?&]+/, "One special character")
-        //         .matches(/\d+/, "One number"),
-        //     confirmPassword: Yup.string()
-        //         // .when("password", {
-        //         //     is: val => (val && val.length >0 ? true : false),
-        //         //     then: Yup.string().oneOf([Yup.ref('password')], 'password does not match')
-        //         // })    
-        //     // .required("Required")
-        //     //     .min(8, "Must be 8 characters or more")
-        //     //     .matches(/[a-z]+/, "One lowercase character")
-        //     //     .matches(/[A-Z]+/, "One uppercase character")
-        //     //     .matches(/[@$!%*#?&]+/, "One special character")
-        //     //     .matches(/\d+/, "One number"), 
-
-        // }),
-
-        // onSubmit: (values) =>{
-        //     console.log(values)
-        // }
     })
     const form = new FormData();
     form.append("firstName", firstName);
@@ -105,7 +73,7 @@ export default function Registration() {
             });
       }
       
-      console.log(registration,"formik.errors")
+    //   console.log(registration,"formik.errors")
 
 return (
     <div className='h-screen grid items-center justify-center '>

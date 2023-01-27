@@ -24,7 +24,7 @@ export default function Projects() {
     }).catch((error) => {
         console.log(error.response);
     });
-    console.log(data,"response data")
+    // console.log(data,"response data")
 
   return (
     <div className='' >
