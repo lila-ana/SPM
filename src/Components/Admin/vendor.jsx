@@ -1,5 +1,5 @@
 import { Menu } from '@headlessui/react'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { MdDelete } from 'react-icons/md'
 import {IoIosCheckmarkCircleOutline} from "react-icons/io"
 import {AiFillEdit, AiOutlineCloseCircle} from "react-icons/ai"
@@ -9,12 +9,16 @@ import get from '../../features/get'
 import { Tooltip } from '@mui/material'
 import axios from 'axios'
 import { API_BASE_URL } from '../../api/endPoint'
+import EditVendor from '../Edit/editVendor'
 
-export default function Vendor() {
+export default function Vendor(props) {
     
     // function scrollback (e,name)  { }
     const [addModal,setAddModal]=useState(false)
     const [vendorModal,setVendorModal]=useState(false)
+    const [data, setData] = useState(null);
+    const [editModal, setEditModal] = useState(false);
+  
 
     function HandleAddModal () {
       setAddModal(true)
@@ -36,7 +40,18 @@ export default function Vendor() {
           console.log(error, "errorrrrrrrrrrrrrrr");
         });
     };
-  
+    function HandleEditModal(e, items) {
+    setEditModal(true);
+    setData(items);
+  }
+    
+    const [datas, setDatas] = useState();
+    useEffect(() => {
+      axios
+        .get(`${API_BASE_URL}vendor`)
+        .then((res) => setDatas(res.data?.data))
+        .catch((err) => console.log(err));
+    });
    function HandleModal () {
       setVendorModal(true)
    }
@@ -74,7 +89,9 @@ export default function Vendor() {
                           : items?.name}</div>
             </Tooltip>
             <div className='flex justify-center items-center gap-[5px]'>
-             <div className='text-[#1b9c85] rounded-full border-[1px] border-[#1b9c85] w-[40px] h-[40px] grid items-center justify-center shadow-xl'>
+             <div 
+               onClick={(e) => HandleEditModal(e, items)}
+             className='text-[#1b9c85] rounded-full border-[1px] border-[#1b9c85] w-[40px] h-[40px] grid items-center justify-center shadow-xl'>
                   <AiFillEdit className="fill-[#7c0a02] "/>
                   </div>
             <Menu as="div" className="relative inline-block text-left">
@@ -122,6 +139,7 @@ export default function Vendor() {
     </div>
     {vendorModal?<VendorPop modal={setVendorModal}/>:""}
     {addModal?<VendorFill modal={setAddModal}/>:""}
+    {editModal ? <EditVendor modal={setEditModal} data={data} /> : ""}
 
     </div>
   )

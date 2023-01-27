@@ -1,5 +1,5 @@
 import { Menu } from '@headlessui/react'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { MdDelete } from 'react-icons/md'
 import {IoIosCheckmarkCircleOutline} from "react-icons/io"
 import {AiFillEdit, AiOutlineCloseCircle} from "react-icons/ai"
@@ -7,14 +7,30 @@ import SolutionsFill from '../Fill/SolutionsFill'
 import AddButton from '../Common/Button/addButton'
 import get from '../../features/get'
 import { Tooltip } from '@mui/material'
+import EditSolution from '../Edit/editSolution'
+import { API_BASE_URL } from '../../api/endPoint'
+import axios from 'axios'
 
 export default function Solutions() {
     
     function scrollback (e,name)  { }
     const [addModal,setAddModal]=useState(false)
     const [solutionModal,setSolutionModal]=useState(false)
+    const [data, setData] = useState(null);
+    const [editModal, setEditModal] = useState(false);
 
-
+    function HandleEditModal(e, items) {
+      setEditModal(true);
+      setData(items);
+    }
+      
+      const [datas, setDatas] = useState();
+      useEffect(() => {
+        axios
+          .get(`${API_BASE_URL}solution`)
+          .then((res) => setDatas(res.data?.data))
+          .catch((err) => console.log(err));
+      });
     function HandleAddModal () {
       setAddModal(true)
    }
@@ -56,7 +72,9 @@ export default function Solutions() {
                           : items?.name}</div>
             </Tooltip>
             <div className='flex justify-center items-center gap-[5px]'>
-             <div className='text-[#1b9c85] rounded-full border-[1px] border-[#1b9c85] w-[40px] h-[40px] grid items-center justify-center shadow-xl'>
+             <div 
+            onClick={(e) => HandleEditModal(e, items)}
+             className='text-[#1b9c85] rounded-full border-[1px] border-[#1b9c85] w-[40px] h-[40px] grid items-center justify-center shadow-xl'>
                   <AiFillEdit className="fill-[#7c0a02] "/>
                   </div>
             <Menu as="div" className="relative inline-block text-left">
@@ -100,6 +118,7 @@ export default function Solutions() {
     </div>
     {addModal?<SolutionsFill modal={setAddModal}/>:""}
     {solutionModal?<SolutionPop modal={setSolutionModal}/>:""}
+    {editModal ? <EditSolution modal={setEditModal} data={data} /> : ""}
 
     </div>
   )

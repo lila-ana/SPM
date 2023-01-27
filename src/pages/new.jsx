@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import { API_BASE_URL } from '../api/endPoint';
 
-export default function Registration() {
+export default function New() {
     // const BearerToken = localStorage.getItem("accessToken");
     const [firstName, setFirstName]=useState("")
     const [lastName, setLastName]=useState("")
@@ -175,7 +175,7 @@ return (
             <div className="relative z-0 w-full mb-6 group">
                 <input 
                     type="tel" 
-                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" 
+                    // pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" 
                     name="tel" 
                     id="tel" 
                     className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 

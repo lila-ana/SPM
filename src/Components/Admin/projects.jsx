@@ -2,20 +2,19 @@ import { Menu } from "@headlessui/react";
 import React, { useEffect, useState } from "react";
 import { MdDelete } from "react-icons/md";
 import { IoIosCheckmarkCircleOutline } from "react-icons/io";
-import { AiFillEdit, AiOutlineCloseCircle } from "react-icons/ai";
-import ClientPop from "../modal/clientPop";
-import get from "../../features/get";
+import { AiOutlineCloseCircle } from "react-icons/ai";
 import AddButton from "../Common/Button/addButton";
-import ClientFill from "../Fill/ClientFill";
+import get from "../../features/get";
+import ProjectPop from "../modal/projectPop";
+import ProjectFill from "../Fill/projectFill";
 import axios from "axios";
-import { Tooltip } from "@mui/material";
-import { API_BASE_URL, IMG_API } from "../../api/endPoint";
-import NoRecord from "./noRecord";
-import EditClient from "../Fill/editClient";
+import { API_BASE_URL } from "../../api/endPoint";
 
 export default function Projects(props) {
   const [projectModal, setProjectModal] = useState(false);
   const [addModal, setAddModal] = useState(false);
+  const [data, setData] = useState(null);
+  const [editModal, setEditModal] = useState(false);
 
   function HandleModal() {
     setProjectModal(true);
@@ -23,24 +22,40 @@ export default function Projects(props) {
   function HandleAddModal() {
     setAddModal(true);
   }
+  function HandleEditModal(e, items) {
+    setEditModal(true);
+    setData(items);
+  }
 
-  const HandleDelete = (e, id) => {
-    e.preventDefault();
+  const [datas, setDatas] = useState();
+  useEffect(() => {
     axios
-      .delete(`${API_BASE_URL}project/${id}`, {
-        headers: {
-          "Content-Type": "application/json",
-          //  accept:"application/json"
-          //   authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjpudWxsLCJsYXN0TmFtZSI6bnVsbCwiZW1haWwiOiJtdWxlc3NAZ21haWwuY29tIiwiZ2VuZGVyIjoiTWFsZSIsImRlcGFydG1lbnQiOiJTYWFTIiwidGVsIjpudWxsLCJwYXNzd29yZCI6IjEyMzhnZmo4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiaXNfZGVsZXRlZCI6dHJ1ZSwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiaWF0IjoxNjczNTk1OTI4LCJleHAiOjE2NzM2ODIzMjh9.XHYs6P7qOADLnWJGePBvJPs0PSqGcyUrY0fKcuUmZjo",
-        },
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error, "errorrrrrrrrrrrrrrr");
-      });
-  };
+      .get(`${API_BASE_URL}project`)
+      .then((res) => setDatas(res.data?.data))
+      .catch((err) => console.log(err));
+  });
+  function HandleModal() {
+    setVendorModal(true);
+
+    const HandleDelete = (e, id) => {
+      e.preventDefault();
+      axios
+        .delete(`${API_BASE_URL}project/${id}`, {
+          headers: {
+            "Content-Type": "application/json",
+            //  accept:"application/json"
+            //   authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjpudWxsLCJsYXN0TmFtZSI6bnVsbCwiZW1haWwiOiJtdWxlc3NAZ21haWwuY29tIiwiZ2VuZGVyIjoiTWFsZSIsImRlcGFydG1lbnQiOiJTYWFTIiwidGVsIjpudWxsLCJwYXNzd29yZCI6IjEyMzhnZmo4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiaXNfZGVsZXRlZCI6dHJ1ZSwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiaWF0IjoxNjczNTk1OTI4LCJleHAiOjE2NzM2ODIzMjh9.XHYs6P7qOADLnWJGePBvJPs0PSqGcyUrY0fKcuUmZjo",
+          },
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error, "errorrrrrrrrrrrrrrr");
+        });
+    };
+  }
+  //  console.log
   return (
     <div className="grid gap-5">
       <div className="flex justify-center">
@@ -119,6 +134,7 @@ export default function Projects(props) {
 
       {projectModal ? <ProjectPop modal={setProjectModal} /> : ""}
       {addModal ? <ProjectFill modal={setAddModal} /> : ""}
+      {editModal ? <EditProject modal={setEditModal} data={data} /> : ""}
     </div>
   );
 }

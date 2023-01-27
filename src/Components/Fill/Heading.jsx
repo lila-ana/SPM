@@ -32,6 +32,7 @@ export default function Heading() {
 			<div className="font-medium text-[18px] text-[#1b9c85] font-nunito pl-[10px] pt-[15px]">
 				Admin Name/ Team Lead Name
 			</div>
+			
 			<div className="border-l-[2px] border-[#1b9c85] flex items-center justify-between w-[150px]">
 				<AiOutlineSetting className="m-[10px] fill-[#1b9c85] w-[25px] h-[25px]" />
 				<MdOutlineNotificationsNone className="m-[10px] fill-[#1b9c85] w-[25px] h-[25px]" />
