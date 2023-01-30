@@ -9,7 +9,7 @@ import AddButton from "../Common/Button/addButton";
 import ClientFill from "../Fill/ClientFill";
 import axios from "axios";
 import { Tooltip } from "@mui/material";
-import { API_BASE_URL } from "../../api/endPoint";
+import { API_BASE_URL, IMG_API } from "../../api/endPoint";
 import NoRecord from "./noRecord";
 import EditClient from "../ModalEdit/editClient";
 import Card from "../Common/card";
@@ -37,12 +37,12 @@ export default function Client(props) {
     setData(items);
   }
   const [datas, setDatas] = useState();
-  useEffect(() => {
-    axios
-      .get(`${API_BASE_URL}client`)
-      .then((res) => setDatas(res.data?.data))
-      .catch((err) => console.log(err));
-  });
+
+  axios
+    .get(`${API_BASE_URL}client`)
+    .then((res) => setDatas(res.data?.data))
+    .catch((err) => console.log(err));
+
   const HandleDelete = (e, id) => {
     e.preventDefault();
     axios
@@ -70,7 +70,7 @@ export default function Client(props) {
   //       })
   //    );
   // };
-  // console.log(detail, "dataddd");
+  console.log(detail, "dataddd");
   return (
     <div className="grid gap-5">
       <div className="flex justify-center">
@@ -90,7 +90,7 @@ export default function Client(props) {
           {datas?.map((items) => (
             <div className="col-span-4 stroke-[#1b9c85] w-[285px] h-[200px] rounded-sm hover:shadow-[#1b9c8585] inline-block ease-in-out duration-300 shadow-xl   text-[#4E4E4F] font-semibold font-nunito text-[20px] border-[#1b9c85] border-[1px]  ">
               <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHBMI1jhJpZvoZZ7mTkeNc9LUqTuwx_k4Xgg&usqp=CAU"
+                src={`${IMG_API}/${items?.logo}`}
                 className="w-[285px] h-[125px]"
                 onClick={(e) => HandleModal(e, items)}
               />

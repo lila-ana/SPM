@@ -21,11 +21,8 @@ const App = () => {
           <Route element={<RequireAuth />}>
             <Route path="/fill" element={<Fill />} />
             <Route path="/admin" element={<Admin />} />
-            <Route path="/registration" element={<Registration />} />
-            <Route
-              path="/projectDescription/:id"
-              element={<ProjectDescription />}
-            />
+            <Route path="/new" element={<New />} />
+
             <Route path="/modal" element={<Modal />} />
           </Route>
           <Route element={<RequireGuest />}>
@@ -35,6 +32,10 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/aboutus" element={<Aboutus />} />
         <Route path="/solutions/:id" element={<Solutions />} />
+        <Route
+          path="/projectDescription/:id"
+          element={<ProjectDescription />}
+        />
       </Routes>
     </BrowserRouter>
   );

@@ -1,18 +1,21 @@
-import React, { useState } from 'react'
-import {useFormik} from 'formik'
-import * as Yup from "yup"
-import axios from 'axios'
-import get from '../../features/get'
-import { GrClose } from 'react-icons/gr'
-import { API_BASE_URL } from '../../api/endPoint'
-
+import React, { useState } from "react";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import axios from "axios";
+import get from "../../features/get";
+import { GrClose } from "react-icons/gr";
+import { API_BASE_URL } from "../../api/endPoint";
 
 export default function SolutionsFIll(props) {
+<<<<<<< HEAD
  
   const BearerToken = localStorage.getItem("accessToken");
+=======
+  // const BearerToken = localStorage.getItem("accessToken");
+>>>>>>> 64eb1ecd19e595b6d8f855ddd8ce11221892f9b7
 
-  const [name, setName] =useState(null)
-  const [description, setDescription] =useState(null)
+  const [name, setName] = useState(null);
+  const [description, setDescription] = useState(null);
 
   function HandleClose() {
     props.modal(false);
@@ -24,36 +27,34 @@ export default function SolutionsFIll(props) {
     };
     setLogo(img);
   };
- 
-  const formik  = useFormik ({
+
+  const formik = useFormik({
     initialValues: {
-      solutionName:"", 
-      email:"",
-      country:"",
-      state:"",
-      address:"",
+      solutionName: "",
+      email: "",
+      country: "",
+      state: "",
+      address: "",
       contactNumber: "",
-      website: ""
+      website: "",
     },
 
-    validationSchema: Yup.object ({
-      name: Yup.string()
-        .required("Required"),
+    validationSchema: Yup.object({
+      name: Yup.string().required("Required"),
       logo: Yup.string()
         .min(100, "Minimum 100 character")
         .max(500, "Maximum 500 character")
         .required("Required"),
     }),
-
-})
-const form = new FormData();
+  });
+  const form = new FormData();
   form.append("name", name);
   form.append("description", description);
-  
-let solution={
-  name,
-  description,
-  }
+
+  let solution = {
+    name,
+    description,
+  };
   const HandleSubmit = (e) => {
     e.preventDefault();
     axios
@@ -71,8 +72,13 @@ let solution={
         console.log(error, "errorrrrrrrrrrrrrrr");
       });
   };
+<<<<<<< HEAD
   
   // console.log(solution, "formik.errors");
+=======
+
+  console.log(get.getsolutions(), "data");
+>>>>>>> 64eb1ecd19e595b6d8f855ddd8ce11221892f9b7
 
   return (
     <div
@@ -89,39 +95,43 @@ let solution={
             <GrClose className="w-[40px] h-[25px]" />
           </div>
         </div>
-   <div className='grid items-center justify-center '>
-      <form 
-      onSubmit={HandleSubmit}
-      className='grid items-center justify-center rounded-[10px] border-solid border-[#1b9c85] border-[1px] w-[500px]  '
-      >
-      <div className='m-[10px]'>
-        <div className='m-[10px]'>
-          <input
-            className='border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]'
-            id="name"
-            name="name"
-            type="text"
-            placeholder='Solution Name'
-            onChange={(e)=>setName(e.target.value)}
-            onBlur={formik.handleBlur}
-            // value={formik.values.name}
-          />
-          {formik.touched.name && formik.errors.name ? <p>{formik.errors.name}</p> : null}
-        </div>
-        <div className='m-[10px]'>
-          <input
-            className='border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px] h-[200px] grid justify-start'
-            id="description"
-            name="description"
-            type="description"
-            placeholder='Solution Description'
-            onChange={(e)=>setDescription(e.target.value)}
-            onBlur={formik.handleBlur}
-            // value={formik.values.logo}
-          />
-          {formik.touched.logo && formik.errors.logo ? <p>{formik.errors.logo}</p> : null}
-        </div>
-        {/* <div className='m-[10px] flex gap-3 justify-center items-center'>
+        <div className="grid items-center justify-center ">
+          <form
+            onSubmit={HandleSubmit}
+            className="grid items-center justify-center rounded-[10px] border-solid border-[#1b9c85] border-[1px] w-[500px]  "
+          >
+            <div className="m-[10px]">
+              <div className="m-[10px]">
+                <input
+                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  id="name"
+                  name="name"
+                  type="text"
+                  placeholder="Solution Name"
+                  onChange={(e) => setName(e.target.value)}
+                  onBlur={formik.handleBlur}
+                  // value={formik.values.name}
+                />
+                {formik.touched.name && formik.errors.name ? (
+                  <p>{formik.errors.name}</p>
+                ) : null}
+              </div>
+              <div className="m-[10px]">
+                <input
+                  className="border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px] h-[200px] grid justify-start"
+                  id="description"
+                  name="description"
+                  type="description"
+                  placeholder="Solution Description"
+                  onChange={(e) => setDescription(e.target.value)}
+                  onBlur={formik.handleBlur}
+                  // value={formik.values.logo}
+                />
+                {formik.touched.logo && formik.errors.logo ? (
+                  <p>{formik.errors.logo}</p>
+                ) : null}
+              </div>
+              {/* <div className='m-[10px] flex gap-3 justify-center items-center'>
 
           <input
             className='border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]'
@@ -136,26 +146,25 @@ let solution={
           />
           {formik.touched.logo && formik.errors.logo ? <p>{formik.errors.logo}</p> : null}
         </div> */}
-       
-        <div className='flex items-center justify-center gap-[60px] my-[10px]'>
-          <button 
-            type="submit"
-            className="bg-[#1b9c85] font-nunito text-[15px] font-light text-white rounded-[12px] p-[10px] w-[120px] "
-          >
-            Submit
-          </button>
-          <button 
-            type="reset"
-            className="bg-[#bfbfbf] font-nunito text-[15px] font-light text-white rounded-[12px] p-[10px] w-[120px] "
-          >
-            Cancel
-          </button>
+
+              <div className="flex items-center justify-center gap-[60px] my-[10px]">
+                <button
+                  type="submit"
+                  className="bg-[#1b9c85] font-nunito text-[15px] font-light text-white rounded-[12px] p-[10px] w-[120px] "
+                >
+                  Submit
+                </button>
+                <button
+                  type="reset"
+                  className="bg-[#bfbfbf] font-nunito text-[15px] font-light text-white rounded-[12px] p-[10px] w-[120px] "
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
-      </form>
-
     </div>
-    </div>
-    </div>
-  )
+  );
 }
