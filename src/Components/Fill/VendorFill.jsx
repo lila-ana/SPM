@@ -8,12 +8,8 @@ import { GrClose } from "react-icons/gr";
 import { API_BASE_URL } from "../../api/endPoint";
 
 export default function VendorFill(props) {
-<<<<<<< HEAD
   
   const BearerToken = localStorage.getItem("accessToken");
-=======
-  // const BearerToken = localStorage.getItem("accessToken");
->>>>>>> 64eb1ecd19e595b6d8f855ddd8ce11221892f9b7
 
   const [name, setName] = useState(null);
   const [logo, setLogo] = useState(null);
@@ -77,35 +73,6 @@ export default function VendorFill(props) {
   form.append("website", website);
   form.append("contact_phone", contact_phone);
   form.append("logo", logo);
-<<<<<<< HEAD
-let vendor ={
-name,
-logo,
-website,
-email,
-contact_phone,
-country,
-}
-const HandleSubmit = (e) => {
-  e.preventDefault();
-  axios
-    .post(`${API_BASE_URL}vendor/create`, form, {
-      headers: {
-        // "Content-Type": "multipart/form-data",
-        accept: "multipart/form-data",
-        authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJUZXNmYWh1bkBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiZGVwYXJ0bWVudCI6IlNvZnR3YXJlIGFzIGEgU2VydmljIiwiZmlyc3ROYW1lIjoibmViaXlhdCIsImdlbmRlciI6Im1hbGUiLCJpc19kZWxldGVkIjp0cnVlLCJsYXN0TmFtZSI6Im5lYml5YXQiLCJ0ZWwiOiIwOTc2NTM1MzQzIiwiaWF0IjoxNjc0ODI3MzI5LCJleHAiOjE2NzQ5MTM3Mjl9.82tZr5kmLUJ4R1STgWh--A4IoRy5f95fnwGr1Zc2BwA"
-      },
-    })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error, "errorrrrrrrrrrrrrrr");
-    });
-};
-// console.log(vendor,"formik.errors")
-// console.log(get.getvendor(),"data")
-=======
   let vendor = {
     name,
     logo,
@@ -124,7 +91,7 @@ const HandleSubmit = (e) => {
         headers: {
           // "Content-Type": "multipart/form-data",
           accept: "multipart/form-data",
-          // authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjpudWxsLCJsYXN0TmFtZSI6bnVsbCwiZW1haWwiOiJtdWxlc3NAZ21haWwuY29tIiwiZ2VuZGVyIjoiTWFsZSIsImRlcGFydG1lbnQiOiJTYWFTIiwidGVsIjpudWxsLCJwYXNzd29yZCI6IjEyMzhnZmo4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiaXNfZGVsZXRlZCI6dHJ1ZSwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiaWF0IjoxNjczNTk1OTI4LCJleHAiOjE2NzM2ODIzMjh9.XHYs6P7qOADLnWJGePBvJPs0PSqGcyUrY0fKcuUmZjo",
+          authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZW1haWwiOiJUZXNmYUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiZGVwYXJ0bWVudCI6IlNvZnR3YXJlIGFzIGEgU2VydmljIiwiZmlyc3ROYW1lIjoidGVzZmFodW4iLCJnZW5kZXIiOiJtYWxlIiwiaXNfZGVsZXRlZCI6ZmFsc2UsImxhc3ROYW1lIjpudWxsLCJ0ZWwiOiIwOTI0MjMyNTIiLCJpYXQiOjE2NzU0MDMyMzIsImV4cCI6MTY3NTQ4OTYzMn0.8gaBOpbjq_wwav6ksURwSCz2byJYZRVVUDjEn8gls2s"
         },
       })
       .then(function (response) {
@@ -136,7 +103,6 @@ const HandleSubmit = (e) => {
   };
   // console.log(vendor,"formik.errors")
   console.log(get.getvendor(), "data");
->>>>>>> 64eb1ecd19e595b6d8f855ddd8ce11221892f9b7
 
   return (
     //   <div className='grid items-center justify-center '>

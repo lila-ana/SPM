@@ -8,13 +8,14 @@ import VendorFill from '../Fill/VendorFill'
 import get from '../../features/get'
 import { Tooltip } from '@mui/material'
 import axios from 'axios'
-import { API_BASE_URL } from '../../api/endPoint'
+import { API_BASE_URL, IMG_API } from '../../api/endPoint'
 import EditVendor from '../ModalEdit/editVendor'
 
 export default function Vendor(props) {
     
-    // function scrollback (e,name)  { }
-    const [addModal,setAddModal]=useState(false)
+   const BearerToken = localStorage.getItem("accessToken");
+
+   const [addModal,setAddModal]=useState(false)
     const [vendorModal,setVendorModal]=useState(false)
     const [data, setData] = useState(null);
     const [editModal, setEditModal] = useState(false);
@@ -30,7 +31,7 @@ export default function Vendor(props) {
           headers: {
             "Content-Type": "application/json",
             //  accept:"application/json"
-            //   authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjpudWxsLCJsYXN0TmFtZSI6bnVsbCwiZW1haWwiOiJtdWxlc3NAZ21haWwuY29tIiwiZ2VuZGVyIjoiTWFsZSIsImRlcGFydG1lbnQiOiJTYWFTIiwidGVsIjpudWxsLCJwYXNzd29yZCI6IjEyMzhnZmo4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiaXNfZGVsZXRlZCI6dHJ1ZSwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiaWF0IjoxNjczNTk1OTI4LCJleHAiOjE2NzM2ODIzMjh9.XHYs6P7qOADLnWJGePBvJPs0PSqGcyUrY0fKcuUmZjo",
+              authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJuZWJpeWF0QGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiMTIzNDU2NzgiLCJpc0FkbWluIjpudWxsLCJjcmVhdGVkX2F0IjpudWxsLCJ1cGRhdGVkX2F0IjpudWxsLCJjcmVhdGVkX2J5IjpudWxsLCJ1cGRhdGVkX2J5IjpudWxsLCJkZXBhcnRtZW50IjoiU29mdHdhcmUgYXMgYSBTZXJ2aWMiLCJmaXJzdE5hbWUiOiJuZWJpeWF0IiwiZ2VuZGVyIjoibWFsZSIsImlzX2RlbGV0ZWQiOmZhbHNlLCJsYXN0TmFtZSI6Im5lYml5YXQiLCJ0ZWwiOiIwOTc2NTM1MzQzIiwiaWF0IjoxNjc1MzE4MjgyLCJleHAiOjE2NzU0MDQ2ODJ9.iMmzbZySSqU2XYI-ZRCga6j-ChQe77YLVvCXd6Juav4"
           },
         })
         .then(function (response) {
@@ -51,19 +52,13 @@ export default function Vendor(props) {
         .get(`${API_BASE_URL}vendor`)
         .then((res) => setDatas(res.data?.data))
         .catch((err) => console.log(err));
-    });
+    },[]);
    function HandleModal () {
       setVendorModal(true)
    }
     return (
     <div className="grid gap-5">
-    {/* <div className='flex justify-center'>
-    <button 
-    className="bg-[#1b9c85] w-[150px] text-white font-light p-[10px] flex items-center justify-center rounded-[10px]">
-    Add Vendor
-    </button>  
-    </div>  */}
-    {/* <div className='flex'> */}
+    
     <div className='flex justify-center'>
     <AddButton 
             styles ='bg-[#1b9c85] w-[150px] text-white font-light p-[10px] flex items-center justify-center rounded-[10px]'
@@ -74,12 +69,12 @@ export default function Vendor(props) {
          /> 
     </div>
    <div>
-   {get?.getvendor()?.length!==0?
+   {datas?.length!==0?
     <div className='grid grid-cols-12 gap-4'>
-    {get?.getvendor()?.map((items)=>(
-      <div   className="col-span-4 stroke-[#1b9c85] w-[285px] h-[200px] rounded-sm hover:shadow-[#1b9c8585] inline-block ease-in-out duration-300 shadow-xl   text-[#4E4E4F] font-semibold font-nunito text-[20px] border-[#1b9c85] border-[1px]  ">
-         <img 
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHBMI1jhJpZvoZZ7mTkeNc9LUqTuwx_k4Xgg&usqp=CAU" 
+    {datas?.map((items)=>(
+      <div  class="col-span-4 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+          <img 
+            src={`${IMG_API}/${items?.logo}`}
             className='w-[285px] h-[125px]'
             onClick={HandleModal}
          />

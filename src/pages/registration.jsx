@@ -15,13 +15,13 @@ export default function Registration(props) {
     const [password, setPassword]=useState("")
     const [confirmPassword, setConfirmPassword]=useState("")
 
-    view = [
-        {
-            firstName : " ",
-            lastName : " ",
-            department : " ",
-        }
-    ]
+    // view = [
+    //     {
+    //         firstName : " ",
+    //         lastName : " ",
+    //         department : " ",
+    //     }
+    // ]
     const formik = useFormik ({
         
         initialValues: {

@@ -7,6 +7,7 @@ import { API_BASE_URL } from "../../api/endPoint";
 import { GrClose } from "react-icons/gr";
 
 export default function ClientFill(props) {
+  
   const BearerToken = localStorage.getItem("accessToken");
 
   const [name, setName] = useState(null);
@@ -26,13 +27,7 @@ export default function ClientFill(props) {
     };
     setLogo(img?.data);
   };
-  // const handleApi = () => {
-  //   const formData = new formData ()
-  //   formData.append ('image', image)
-  //   axios.post('url', formData).then((res) => {
-  //     console.log(res)
-  //   })
-  // }
+  
 
   const formik = useFormik({
     initialValues: {
@@ -74,17 +69,13 @@ export default function ClientFill(props) {
     address,
     logo,
   };
-<<<<<<< HEAD
-  // console.log(client, "rerttr");
-=======
->>>>>>> 64eb1ecd19e595b6d8f855ddd8ce11221892f9b7
   const HandleSubmit = (e) => {
     e.preventDefault();
     axios
       .post(`${API_BASE_URL}client/create`, form, {
         headers: {
           accept: "multipart/form-data",
-          authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJUZXNmYWh1bkBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiZGVwYXJ0bWVudCI6IlNvZnR3YXJlIGFzIGEgU2VydmljIiwiZmlyc3ROYW1lIjoibmViaXlhdCIsImdlbmRlciI6Im1hbGUiLCJpc19kZWxldGVkIjp0cnVlLCJsYXN0TmFtZSI6Im5lYml5YXQiLCJ0ZWwiOiIwOTc2NTM1MzQzIiwiaWF0IjoxNjc0ODI3MzI5LCJleHAiOjE2NzQ5MTM3Mjl9.82tZr5kmLUJ4R1STgWh--A4IoRy5f95fnwGr1Zc2BwA"
+          authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZW1haWwiOiJUZXNmYUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiZGVwYXJ0bWVudCI6IlNvZnR3YXJlIGFzIGEgU2VydmljIiwiZmlyc3ROYW1lIjoidGVzZmFodW4iLCJnZW5kZXIiOiJtYWxlIiwiaXNfZGVsZXRlZCI6ZmFsc2UsImxhc3ROYW1lIjpudWxsLCJ0ZWwiOiIwOTI0MjMyNTIiLCJpYXQiOjE2NzU0MDMyMzIsImV4cCI6MTY3NTQ4OTYzMn0.8gaBOpbjq_wwav6ksURwSCz2byJYZRVVUDjEn8gls2s"
         },
       })
       .then(function (response) {
@@ -96,11 +87,6 @@ export default function ClientFill(props) {
       });
   };
 
-<<<<<<< HEAD
-  // console.log(client, "formik.errors");
-
-=======
->>>>>>> 64eb1ecd19e595b6d8f855ddd8ce11221892f9b7
   return (
     <div
       onClick={(e) => props?.setmodal(false)}
@@ -125,10 +111,10 @@ export default function ClientFill(props) {
               <div className="m-[10px]">
                 <input
                   className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                  id="fullName"
-                  name="fullName"
+                  id="name"
+                  name="name"
                   type="text"
-                  placeholder="Full Name"
+                  placeholder="Client Name"
                   onChange={(e) => setName(e.target.value)}
                   onBlur={formik.handleBlur}
                   required
@@ -189,7 +175,7 @@ export default function ClientFill(props) {
                   onChange={(e) => {
                     handleChange(e);
                   }}
-                  onBlur={formik.handleBlur}
+                  // onBlur={formik.handleBlur}
                 />
                 <label className="text-sm text-gray-900">Insert image</label>
               </div>
@@ -198,13 +184,13 @@ export default function ClientFill(props) {
                 <button
                   // onClick={handleApi}
                   type="submit"
-                  className="text-[#fff] border-[#ffffff] border-[1px] bg-[#1b9c85] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  className="text-[#fff] border-[#ffffff] border-[1px] bg-[#1b9c85] hover:bg-gray focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-1 text-center dark:bg-[#fcfcfc]  dark:hover:bg-[#fcfcfc]  dark:focus:ring-[#fcfcfc] "
                 >
                   Submit
                 </button>
                 <button
                   type="reset"
-                  className="text-[#1b9c85] border-[#1b9c85] border-[1px] bg-[#ffffff] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  className="text-[#1b9c85] border-[#1b9c85] border-[1px] bg-[#ffffff] hover:bg-gray  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-1 text-center dark:bg-[#fcfcfc]  dark:hover:bg-[#fcfcfc]  dark:focus:ring-[#fcfcfc] "
                 >
                   {" "}
                   Cancel

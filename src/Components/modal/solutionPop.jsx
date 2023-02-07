@@ -1,5 +1,6 @@
 import React from 'react'
 import { AiFillCloseCircle } from 'react-icons/ai';
+import { IMG_API } from '../../api/endPoint';
 
 export default function SolutionPop(props) {
 
@@ -34,7 +35,7 @@ function HandleClose() {
                     <div className="flex items-center justify-center">
                       <img
                         className="flex items-center justify-center w-[100px] h-[100px] p-[10px] m-[10px] "
-                        src="https://www.ethiopiatrustfund.org/wp-content/uploads/2018/09/cbe-logo.png"
+                        src= {`${IMG_API}/${props?.data?.logo}`}
                         alt="Company Logo"
                       />
                     </div>

@@ -7,7 +7,8 @@ import { API_BASE_URL } from "../../api/endPoint";
 import { GrClose } from "react-icons/gr";
 
 export default function EditVendor(props) {
-  // const BearerToken = localStorage.getItem("accessToken");
+  
+  const BearerToken = localStorage.getItem("accessToken");
 
   const [name, setName] = useState(props?.data?.name);
   const [website, setWebsite] = useState(props?.data?.website);
@@ -66,7 +67,6 @@ export default function EditVendor(props) {
     // address,
     logo,
   };
-//   console.log(client, "rerttr");
   const HandleSubmit = (e) => {
     e.preventDefault();
     axios
@@ -74,7 +74,7 @@ export default function EditVendor(props) {
         headers: {
         // "Content-Type": "multipart/form-data",
           accept: "multipart/form-data",
-          // authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjpudWxsLCJsYXN0TmFtZSI6bnVsbCwiZW1haWwiOiJtdWxlc3NAZ21haWwuY29tIiwiZ2VuZGVyIjoiTWFsZSIsImRlcGFydG1lbnQiOiJTYWFTIiwidGVsIjpudWxsLCJwYXNzd29yZCI6IjEyMzhnZmo4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiaXNfZGVsZXRlZCI6dHJ1ZSwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiaWF0IjoxNjczNTk1OTI4LCJleHAiOjE2NzM2ODIzMjh9.XHYs6P7qOADLnWJGePBvJPs0PSqGcyUrY0fKcuUmZjo",
+          authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJuZWJpeWF0QGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiMTIzNDU2NzgiLCJpc0FkbWluIjpudWxsLCJjcmVhdGVkX2F0IjpudWxsLCJ1cGRhdGVkX2F0IjpudWxsLCJjcmVhdGVkX2J5IjpudWxsLCJ1cGRhdGVkX2J5IjpudWxsLCJkZXBhcnRtZW50IjoiU29mdHdhcmUgYXMgYSBTZXJ2aWMiLCJmaXJzdE5hbWUiOiJuZWJpeWF0IiwiZ2VuZGVyIjoibWFsZSIsImlzX2RlbGV0ZWQiOmZhbHNlLCJsYXN0TmFtZSI6Im5lYml5YXQiLCJ0ZWwiOiIwOTc2NTM1MzQzIiwiaWF0IjoxNjc1MzE4MjgyLCJleHAiOjE2NzU0MDQ2ODJ9.iMmzbZySSqU2XYI-ZRCga6j-ChQe77YLVvCXd6Juav4"
         },
       })
       .then(function (response) {
@@ -85,7 +85,6 @@ export default function EditVendor(props) {
       });
   };
 
-//   console.log(client, "formik.errors");
 
   return (
     <div

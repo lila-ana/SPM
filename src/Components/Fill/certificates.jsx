@@ -6,7 +6,11 @@ import { API_BASE_URL } from '../../api/endPoint';
 
 export default function Certificates(props) {
   
-  const [certificate, setCertificate] = useState(null);
+  const BearerToken = localStorage.getItem("accessToken");
+  
+  const [certeficate, setCerteficate] = useState(null);
+  const [name, setName] = useState(null);
+
   
   function HandleClose() {
     props.modal(false);
@@ -16,20 +20,22 @@ export default function Certificates(props) {
       name: e?.target?.files[0].name,
       data: e?.target?.files[0],
     };
-    setCertificate(img?.data);
+    setCerteficate(img?.data);
   };
 
   const form = new FormData();
-  form.append("certificate", certificate);
+  form.append("certeficate", certeficate);
+  form.append("name", name);
+
   
   const HandleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post(`${API_BASE_URL}certificate`, form, {
+      .post(`${API_BASE_URL}certeficate/create`, form, {
         headers: {
           // "Content-Type": "multipart/form-data",
           accept: "multipart/form-data",
-          // authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjpudWxsLCJsYXN0TmFtZSI6bnVsbCwiZW1haWwiOiJtdWxlc3NAZ21haWwuY29tIiwiZ2VuZGVyIjoiTWFsZSIsImRlcGFydG1lbnQiOiJTYWFTIiwidGVsIjpudWxsLCJwYXNzd29yZCI6IjEyMzhnZmo4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiaXNfZGVsZXRlZCI6dHJ1ZSwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiaWF0IjoxNjczNTk1OTI4LCJleHAiOjE2NzM2ODIzMjh9.XHYs6P7qOADLnWJGePBvJPs0PSqGcyUrY0fKcuUmZjo",
+          authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJuZWJpeWF0QGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiMTIzNDU2NzgiLCJpc0FkbWluIjpudWxsLCJjcmVhdGVkX2F0IjpudWxsLCJ1cGRhdGVkX2F0IjpudWxsLCJjcmVhdGVkX2J5IjpudWxsLCJ1cGRhdGVkX2J5IjpudWxsLCJkZXBhcnRtZW50IjoiU29mdHdhcmUgYXMgYSBTZXJ2aWMiLCJmaXJzdE5hbWUiOiJuZWJpeWF0IiwiZ2VuZGVyIjoibWFsZSIsImlzX2RlbGV0ZWQiOmZhbHNlLCJsYXN0TmFtZSI6Im5lYml5YXQiLCJ0ZWwiOiIwOTc2NTM1MzQzIiwiaWF0IjoxNjc1MTQ3MTg0LCJleHAiOjE2NzUyMzM1ODR9.rE8UkZ1h4ubdZ8Q7tyD98W7k-0X7tiDubKUkufYRMD8"
         },
       })
       .then(function (response) {
@@ -60,13 +66,28 @@ export default function Certificates(props) {
           <form
             onSubmit={HandleSubmit}
             className="grid items-center justify-center rounded-[10px] border-solid border-[#1b9c85] border-[1px] w-[500px]"
-          ></form>
+          >
+              <div className="m-[10px]">
+                <input
+                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  id="name"
+                  name="name"
+                  type="text"
+                  placeholder="Certificate Name"
+                  onChange={(e) => setName(e.target.value)}
+                  // onBlur={formik.handleBlur}
+                  // value={formik.values.name}
+                />
+                {/* {formik.touched.name && formik.errors.name ? (
+                  <p>{formik.errors.name}</p>
+                ) : null} */}
+              </div>
         <div className="m-[10px]">
               <div className="m-[10px]">
               <input
                   className="border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]"
-                  id="certificate"
-                  name="certiicate"
+                  id="certeficate"
+                  name="certeficate"
                   type="file"
                   placeholder="Add image"
                   onChange={(e) => {
@@ -90,6 +111,7 @@ export default function Certificates(props) {
                   Cancel
                 </button>
               </div>
+              </form>
     </div>
     </div>
     </div>

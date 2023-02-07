@@ -12,17 +12,16 @@ import { Tooltip } from "@mui/material";
 import { API_BASE_URL, IMG_API } from "../../api/endPoint";
 import NoRecord from "./noRecord";
 import EditClient from "../ModalEdit/editClient";
-import Card from "../Common/card";
 
 export default function Client(props) {
-  // function scrollback (e,name)  { }
 
   const [clientmodal, setClientModal] = useState(false);
   const [data, setData] = useState(null);
   const [detail, setDetail] = useState(null);
   const [addModal, setAddModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
-  
+  const [datas, setDatas] = useState();
+
   const BearerToken = localStorage.getItem("accessToken");
 
   function HandleModal(e, items) {
@@ -36,13 +35,12 @@ export default function Client(props) {
     setEditModal(true);
     setData(items);
   }
-  const [datas, setDatas] = useState();
-
+  useEffect(() => {
   axios
     .get(`${API_BASE_URL}client`)
     .then((res) => setDatas(res.data?.data))
     .catch((err) => console.log(err));
-
+  },[]);
   const HandleDelete = (e, id) => {
     e.preventDefault();
     axios
@@ -50,7 +48,8 @@ export default function Client(props) {
         headers: {
           "Content-Type": "application/json",
           //  accept:"application/json"
-            authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjpudWxsLCJsYXN0TmFtZSI6bnVsbCwiZW1haWwiOiJtdWxlc3NAZ21haWwuY29tIiwiZ2VuZGVyIjoiTWFsZSIsImRlcGFydG1lbnQiOiJTYWFTIiwidGVsIjpudWxsLCJwYXNzd29yZCI6IjEyMzhnZmo4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiaXNfZGVsZXRlZCI6dHJ1ZSwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiaWF0IjoxNjczNTk1OTI4LCJleHAiOjE2NzM2ODIzMjh9.XHYs6P7qOADLnWJGePBvJPs0PSqGcyUrY0fKcuUmZjo",
+            authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZW1haWwiOiJUZXNmYUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiZGVwYXJ0bWVudCI6IlNvZnR3YXJlIGFzIGEgU2VydmljIiwiZmlyc3ROYW1lIjoidGVzZmFodW4iLCJnZW5kZXIiOiJtYWxlIiwiaXNfZGVsZXRlZCI6ZmFsc2UsImxhc3ROYW1lIjpudWxsLCJ0ZWwiOiIwOTI0MjMyNTIiLCJpYXQiOjE2NzU0MDMyMzIsImV4cCI6MTY3NTQ4OTYzMn0.8gaBOpbjq_wwav6ksURwSCz2byJYZRVVUDjEn8gls2s"
+            // BearerToken
         },
       })
       .then(function (response) {
@@ -61,24 +60,11 @@ export default function Client(props) {
       });
   };
 
-  // const deletePost = (id) => {
-  //    e.preventDefault();
-  //    client.delete(`${id}`);
-  //    setPosts(
-  //       posts.filter((post) => {
-  //          return post.id !== id;
-  //       })
-  //    );
-  // };
-  console.log(detail, "dataddd");
+  
   return (
     <div className="grid gap-5">
       <div className="flex justify-center">
-        {/* <button 
-      className="bg-[#1b9c85] w-[150px] text-white font-light p-[10px] flex items-center justify-center rounded-[10px]">
-      Add Client
-      </button> */}
-        {}
+       
         <AddButton
           styles="bg-[#1b9c85] w-[150px] text-white font-light p-[10px] flex items-center justify-center rounded-[10px]"
           name="Add Client"
@@ -88,8 +74,8 @@ export default function Client(props) {
       {datas?.length !== 0 ? (
         <div className="grid grid-cols-12 gap-4">
           {datas?.map((items) => (
-            <div className="col-span-4 stroke-[#1b9c85] w-[285px] h-[200px] rounded-sm hover:shadow-[#1b9c8585] inline-block ease-in-out duration-300 shadow-xl   text-[#4E4E4F] font-semibold font-nunito text-[20px] border-[#1b9c85] border-[1px]  ">
-              <img
+          <div  class="col-span-4 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+          <img
                 src={`${IMG_API}/${items?.logo}`}
                 className="w-[285px] h-[125px]"
                 onClick={(e) => HandleModal(e, items)}

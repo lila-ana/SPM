@@ -7,12 +7,13 @@ import { API_BASE_URL } from "../../api/endPoint";
 import { GrClose } from "react-icons/gr";
 
 export default function EditRepresentative(props) {
-  // const BearerToken = localStorage.getItem("accessToken");
+  const BearerToken = localStorage.getItem("accessToken");
 
   const [name, setName] = useState(props?.data?.name);
   const [email, setEmail] = useState(props?.data?.email);
   const [contact_1, setContact_1] = useState(props?.data?.contact_1);
   const [contact_2, setContact_2] = useState(props?.data?.contact_2);
+  const [position, setPosition] = useState(props?.data?.position);
  
 
   function HandleClose() {
@@ -56,12 +57,14 @@ export default function EditRepresentative(props) {
   form.append("email", email);
   form.append("contact_1", contact_1);
   form.append("contact_2", contact_2);
+  form.append("position", position);
   
   let representative = {
     name,
     email,
     contact_1,
     contact_2,
+    position,
    
   };
 //   console.log(client, "rerttr");
@@ -72,7 +75,7 @@ export default function EditRepresentative(props) {
         headers: {
         // "Content-Type": "application/json",
           accept: "application/json",
-          // authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjpudWxsLCJsYXN0TmFtZSI6bnVsbCwiZW1haWwiOiJtdWxlc3NAZ21haWwuY29tIiwiZ2VuZGVyIjoiTWFsZSIsImRlcGFydG1lbnQiOiJTYWFTIiwidGVsIjpudWxsLCJwYXNzd29yZCI6IjEyMzhnZmo4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiaXNfZGVsZXRlZCI6dHJ1ZSwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiaWF0IjoxNjczNTk1OTI4LCJleHAiOjE2NzM2ODIzMjh9.XHYs6P7qOADLnWJGePBvJPs0PSqGcyUrY0fKcuUmZjo",
+          authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJuZWJpeWF0QGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiMTIzNDU2NzgiLCJpc0FkbWluIjpudWxsLCJjcmVhdGVkX2F0IjpudWxsLCJ1cGRhdGVkX2F0IjpudWxsLCJjcmVhdGVkX2J5IjpudWxsLCJ1cGRhdGVkX2J5IjpudWxsLCJkZXBhcnRtZW50IjoiU29mdHdhcmUgYXMgYSBTZXJ2aWMiLCJmaXJzdE5hbWUiOiJuZWJpeWF0IiwiZ2VuZGVyIjoibWFsZSIsImlzX2RlbGV0ZWQiOmZhbHNlLCJsYXN0TmFtZSI6Im5lYml5YXQiLCJ0ZWwiOiIwOTc2NTM1MzQzIiwiaWF0IjoxNjc1MzE4MjgyLCJleHAiOjE2NzU0MDQ2ODJ9.iMmzbZySSqU2XYI-ZRCga6j-ChQe77YLVvCXd6Juav4"
         },
       })
       .then(function (response) {
@@ -117,7 +120,6 @@ export default function EditRepresentative(props) {
             onBlur={formik.handleBlur}
             value={name}
           />
-          {formik.touched.name && formik.errors.name ? <p>{formik.errors.name}</p> : null}
         </div>
         <div className='m-[10px]'>
           <input
@@ -155,7 +157,18 @@ export default function EditRepresentative(props) {
             value={contact_2}
           />
         </div>
-        
+        <div className='m-[10px]'>
+          <input
+            className='border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]'
+            id="position"
+            name="position"
+            type="text"
+            placeholder='Position'
+            onChange={(e)=>setPosition(e.target.value)}
+            onBlur={formik.handleBlur}
+            value={position}
+          />
+        </div>
         
         
         <div className='flex items-center justify-center gap-[60px] my-[25px]'>

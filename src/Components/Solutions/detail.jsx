@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { NavLink, useParams } from "react-router-dom";
 import { API_BASE_URL } from "../../api/endPoint";
+import get from "../../features/get";
 
 export default function Detail(props) {
   const [isHovering, setIsHovering] = useState(false);
@@ -24,7 +25,7 @@ export default function Detail(props) {
       .catch((err) => console.log(err));
   });
   props?.setName(data?.name);
-  console.log(data, "datadatadatadata");
+  // console.log(data, "datadatadatadata");
   return (
     <div>
       <div>
@@ -49,15 +50,24 @@ export default function Detail(props) {
                                 group-hover:opacity-100 
                                 group-hover:translate-y-0"
                 >
+
                   <div class="p-2">
-                    <p class="text-lg text-white">Welcome to GeeksforGeeks.</p>
+                  {get?.getproject()?.map((items) => (
+                  <div>
+                    <p class="text-lg text-white">
+                      {items.name}
+                      </p>  
                     <a
                       href={`/projectDescription/${1}`}
                       class="px-4 py-2 text-sm  text-white bg-green-600"
                     >
                       View More
                     </a>
+                    </div>
+                        ))}
+
                   </div>
+
                 </div>
               </div>
             </div>

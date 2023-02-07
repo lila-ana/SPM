@@ -62,7 +62,7 @@ export default function Footer() {
               </svg>
               <span class="sr-only">Twitter page</span>
             </a>
-            <a
+            {/* <a
               href="#"
               class="text-white hover:text-gray-900 dark:hover:text-white"
             >
@@ -79,7 +79,7 @@ export default function Footer() {
                 />
               </svg>
               <span class="sr-only">GitHub account</span>
-            </a>
+            </a> */}
             <a
               href="https://www.linkedin.com/company/ie-network-solutions/"
               class="text-white hover:text-gray-900 dark:hover:text-white"
@@ -87,7 +87,7 @@ export default function Footer() {
               <svg
                 class="w-5 h-5"
                 fill="currentColor"
-                viewBox="0 0 24 24"
+                viewBox= "0 0 16 16"
                 aria-hidden="true"
               >
                 <path

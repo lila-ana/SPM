@@ -5,11 +5,12 @@ import axios from "axios";
 
 export function getclient() {
   const [data, setData] = useState();
-
-  axios
+  useEffect(() => {
+    axios
     .get(`${API_BASE_URL}client`)
     .then((res) => setData(res.data?.data))
     .catch((err) => console.log(err));
+  }, [])
 
   return data;
 }
@@ -20,7 +21,7 @@ function getproject() {
       .get(`${API_BASE_URL}project`)
       .then((res) => setData(res.data?.data))
       .catch((err) => console.log(err));
-  });
+  },[]);
   return data;
 }
 function getvendor() {
@@ -40,7 +41,7 @@ function getsolutions() {
       .get(`${API_BASE_URL}solution`)
       .then((res) => setData(res.data?.data))
       .catch((err) => console.log(err));
-  });
+  },[]);
   return data;
 }
 function getrepresentative() {
@@ -50,7 +51,7 @@ function getrepresentative() {
       .get(`${API_BASE_URL}representative`)
       .then((res) => setData(res.data?.data))
       .catch((err) => console.log(err));
-  });
+  },[]);
   return data;
 }
 function getaddress() {
@@ -60,7 +61,7 @@ function getaddress() {
       .get(`${API_BASE_URL}address`)
       .then((res) => setData(res.data?.data))
       .catch((err) => console.log(err));
-  });
+  },[]);
   return data;
 }
 function getcontact() {
@@ -70,7 +71,7 @@ function getcontact() {
       .get(`${API_BASE_URL}contact`)
       .then((res) => setData(res.data?.data))
       .catch((err) => console.log(err));
-  });
+  },[]);
   return data;
 }
 
@@ -81,7 +82,7 @@ function getemail() {
       .get(`${API_BASE_URL}email`)
       .then((res) => setData(res.data?.data))
       .catch((err) => console.log(err));
-  });
+  },[]);
   return data;
 }
 

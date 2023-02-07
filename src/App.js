@@ -12,6 +12,7 @@ import RequireAuth from "./Auth/RequireAuth";
 import RequireGuest from "./Auth/RequireGuset";
 import Card from "./Components/Common/card";
 import Registration from "./pages/registration";
+import SolutionsCard from "./Components/SolutionsCard/SolutionCard";
 
 const App = () => {
   return (
@@ -21,7 +22,7 @@ const App = () => {
           <Route element={<RequireAuth />}>
             <Route path="/fill" element={<Fill />} />
             <Route path="/admin" element={<Admin />} />
-            <Route path="/new" element={<New />} />
+            <Route path="/registration" element={<Registration/>} />
 
             <Route path="/modal" element={<Modal />} />
           </Route>
@@ -36,6 +37,7 @@ const App = () => {
           path="/projectDescription/:id"
           element={<ProjectDescription />}
         />
+        <Route path="/solutionsCard" element ={<SolutionsCard/>}/>
       </Routes>
     </BrowserRouter>
   );

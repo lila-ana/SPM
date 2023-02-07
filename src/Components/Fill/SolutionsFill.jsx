@@ -7,15 +7,12 @@ import { GrClose } from "react-icons/gr";
 import { API_BASE_URL } from "../../api/endPoint";
 
 export default function SolutionsFIll(props) {
-<<<<<<< HEAD
- 
   const BearerToken = localStorage.getItem("accessToken");
-=======
-  // const BearerToken = localStorage.getItem("accessToken");
->>>>>>> 64eb1ecd19e595b6d8f855ddd8ce11221892f9b7
 
   const [name, setName] = useState(null);
   const [description, setDescription] = useState(null);
+  const [logo, setLogo] = useState(null);
+
 
   function HandleClose() {
     props.modal(false);
@@ -50,6 +47,7 @@ export default function SolutionsFIll(props) {
   const form = new FormData();
   form.append("name", name);
   form.append("description", description);
+  form.append("logo", logo?.data);
 
   let solution = {
     name,
@@ -58,27 +56,23 @@ export default function SolutionsFIll(props) {
   const HandleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post(`${API_BASE_URL}solution/create`, solution, {
+      .post(`${API_BASE_URL}solution/create`, form, {
         headers: {
-          // "Content-Type": "multipart/form-data",
-          accept: "application/json",
-          authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJUZXNmYWh1bkBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiZGVwYXJ0bWVudCI6IlNvZnR3YXJlIGFzIGEgU2VydmljIiwiZmlyc3ROYW1lIjoibmViaXlhdCIsImdlbmRlciI6Im1hbGUiLCJpc19kZWxldGVkIjp0cnVlLCJsYXN0TmFtZSI6Im5lYml5YXQiLCJ0ZWwiOiIwOTc2NTM1MzQzIiwiaWF0IjoxNjc0ODI3MzI5LCJleHAiOjE2NzQ5MTM3Mjl9.82tZr5kmLUJ4R1STgWh--A4IoRy5f95fnwGr1Zc2BwA"
+         "Content-Type": "multipart/form-data",
+          //accept: "multipart/form-data",
+          authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZW1haWwiOiJUZXNmYUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiZGVwYXJ0bWVudCI6IlNvZnR3YXJlIGFzIGEgU2VydmljIiwiZmlyc3ROYW1lIjoidGVzZmFodW4iLCJnZW5kZXIiOiJtYWxlIiwiaXNfZGVsZXRlZCI6ZmFsc2UsImxhc3ROYW1lIjpudWxsLCJ0ZWwiOiIwOTI0MjMyNTIiLCJpYXQiOjE2NzU0MDMyMzIsImV4cCI6MTY3NTQ4OTYzMn0.8gaBOpbjq_wwav6ksURwSCz2byJYZRVVUDjEn8gls2s"
+          // BearerToken
         },
       })
       .then(function (response) {
         console.log(response);
+        HandleClose();
       })
       .catch(function (error) {
         console.log(error, "errorrrrrrrrrrrrrrr");
       });
   };
-<<<<<<< HEAD
   
-  // console.log(solution, "formik.errors");
-=======
-
-  console.log(get.getsolutions(), "data");
->>>>>>> 64eb1ecd19e595b6d8f855ddd8ce11221892f9b7
 
   return (
     <div
@@ -112,27 +106,21 @@ export default function SolutionsFIll(props) {
                   onBlur={formik.handleBlur}
                   // value={formik.values.name}
                 />
-                {formik.touched.name && formik.errors.name ? (
-                  <p>{formik.errors.name}</p>
-                ) : null}
               </div>
               <div className="m-[10px]">
                 <input
                   className="border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px] h-[200px] grid justify-start"
                   id="description"
                   name="description"
-                  type="description"
+                  type="text"
                   placeholder="Solution Description"
                   onChange={(e) => setDescription(e.target.value)}
                   onBlur={formik.handleBlur}
                   // value={formik.values.logo}
                 />
-                {formik.touched.logo && formik.errors.logo ? (
-                  <p>{formik.errors.logo}</p>
-                ) : null}
+               
               </div>
-              {/* <div className='m-[10px] flex gap-3 justify-center items-center'>
-
+              <div className='m-[10px] flex gap-3 justify-center items-center'>
           <input
             className='border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]'
             id="logo"
@@ -142,10 +130,9 @@ export default function SolutionsFIll(props) {
             onChange={(e) => {
               handleChange(e);
             }}
-            onBlur={formik.handleBlur}
+            // onBlur={formik.handleBlur}
           />
-          {formik.touched.logo && formik.errors.logo ? <p>{formik.errors.logo}</p> : null}
-        </div> */}
+        </div>
 
               <div className="flex items-center justify-center gap-[60px] my-[10px]">
                 <button

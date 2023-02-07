@@ -8,24 +8,26 @@ import AddButton from '../Common/Button/addButton'
 import get from '../../features/get'
 import { Tooltip } from '@mui/material'
 import EditSolution from '../ModalEdit/editSolution'
-import { API_BASE_URL } from '../../api/endPoint'
+import { API_BASE_URL, IMG_API } from '../../api/endPoint'
 import axios from 'axios'
 import SolutionPop from '../Modal/solutionPop'
+import NoRecord from './noRecord'
 
 export default function Solutions() {
-    
-    function scrollback (e,name)  { }
+  
+   const BearerToken = localStorage.getItem("accessToken");
+
     const [addModal,setAddModal]=useState(false)
     const [solutionModal,setSolutionModal]=useState(false)
     const [data, setData] = useState(null);
     const [editModal, setEditModal] = useState(false);
+    const [datas, setDatas] = useState();
 
     function HandleEditModal(e, items) {
       setEditModal(true);
       setData(items);
     }
       
-      const [datas, setDatas] = useState();
       useEffect(() => {
         axios
           .get(`${API_BASE_URL}solution`)
@@ -45,8 +47,8 @@ export default function Solutions() {
           headers: {
             "Content-Type": "application/json",
             //  accept:"application/json"
-            //   authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjpudWxsLCJsYXN0TmFtZSI6bnVsbCwiZW1haWwiOiJtdWxlc3NAZ21haWwuY29tIiwiZ2VuZGVyIjoiTWFsZSIsImRlcGFydG1lbnQiOiJTYWFTIiwidGVsIjpudWxsLCJwYXNzd29yZCI6IjEyMzhnZmo4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiaXNfZGVsZXRlZCI6dHJ1ZSwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiaWF0IjoxNjczNTk1OTI4LCJleHAiOjE2NzM2ODIzMjh9.XHYs6P7qOADLnWJGePBvJPs0PSqGcyUrY0fKcuUmZjo",
-          },
+            authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZW1haWwiOiJUZXNmYUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiZGVwYXJ0bWVudCI6IlNvZnR3YXJlIGFzIGEgU2VydmljIiwiZmlyc3ROYW1lIjoidGVzZmFodW4iLCJnZW5kZXIiOiJtYWxlIiwiaXNfZGVsZXRlZCI6ZmFsc2UsImxhc3ROYW1lIjpudWxsLCJ0ZWwiOiIwOTI0MjMyNTIiLCJpYXQiOjE2NzU0MDMyMzIsImV4cCI6MTY3NTQ4OTYzMn0.8gaBOpbjq_wwav6ksURwSCz2byJYZRVVUDjEn8gls2s"
+         },
         })
         .then(function (response) {
           console.log(response);
@@ -57,12 +59,7 @@ export default function Solutions() {
     };
     return (
     <div className="grid gap-5">
-    {/* <div className='flex justify-center'>
-    <button 
-    className="bg-[#1b9c85] w-[150px] text-white font-light p-[10px] flex items-center justify-center rounded-[10px]">
-    Add Solutions
-    </button>
-    </div> */}
+    
     <div className='flex justify-center'>
       <AddButton 
             styles ='bg-[#1b9c85] w-[150px] text-white font-light p-[10px] flex items-center justify-center rounded-[10px]'
@@ -74,18 +71,21 @@ export default function Solutions() {
     </div>
    
     <div>
-    {get?.getsolutions()?.length!==0?
+    {datas?.length!==0?
     <div className='grid grid-cols-12 gap-4'>
-    {get?.getsolutions()?.map((items)=>(
-      <div   className="col-span-4 stroke-[#1b9c85] w-[285px] h-[200px] rounded-sm hover:shadow-[#1b9c8585] inline-block ease-in-out duration-300 shadow-xl   text-[#4E4E4F] font-semibold font-nunito text-[20px] border-[#1b9c85] border-[1px]  ">
-         <img 
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHBMI1jhJpZvoZZ7mTkeNc9LUqTuwx_k4Xgg&usqp=CAU" 
+    {datas?.map((items)=>(
+          <div  class="col-span-4 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+          <img 
+            src={`${IMG_API}/${items?.logo}`}
             className='w-[285px] h-[125px]'
             onClick={HandleModal}
          />
          <div className='flex justify-between items-center h-[80px] px-5'>
          <Tooltip title={items?.name}>
-            <div className='text-[#1b9c85] font-semibold text-[18px] hover-pointer'onClick={HandleModal}>{items?.name?.length>=20? items?.name?.slice(0, 20) + "..."
+            <div 
+            className='text-[#1b9c85] font-semibold text-[18px] hover-pointer'
+            onClick={(e) => HandleModal(e, items)}>
+            {items?.name?.length>=20? items?.name?.slice(0, 20) + "..."
                           : items?.name}</div>
             </Tooltip>
             <div className='flex justify-center items-center gap-[5px]'>

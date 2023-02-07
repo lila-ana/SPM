@@ -18,7 +18,7 @@ export default function Clients() {
   };
   const [data, setData] = useState();
   axios
-    .get(`http://172.16.34.117:8000/api/v1/client/all-clients`, {
+    .get(`http://172.16.33.131:8000/api/v1/client`, {
       headers: {
         "Content-Type": "application/json",
       },

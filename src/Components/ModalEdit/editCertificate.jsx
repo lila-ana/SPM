@@ -10,12 +10,7 @@ export default function EditClient(props) {
   
   const BearerToken = localStorage.getItem("accessToken");
 
-  const [name, setName] = useState(props?.data?.name);
-  const [website, setWebSite] = useState(props?.data?.website);
-  const [email, setEmail] = useState(props?.data?.email);
-  const [contact_no, setContact] = useState(props?.data?.contact_no);
-  const [address, setAddress] = useState(props?.data?.address);
-  const [logo, setLogo] = useState(props?.data?.logo);
+  const [certeficate, setCerteficate] = useState(props?.data?.name);
 
   function HandleClose() {
     props.modal(false);
@@ -25,63 +20,20 @@ export default function EditClient(props) {
       name: e?.target?.files[0].name,
       data: e?.target?.files[0],
     };
-    setLogo(img?.data);
+    setcertificate(img?.data);
   };
-  // const handleApi = () => {
-  //   const formData = new formData ()
-  //   formData.append ('image', image)
-  //   axios.post('url', formData).then((res) => {
-  //     console.log(res)
-  //   })
-  // }
 
-  const formik = useFormik({
-    initialValues: {
-      fullName: "",
-      email: "",
-      address: "",
-      contact_no: "",
-      website: "",
-      logo: "",
-    },
-
-    validationSchema: Yup.object({
-      name: Yup.string()
-        .max(15, "Must be 15 characters or less")
-        .required("Required"),
-      email: Yup.string().email("Invalid email").required("Required"),
-      address: Yup.string().required("Required"),
-      // country: Yup.string()
-      //   .required("Required"),
-      // state: Yup.string()
-      //   .required("Required"),
-      contact_no: Yup.string().required("Required"),
-      logo: Yup.string().required("Required"),
-      website: Yup.string(),
-    }),
-  });
   const form = new FormData();
-  form.append("name", name);
-  form.append("email", email);
-  form.append("contact_no", contact_no);
-  form.append("logo", logo);
-  let client = {
-    name,
-    website,
-    email,
-    contact_no,
-    address,
-    logo,
-  };
-
+  form.append("certeficate", certeficate);
+  
   const HandleSubmit = (e) => {
     e.preventDefault();
     axios
-      .patch(`${API_BASE_URL}client/${props?.data?.id}`, form, {
+      .patch(`${API_BASE_URL}certeficate/${props?.data?.id}`, form, {
         headers: {
-          // "Content-Type": "multipart/form-data",
+          "Content-Type": "multipart/form-data",
           accept: "multipart/form-data",
-          authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJuZWJpeWF0QGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiMTIzNDU2NzgiLCJpc0FkbWluIjpudWxsLCJjcmVhdGVkX2F0IjpudWxsLCJ1cGRhdGVkX2F0IjpudWxsLCJjcmVhdGVkX2J5IjpudWxsLCJ1cGRhdGVkX2J5IjpudWxsLCJkZXBhcnRtZW50IjoiU29mdHdhcmUgYXMgYSBTZXJ2aWMiLCJmaXJzdE5hbWUiOiJuZWJpeWF0IiwiZ2VuZGVyIjoibWFsZSIsImlzX2RlbGV0ZWQiOmZhbHNlLCJsYXN0TmFtZSI6Im5lYml5YXQiLCJ0ZWwiOiIwOTc2NTM1MzQzIiwiaWF0IjoxNjc1MzE4MjgyLCJleHAiOjE2NzU0MDQ2ODJ9.iMmzbZySSqU2XYI-ZRCga6j-ChQe77YLVvCXd6Juav4"
+          authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJuZWJpeWF0QGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiMTIzNDU2NzgiLCJpc0FkbWluIjpudWxsLCJjcmVhdGVkX2F0IjpudWxsLCJ1cGRhdGVkX2F0IjpudWxsLCJjcmVhdGVkX2J5IjpudWxsLCJ1cGRhdGVkX2J5IjpudWxsLCJkZXBhcnRtZW50IjoiU29mdHdhcmUgYXMgYSBTZXJ2aWMiLCJmaXJzdE5hbWUiOiJuZWJpeWF0IiwiZ2VuZGVyIjoibWFsZSIsImlzX2RlbGV0ZWQiOmZhbHNlLCJsYXN0TmFtZSI6Im5lYml5YXQiLCJ0ZWwiOiIwOTc2NTM1MzQzIiwiaWF0IjoxNjc1MTQ3MTg0LCJleHAiOjE2NzUyMzM1ODR9.rE8UkZ1h4ubdZ8Q7tyD98W7k-0X7tiDubKUkufYRMD8"
         },
       })
       .then(function (response) {
@@ -92,6 +44,8 @@ export default function EditClient(props) {
         console.log(error, "errorrrrrrrrrrrrrrr");
       });
   };
+
+  // console.log(client, "formik.errors");
 
   return (
     <div
@@ -122,7 +76,7 @@ export default function EditClient(props) {
                   type="text"
                   placeholder="Full Name"
                   onChange={(e) => setName(e.target.value)}
-                  onBlur={formik.handleBlur}
+                  // onBlur={formik.handleBlur}
                   value={name}
                 />
               </div>

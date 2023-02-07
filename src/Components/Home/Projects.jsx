@@ -16,23 +16,21 @@ export default function Projects() {
     slider.scrollLeft = slider.scrollLeft + 500;
   };
 
-  const [data, setData] = useState();
+  const [data, setData] = useState([]);
+
   axios
-    .get(`http://172.16.34.117:8000/api/v1/client/all-clients`, {
+    .get(`http://172.16.33.131:8000/api/v1/project`, {
       headers: {
         "Content-Type": "application/json",
       },
     })
     .then((response) => {
-      setData(response.data);
+      setData(response?.data?.data);
+      console.log(response?.data?.data,"resssss")
     })
     .catch((error) => {
       console.log(error.response);
     });
-<<<<<<< HEAD
-    // console.log(data,"response data")
-=======
->>>>>>> 64eb1ecd19e595b6d8f855ddd8ce11221892f9b7
 
   return (
     <div className="">
@@ -51,11 +49,11 @@ export default function Projects() {
           className="w-full h-full overflow-x-scroll scroll scrollbar-hide  scroll-smooth"
         >
           <div className="grid grid-flow-col gap-[20px] items-center">
-            {get?.getproject()?.map((items) => (
+            {data?.map((items) => (
               <div className="stroke-[#1b9c85] w-[300px] rounded-sm hover:shadow-[#1b9c8585] inline-block ease-in-out duration-300 shadow-xl  p-[15px] text-[#4E4E4F] font-semibold font-nunito text-[20px] border-[#1b9c85] border-[1px]  ">
                 <p className="pb-[10px]">{items.name}</p>
                 <p className="font-light text-[15px]"> {items.description}</p>
-                <NavLink
+                <NavLink 
                   to={`/projectDescription/${items.id}`}
                   className="p-[8px] m-[15px] text-[15px] font-light border-[#1b9c85] font-nunito border-[1px] rounded-3xl flex justify-center bg-[#1b9c85] text-[#FCFCFC]"
                 >
