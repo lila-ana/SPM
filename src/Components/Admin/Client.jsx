@@ -13,7 +13,7 @@ import { API_BASE_URL, IMG_API } from "../../api/endPoint";
 import NoRecord from "./noRecord";
 import EditClient from "../ModalEdit/editClient";
 
-export default function Client(props) {
+export default function Client() {
 
   const [clientmodal, setClientModal] = useState(false);
   const [data, setData] = useState(null);
@@ -35,12 +35,17 @@ export default function Client(props) {
     setEditModal(true);
     setData(items);
   }
-  useEffect(() => {
-  axios
+
+  const getUser = ()=> {
+    axios
     .get(`${API_BASE_URL}client`)
     .then((res) => setDatas(res.data?.data))
     .catch((err) => console.log(err));
+  }
+  useEffect(() => {
+    getUser()
   },[]);
+
   const HandleDelete = (e, id) => {
     e.preventDefault();
     axios
@@ -48,9 +53,10 @@ export default function Client(props) {
         headers: {
           "Content-Type": "application/json",
           //  accept:"application/json"
-            authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZW1haWwiOiJUZXNmYUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiZGVwYXJ0bWVudCI6IlNvZnR3YXJlIGFzIGEgU2VydmljIiwiZmlyc3ROYW1lIjoidGVzZmFodW4iLCJnZW5kZXIiOiJtYWxlIiwiaXNfZGVsZXRlZCI6ZmFsc2UsImxhc3ROYW1lIjpudWxsLCJ0ZWwiOiIwOTI0MjMyNTIiLCJpYXQiOjE2NzU0MDMyMzIsImV4cCI6MTY3NTQ4OTYzMn0.8gaBOpbjq_wwav6ksURwSCz2byJYZRVVUDjEn8gls2s"
-            // BearerToken
+          authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImVtYWlsIjoiZGFuaWVsYUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRVWkRJSHQuVHIxQ0MvU1FwTW56VkFPd1JRNS5vSkdlcS5OcURRTnVYVzBvdE1PNzB5VUJGcSIsImlzQWRtaW4iOm51bGwsImNyZWF0ZWRfYXQiOiIyMDIzLTAyLTEzVDA3OjAwOjI0LiIsInVwZGF0ZWRfYXQiOm51bGwsImNyZWF0ZWRfYnkiOjEsInVwZGF0ZWRfYnkiOm51bGwsImRlcGFydG1lbnQiOiJTb2Z0d2FyZSBhcyBhIFNlcnZpYyIsImZpcnN0TmFtZSI6IkRhbmllbCIsImdlbmRlciI6Im1hbGUiLCJpc19kZWxldGVkIjpmYWxzZSwibGFzdE5hbWUiOiJBbGVtdSIsInRlbCI6IjA5NzY5OTY1MyIsImlhdCI6MTY3NjI3MTkxNCwiZXhwIjoxNjc2MzU4MzE0fQ.5aQPQIWWXFjTQqZTNBmSTcY1b6vlPboJe5o5O8FRLfU"
+          // BearerToken
         },
+
       })
       .then(function (response) {
         console.log(response);
@@ -60,7 +66,8 @@ export default function Client(props) {
       });
   };
 
-  
+  console.log(datas, "show me datas")
+
   return (
     <div className="grid gap-5">
       <div className="flex justify-center">

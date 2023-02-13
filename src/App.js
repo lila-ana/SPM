@@ -12,7 +12,8 @@ import RequireAuth from "./Auth/RequireAuth";
 import RequireGuest from "./Auth/RequireGuset";
 import Card from "./Components/Common/card";
 import Registration from "./pages/registration";
-import SolutionsCard from "./Components/SolutionsCard/SolutionCard";
+import SolutionsDashboard from "./pages/SolutionsDashboard";
+import Multiselect from "./pages/multiSelect";
 
 const App = () => {
   return (
@@ -37,7 +38,9 @@ const App = () => {
           path="/projectDescription/:id"
           element={<ProjectDescription />}
         />
-        <Route path="/solutionsCard" element ={<SolutionsCard/>}/>
+        <Route path="/solutionsDashboard" element ={<SolutionsDashboard/>}/>
+        <Route path="/multiSelect" element ={<Multiselect/>}/>
+        
       </Routes>
     </BrowserRouter>
   );

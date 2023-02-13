@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { AiOutlineSetting } from "react-icons/ai";
 import { MdOutlineNotificationsNone } from "react-icons/md";
 import { FaUserCircle } from "react-icons/fa";
-import Settingcard from "./settingcard";
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 
@@ -17,9 +16,9 @@ export default function Heading() {
 	};
 
 	const [setting, setSetting] = useState(false);
-	const handleSetting = () => {
-		setSetting(true);
-	};
+	// const handleSetting = () => {
+	// 	setSetting(true);
+	// };
 	const logoutUser = () => {
 		
 			localStorage.clear();

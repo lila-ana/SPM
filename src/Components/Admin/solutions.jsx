@@ -5,7 +5,6 @@ import {IoIosCheckmarkCircleOutline} from "react-icons/io"
 import {AiFillEdit, AiOutlineCloseCircle} from "react-icons/ai"
 import SolutionsFill from '../Fill/SolutionsFill'
 import AddButton from '../Common/Button/addButton'
-import get from '../../features/get'
 import { Tooltip } from '@mui/material'
 import EditSolution from '../ModalEdit/editSolution'
 import { API_BASE_URL, IMG_API } from '../../api/endPoint'
@@ -27,13 +26,17 @@ export default function Solutions() {
       setEditModal(true);
       setData(items);
     }
-      
-      useEffect(() => {
-        axios
-          .get(`${API_BASE_URL}solution`)
-          .then((res) => setDatas(res.data?.data))
-          .catch((err) => console.log(err));
-      });
+
+       const getUser = ()=> {
+      axios
+      .get(`${API_BASE_URL}Solution`)
+      .then((res) => setDatas(res.data?.data))
+      .catch((err) => console.log(err));
+    }
+    useEffect(() => {
+      getUser()
+    },[]);
+    
     function HandleAddModal () {
       setAddModal(true)
    }
@@ -47,7 +50,7 @@ export default function Solutions() {
           headers: {
             "Content-Type": "application/json",
             //  accept:"application/json"
-            authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZW1haWwiOiJUZXNmYUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiZGVwYXJ0bWVudCI6IlNvZnR3YXJlIGFzIGEgU2VydmljIiwiZmlyc3ROYW1lIjoidGVzZmFodW4iLCJnZW5kZXIiOiJtYWxlIiwiaXNfZGVsZXRlZCI6ZmFsc2UsImxhc3ROYW1lIjpudWxsLCJ0ZWwiOiIwOTI0MjMyNTIiLCJpYXQiOjE2NzU0MDMyMzIsImV4cCI6MTY3NTQ4OTYzMn0.8gaBOpbjq_wwav6ksURwSCz2byJYZRVVUDjEn8gls2s"
+            authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXNmdUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiZGVwYXJ0bWVudCI6IlNvZnR3YXJlIGFzIGEgc2VydmljIiwiZmlyc3ROYW1lIjoiVGVzZmFodW4iLCJnZW5kZXIiOiJNYWxlIiwiaXNfZGVsZXRlZCI6ZmFsc2UsImxhc3ROYW1lIjoiQmlyZWdhIiwidGVsIjoiMDkxMjM0MjM0NSIsImlhdCI6MTY3NTg0Mjk1NSwiZXhwIjoxNjc1OTI5MzU1fQ._Fz15dUt5hQffoHTrJXaSgrq1MviFXv-KzN9x9KnTHk"
          },
         })
         .then(function (response) {
@@ -76,7 +79,7 @@ export default function Solutions() {
     {datas?.map((items)=>(
           <div  class="col-span-4 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
           <img 
-            src={`${IMG_API}/${items?.logo}`}
+            src={`${IMG_API}/${items?.logo?.data}`}
             className='w-[285px] h-[125px]'
             onClick={HandleModal}
          />
@@ -101,18 +104,15 @@ export default function Solutions() {
                      <MdDelete className='fill-[#7c0a02]'/>
                   </Menu.Button>
                   <Menu.Items className="absolute right-0 z-10 mt-2 w-[70px] origin-top-right divide-y divide-[#1b9c85] bg-white shadow-lg ring-opacity-5 focus:outline-none">
-                     {/* <div className="py-1"> */}
                      <Menu.Item>
                         <div className="flex rounded-[5px] gap-[15px] items-center justify-center bg-[#1b9c85] ">
                            <div className="pt-[5px]">
                               <button >
                                  <IoIosCheckmarkCircleOutline className='fill-white w-[20px] h-[20px]'/>
                               </button>
-                              
                            </div>
                            <div className="pt-[5px]">
                               <button className='w-[15px]' onClick={(e)=>HandleDelete(e, items?.id) }>
-
                                  <AiOutlineCloseCircle className='fill-white w-[20px] h-[20px]'/>
                               </button>
                            </div>

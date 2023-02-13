@@ -8,6 +8,8 @@ import { MdDelete } from 'react-icons/md';
 import { API_BASE_URL, IMG_API } from '../../api/endPoint';
 import AddButton from '../Common/Button/addButton';
 import Certificates from '../Fill/certificates';
+import CertificatePop from '../Modal/certificatePop';
+import EditCertificate from '../ModalEdit/editCertificate';
 import NoRecord from './noRecord';
 
 export default function Certificate(props) {
@@ -16,8 +18,11 @@ export default function Certificate(props) {
 
     const [certificateModal, setCertificateModal] = useState(false);
     const [addModal, setAddModal] = useState(false);
+    const [detail, setDetail] = useState(null);
     const [data, setData] = useState(null);
     const [editModal, setEditModal] = useState(false);
+    const [datas, setDatas] = useState();
+
     
     function HandleModal(e, items) {
         setCertificateModal(true);
@@ -30,21 +35,25 @@ export default function Certificate(props) {
         setEditModal(true);
         setData(items);
       }
-      const [datas, setDatas] = useState();
-      useEffect(() => {
+
+      const getUser = ()=> {
         axios
-          .get(`${API_BASE_URL}certeficate`)
-          .then((res) => setDatas(res.data?.data))
-          .catch((err) => console.log(err));
-      });
+        .get(`${API_BASE_URL}certeficate`)
+        .then((res) => setDatas(res.data?.data))
+        .catch((err) => console.log(err));
+      }
+      useEffect(() => {
+        getUser()
+      },[datas]);
+
+     
       const HandleDelete = (e, id) => {
         e.preventDefault();
         axios
           .delete(`${API_BASE_URL}certeficate/${id}`, {
             headers: {
               "Content-Type": "multipart/form-data",
-              //  accept:"application/json"
-              authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZW1haWwiOiJUZXNmYUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiZGVwYXJ0bWVudCI6IlNvZnR3YXJlIGFzIGEgU2VydmljIiwiZmlyc3ROYW1lIjoidGVzZmFodW4iLCJnZW5kZXIiOiJtYWxlIiwiaXNfZGVsZXRlZCI6ZmFsc2UsImxhc3ROYW1lIjpudWxsLCJ0ZWwiOiIwOTI0MjMyNTIiLCJpYXQiOjE2NzU0MDMyMzIsImV4cCI6MTY3NTQ4OTYzMn0.8gaBOpbjq_wwav6ksURwSCz2byJYZRVVUDjEn8gls2s"
+              authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXNmdUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiZGVwYXJ0bWVudCI6IlNvZnR3YXJlIGFzIGEgc2VydmljIiwiZmlyc3ROYW1lIjoiVGVzZmFodW4iLCJnZW5kZXIiOiJNYWxlIiwiaXNfZGVsZXRlZCI6ZmFsc2UsImxhc3ROYW1lIjoiQmlyZWdhIiwidGVsIjoiMDkxMjM0MjM0NSIsImlhdCI6MTY3NTkzMjUwMiwiZXhwIjoxNjc2MDE4OTAyfQ.-z21UG3Pufm8A7Xy0L5GmaxaD_YLJZ-77ilgn80X3aY"
             },
           })
           .then(function (response) {
@@ -134,9 +143,9 @@ export default function Certificate(props) {
         <NoRecord />
       )}
 
-      {/* {certificateModal ? <CertificatePop modal={setCertificateModal} data={detail} /> : ""} */}
+      {certificateModal ? <CertificatePop modal={setCertificateModal} data={detail} /> : ""}
       {addModal ? <Certificates modal={setAddModal} /> : ""}
-      {/* {editModal ? <EditCertificate modal={setEditModal} data={data} /> : ""} */}
+      {editModal ? <EditCertificate modal={setEditModal} data={data} /> : ""}
     </div>
     </div>
   )

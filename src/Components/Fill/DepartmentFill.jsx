@@ -1,20 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { useFormik } from "formik";
-import * as Yup from "yup";
 import axios from "axios";
-import get from "../../features/get";
 import { API_BASE_URL } from "../../api/endPoint";
 import { GrClose } from "react-icons/gr";
 
-export default function ClientFill(props) {
+export default function DepartmentFill(props) {
   
   const BearerToken = localStorage.getItem("accessToken");
 
   const [name, setName] = useState(null);
-  const [website, setWebSite] = useState(null);
-  const [email, setEmail] = useState(null);
-  const [contact_phone, setContact_phone] = useState(null);
-  const [address, setAddress] = useState(null);
+  const [description, setDescription] =useState(null);
   const [logo, setLogo] = useState(null);
 
   function HandleClose() {
@@ -30,27 +24,22 @@ export default function ClientFill(props) {
   
   const form = new FormData();
   form.append("name", name);
-  form.append("email", email);
-  form.append("website", website);
-  form.append("address", address);
-  form.append("contact_phone", contact_phone);
+  form.append("description", description);
   form.append("logo", logo);
   
-  let client = {
+  let department = {
     name,
-    website,
-    email,
-    contact_phone,
-    address,
+    description,
     logo,
   };
   const HandleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post(`${API_BASE_URL}client/create`, form, {
+      .post(`${API_BASE_URL}department/create`, form, {
         headers: {
+          "Content-Type": "multipart/form-data",
           accept: "multipart/form-data",
-          authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImVtYWlsIjoiZGFuaWVsYUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRVWkRJSHQuVHIxQ0MvU1FwTW56VkFPd1JRNS5vSkdlcS5OcURRTnVYVzBvdE1PNzB5VUJGcSIsImlzQWRtaW4iOm51bGwsImNyZWF0ZWRfYXQiOiIyMDIzLTAyLTEzVDA3OjAwOjI0LiIsInVwZGF0ZWRfYXQiOm51bGwsImNyZWF0ZWRfYnkiOjEsInVwZGF0ZWRfYnkiOm51bGwsImRlcGFydG1lbnQiOiJTb2Z0d2FyZSBhcyBhIFNlcnZpYyIsImZpcnN0TmFtZSI6IkRhbmllbCIsImdlbmRlciI6Im1hbGUiLCJpc19kZWxldGVkIjpmYWxzZSwibGFzdE5hbWUiOiJBbGVtdSIsInRlbCI6IjA5NzY5OTY1MyIsImlhdCI6MTY3NjI3MTkxNCwiZXhwIjoxNjc2MzU4MzE0fQ.5aQPQIWWXFjTQqZTNBmSTcY1b6vlPboJe5o5O8FRLfU"
+          authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXNmdUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiZGVwYXJ0bWVudCI6IlNvZnR3YXJlIGFzIGEgc2VydmljIiwiZmlyc3ROYW1lIjoiVGVzZmFodW4iLCJnZW5kZXIiOiJNYWxlIiwiaXNfZGVsZXRlZCI6ZmFsc2UsImxhc3ROYW1lIjoiQmlyZWdhIiwidGVsIjoiMDkxMjM0MjM0NSIsImlhdCI6MTY3NTkzMjUwMiwiZXhwIjoxNjc2MDE4OTAyfQ.-z21UG3Pufm8A7Xy0L5GmaxaD_YLJZ-77ilgn80X3aY"
         },
       })
       .then(function (response) {
@@ -61,6 +50,7 @@ export default function ClientFill(props) {
         console.log(error, "errorrrrrrrrrrrrrrr");
       });
   };
+  
 
   return (
     <div
@@ -72,7 +62,7 @@ export default function ClientFill(props) {
         className="w-[630px] h-[600px]  px-8 py-8 rounded-lg bg-white flex flex-col gap-4 overflow-x-hidden overflow-y-auto"
       >
         <div className="flex pb-4 justify-between">
-          <span className="text-[28px] font-semibold">Add Client</span>
+          <span className="text-[28px] font-semibold">Add Department</span>
           <div onClick={HandleClose} className="pt-2">
             <GrClose className="w-[40px] h-[25px]" />
           </div>
@@ -89,7 +79,7 @@ export default function ClientFill(props) {
                   id="name"
                   name="name"
                   type="text"
-                  placeholder="Client Name"
+                  placeholder="Department Name"
                   onChange={(e) => setName(e.target.value)}
                   required
                 />
@@ -97,44 +87,15 @@ export default function ClientFill(props) {
               <div className="m-[10px]">
                 <input
                   className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                  id="email"
-                  name="email"
-                  type="email"
-                  placeholder="example@example.com"
-                  onChange={(e) => setEmail(e.target.value)}
+                  id="description"
+                  name="description"
+                  type="text"
+                  placeholder="Description"
+                  onChange={(e) => setDescription(e.target.value)}
                   required
                 />
               </div>
-              <div className="m-[10px]">
-                <input
-                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                  id="address"
-                  name="address"
-                  type="text"
-                  placeholder="City, Country "
-                  onChange={(e) => setAddress(e.target.value)}
-                />
-              </div>
-              <div className="m-[10px]">
-                <input
-                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                  id="contactNumber"
-                  name="contactNumber"
-                  type="string"
-                  placeholder="Contact Number"
-                  onChange={(e) => setContact_phone(e.target.value)}
-                />
-              </div>
-              <div className="m-[10px]">
-                <input
-                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                  id="website"
-                  name="website"
-                  type="text"
-                  placeholder="Website"
-                  onChange={(e) => setWebSite(e.target.value)}
-                />
-              </div>
+             
               <div className="mx-2 grid items-center">
                 <input
                   className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
@@ -160,7 +121,6 @@ export default function ClientFill(props) {
                   type="reset"
                   className="text-[#1b9c85] border-[#1b9c85] border-[1px] bg-[#ffffff] hover:bg-gray  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-1 text-center dark:bg-[#fcfcfc]  dark:hover:bg-[#fcfcfc]  dark:focus:ring-[#fcfcfc] "
                 >
-                  {" "}
                   Cancel
                 </button>
               </div>

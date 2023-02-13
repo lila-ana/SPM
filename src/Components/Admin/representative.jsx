@@ -6,7 +6,6 @@ import {AiFillEdit, AiOutlineCloseCircle} from "react-icons/ai"
 import AddButton from '../Common/Button/addButton'
 import RepresentativeFill from '../Fill/RepresentativeFill'
 import RepresentativePop from '../Modal/representativePop'
-import get from '../../features/get'
 import { Tooltip } from '@mui/material'
 import EditRepresentative from '../ModalEdit/editRepresentative'
 import { API_BASE_URL, IMG_API } from '../../api/endPoint'
@@ -20,32 +19,35 @@ export default function Representative() {
     const [representativeModal,setRepresentativeModal]=useState(false)
     const [data, setData] = useState(null);
     const [editModal, setEditModal] = useState(false);
+    const [datas, setDatas] = useState();
+
 
     const BearerToken = localStorage.getItem("accessToken");
 
 
-    function HandleModal(){
-      setClientModal(true)
+    function HandleModal(e, items){
+      setRepresentativeModal(true)
+      setDetail(items);
+
    }
     function HandleAddModal () {
       setAddModal(true)
    }
 
-   function RepresentativeModal (){
-      setRepresentativeModal (true)
-   }
    function HandleEditModal(e, items) {
       setEditModal(true);
       setData(items);
     }
+    const getUser = ()=> {
+      axios
+      .get(`${API_BASE_URL}representative`)
+      .then((res) => setDatas(res.data?.data))
+      .catch((err) => console.log(err));
+    }
+    useEffect(() => {
+      getUser()
+    },[]);
       
-      const [datas, setDatas] = useState();
-      useEffect(() => {
-        axios
-          .get(`${API_BASE_URL}representative`)
-          .then((res) => setDatas(res?.data?.data, "response from backend api res"))
-          .catch((err) => console.log(err, "response from backend api err"));
-      }, [addModal]);
     function HandleAddModal () {
       setAddModal(true)
     }
@@ -56,7 +58,7 @@ export default function Representative() {
           headers: {
             "Content-Type": "application/json",
             //  accept:"application/json"
-            authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZW1haWwiOiJUZXNmYUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiZGVwYXJ0bWVudCI6IlNvZnR3YXJlIGFzIGEgU2VydmljIiwiZmlyc3ROYW1lIjoidGVzZmFodW4iLCJnZW5kZXIiOiJtYWxlIiwiaXNfZGVsZXRlZCI6ZmFsc2UsImxhc3ROYW1lIjpudWxsLCJ0ZWwiOiIwOTI0MjMyNTIiLCJpYXQiOjE2NzU0MDMyMzIsImV4cCI6MTY3NTQ4OTYzMn0.8gaBOpbjq_wwav6ksURwSCz2byJYZRVVUDjEn8gls2s"
+            authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImVtYWlsIjoiZGFuaWVsYUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRVWkRJSHQuVHIxQ0MvU1FwTW56VkFPd1JRNS5vSkdlcS5OcURRTnVYVzBvdE1PNzB5VUJGcSIsImlzQWRtaW4iOm51bGwsImNyZWF0ZWRfYXQiOiIyMDIzLTAyLTEzVDA3OjAwOjI0LiIsInVwZGF0ZWRfYXQiOm51bGwsImNyZWF0ZWRfYnkiOjEsInVwZGF0ZWRfYnkiOm51bGwsImRlcGFydG1lbnQiOiJTb2Z0d2FyZSBhcyBhIFNlcnZpYyIsImZpcnN0TmFtZSI6IkRhbmllbCIsImdlbmRlciI6Im1hbGUiLCJpc19kZWxldGVkIjpmYWxzZSwibGFzdE5hbWUiOiJBbGVtdSIsInRlbCI6IjA5NzY5OTY1MyIsImlhdCI6MTY3NjI3MTkxNCwiZXhwIjoxNjc2MzU4MzE0fQ.5aQPQIWWXFjTQqZTNBmSTcY1b6vlPboJe5o5O8FRLfU"
           },
         })
         .then(function (response) {
@@ -67,16 +69,6 @@ export default function Representative() {
         });
     };
 
-{/* <div className='text-[#1b9c85] rounded-full border-[1px] border-[#1b9c85] w-[40px] h-[40px] grid items-center justify-center shadow-xl'>
-                   <div className='flex justify-center items-center'>
-                        <div className=''>
-                           <AiFillEdit className="fill-[#7c0a02] "/>
-                        </div>
-                        <div>
-                      */}
-                      {/* <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
-                        <span class="font-medium">Successfully deleted!</span> 
-                     </div> */}
     return (
     <div className="grid gap-5">
       <div className='flex justify-center'>
@@ -90,12 +82,7 @@ export default function Representative() {
       {datas?.length!==0?
     <div className='grid grid-cols-12 gap-4'>
     {datas?.map((items)=>(
-          <div  className="col-span-6 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-          {/* <img 
-            src={`${IMG_API}/${items?.logo}`}
-            className='w-[285px] h-[125px]'
-            onClick={HandleModal}
-         /> */}
+          <div  className="col-span-4 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
          <div className='flex justify-between items-center h-[80px] px-5'>
          <Tooltip title={items?.name}>
             <div 
@@ -150,7 +137,7 @@ export default function Representative() {
     
     </div>:<NoRecord/>}
    
-    
+{representativeModal ? <RepresentativePop modal={setClientModal} data={detail} /> : ""}
 {addModal?<RepresentativeFill modal={setAddModal}/>:""}
 {editModal ? <EditRepresentative modal={setEditModal} data={data} /> : ""}
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Tab from "../Common/tab";
 import Client from "./Client";
 import Representative from "./representative";
@@ -10,9 +10,11 @@ import { MdOutlineNotificationsNone } from "react-icons/md";
 import { AiOutlineSetting } from "react-icons/ai";
 import { Menu } from "@headlessui/react";
 import Certificate from "./certificate";
-import Partners from "../Home/Partners";
 import PartnersImage from "./PartnersImage";
-import registration from "../../pages/registration";
+import Department from "./Department";
+import Sector from "./Sector";
+import axios from "axios";
+import { API_BASE_URL } from "../../api/endPoint";
 
 export default function View() {
 	const OpportunityTabData = [
@@ -51,8 +53,22 @@ export default function View() {
 			available: 6,
 			content: <PartnersImage/>
 		  },
+		  {
+			label: "Department ",
+			available: 6,
+			content: <Department/>
+		  },
+		  
+		  {
+			label: "Sector",
+			available: 6,
+			content: <Sector/>
+		  },
+
 	];
-	
+	const [data,setData]=useState();
+    const [datas,setDatas]=useState();
+
 	const BearerToken = localStorage.getItem("accessToken");
 
 	const [activeTabIndex, setActiveTabIndex] = useState(0);
@@ -66,17 +82,23 @@ export default function View() {
 		window.location.replace("/login");
 	
   };
-  function getrepresentative(){
-    const [data,setData]=useState();
-    useEffect(() => {
-        axios.get(`${API_BASE_URL}registration`)
-			// authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6Ik5hb2xsbCIsImVtYWlsIjoiTmFvbGxsQGdtYWlsLmNvbSIsImdlbmRlciI6Im1hbGUiLCJkZXBhcnRtZW50IjoiU29mdHdhcmUgYXMgYSBTZXJ2aWMiLCJqb2IiOiJFUlAiLCJwYXNzd29yZCI6IjEyMzhnZ2ZqOCIsImlzQWRtaW4iOm51bGwsImNyZWF0ZWRfYXQiOm51bGwsInVwZGF0ZWRfYXQiOm51bGwsImlzX2RlbGV0ZWQiOnRydWUsImNyZWF0ZWRfYnkiOjIsInVwZGF0ZWRfYnkiOm51bGwsImlhdCI6MTY3MzUyNDcxOSwiZXhwIjoxNjczNjExMTE5fQ.n8D5nEppe3v49Btx4UZog6csO2gVeJpOKHVKJ5iZLws",
-        .then(res => setData(res.data?.data))
-        .catch(err => console.log(err))
-      },[])
-      return data;
-}
+  const getUser = ()=> {
+    axios
+    .get(`${API_BASE_URL}user/authUser`,{
+		headers: {
+			"Content-Type": "application/json",
+			accept: "application/json",
+			 token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXNmdUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiZGVwYXJ0bWVudCI6IlNvZnR3YXJlIGFzIGEgc2VydmljIiwiZmlyc3ROYW1lIjoiVGVzZmFodW4iLCJnZW5kZXIiOiJNYWxlIiwiaXNfZGVsZXRlZCI6ZmFsc2UsImxhc3ROYW1lIjoiQmlyZWdhIiwidGVsIjoiMDkxMjM0MjM0NSIsImlhdCI6MTY3NTkzMjUwMiwiZXhwIjoxNjc2MDE4OTAyfQ.-z21UG3Pufm8A7Xy0L5GmaxaD_YLJZ-77ilgn80X3aY",
+		  },
+	})
+    .then((res) => setDatas(res.data?.data))
+    .catch((err) => console.log(err));
+  }
+  useEffect(() => {
+    getUser()
+  },[datas]);
 
+console.log(datas, "datas")
 
 	return (
 		
@@ -92,11 +114,11 @@ export default function View() {
 					/>
 				</div>
 
-				<div>
+				{/* <div>
 					<div className="font-medium text-[18px] text-[#1b9c85] font-nunito pl-[10px] pt-[15px]">
 						Admin Name/ Team Lead Name
 					</div>
-				</div>
+				</div> */}
 				<Tab
 				activeTab={activeTabIndex}
 				data={OpportunityTabData}

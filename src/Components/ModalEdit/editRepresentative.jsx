@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useFormik } from "formik";
-import * as Yup from "yup";
 import axios from "axios";
-import get from "../../features/get";
 import { API_BASE_URL } from "../../api/endPoint";
 import { GrClose } from "react-icons/gr";
 
 export default function EditRepresentative(props) {
+  
   const BearerToken = localStorage.getItem("accessToken");
 
   const [name, setName] = useState(props?.data?.name);
@@ -15,43 +13,10 @@ export default function EditRepresentative(props) {
   const [contact_2, setContact_2] = useState(props?.data?.contact_2);
   const [position, setPosition] = useState(props?.data?.position);
  
-
   function HandleClose() {
     props.modal(false);
   }
-  const handleChange = (e) => {
-    const img = {
-      name: e?.target?.files[0].name,
-      data: e?.target?.files[0],
-    };
-    setLogo(img?.data);
-  };
   
-  const formik = useFormik({
-    initialValues: {
-      fullName: "",
-      email: "",
-      address: "",
-      contact_no: "",
-      website: "",
-      logo: "",
-    },
-
-    validationSchema: Yup.object({
-      name: Yup.string()
-        .max(15, "Must be 15 characters or less")
-        .required("Required"),
-      email: Yup.string().email("Invalid email").required("Required"),
-      address: Yup.string().required("Required"),
-      // country: Yup.string()
-      //   .required("Required"),
-      // state: Yup.string()
-      //   .required("Required"),
-      contact_no: Yup.string().required("Required"),
-      logo: Yup.string().required("Required"),
-      website: Yup.string(),
-    }),
-  });
   const form = new FormData();
   form.append("name", name);
   form.append("email", email);
@@ -75,18 +40,18 @@ export default function EditRepresentative(props) {
         headers: {
         // "Content-Type": "application/json",
           accept: "application/json",
-          authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJuZWJpeWF0QGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiMTIzNDU2NzgiLCJpc0FkbWluIjpudWxsLCJjcmVhdGVkX2F0IjpudWxsLCJ1cGRhdGVkX2F0IjpudWxsLCJjcmVhdGVkX2J5IjpudWxsLCJ1cGRhdGVkX2J5IjpudWxsLCJkZXBhcnRtZW50IjoiU29mdHdhcmUgYXMgYSBTZXJ2aWMiLCJmaXJzdE5hbWUiOiJuZWJpeWF0IiwiZ2VuZGVyIjoibWFsZSIsImlzX2RlbGV0ZWQiOmZhbHNlLCJsYXN0TmFtZSI6Im5lYml5YXQiLCJ0ZWwiOiIwOTc2NTM1MzQzIiwiaWF0IjoxNjc1MzE4MjgyLCJleHAiOjE2NzU0MDQ2ODJ9.iMmzbZySSqU2XYI-ZRCga6j-ChQe77YLVvCXd6Juav4"
+          authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXNmdUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiZGVwYXJ0bWVudCI6IlNvZnR3YXJlIGFzIGEgc2VydmljIiwiZmlyc3ROYW1lIjoiVGVzZmFodW4iLCJnZW5kZXIiOiJNYWxlIiwiaXNfZGVsZXRlZCI6ZmFsc2UsImxhc3ROYW1lIjoiQmlyZWdhIiwidGVsIjoiMDkxMjM0MjM0NSIsImlhdCI6MTY3NTkzMjUwMiwiZXhwIjoxNjc2MDE4OTAyfQ.-z21UG3Pufm8A7Xy0L5GmaxaD_YLJZ-77ilgn80X3aY"
         },
       })
       .then(function (response) {
         console.log(response);
+        HandleClose();
       })
       .catch(function (error) {
         console.log(error, "errorrrrrrrrrrrrrrr");
       });
   };
 
-//   console.log(client, "formik.errors");
 
   return (
     <div
@@ -117,7 +82,6 @@ export default function EditRepresentative(props) {
             type="text"
             placeholder='Representative Name'
             onChange={(e)=>setName(e.target.value)}
-            onBlur={formik.handleBlur}
             value={name}
           />
         </div>
@@ -129,7 +93,6 @@ export default function EditRepresentative(props) {
             type="email"
             placeholder='example@example.com'
             onChange={(e)=>setEmail(e.target.value)}
-            onBlur={formik.handleBlur}
             value={email}
           />
         </div>
@@ -141,7 +104,6 @@ export default function EditRepresentative(props) {
             type="contact_1"
             placeholder='contact_1'
             onChange={(e)=>setContact_1(e.target.value)}
-            onBlur={formik.handleBlur}
             value={contact_1}
           />
         </div>
@@ -153,7 +115,6 @@ export default function EditRepresentative(props) {
             type="contact_2"
             placeholder='contact_2'
             onChange={(e)=>setContact_2(e.target.value)}
-            onBlur={formik.handleBlur}
             value={contact_2}
           />
         </div>
@@ -165,7 +126,6 @@ export default function EditRepresentative(props) {
             type="text"
             placeholder='Position'
             onChange={(e)=>setPosition(e.target.value)}
-            onBlur={formik.handleBlur}
             value={position}
           />
         </div>

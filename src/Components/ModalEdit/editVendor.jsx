@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useFormik } from "formik";
-import * as Yup from "yup";
 import axios from "axios";
-import get from "../../features/get";
 import { API_BASE_URL } from "../../api/endPoint";
 import { GrClose } from "react-icons/gr";
 
@@ -14,7 +11,7 @@ export default function EditVendor(props) {
   const [website, setWebsite] = useState(props?.data?.website);
   const [email, setEmail] = useState(props?.data?.email);
   const [contact_phone, setContact_phone] = useState(props?.data?.contact_phone);
-//   const [address, setAddress] = useState(props?.data?.address);
+  const [address, setAddress] = useState(props?.data?.address);
   const [logo, setLogo] = useState(props?.data?.logo);
 
   function HandleClose() {
@@ -28,37 +25,15 @@ export default function EditVendor(props) {
     setLogo(img?.data);
   };
   
-  const formik = useFormik({
-    initialValues: {
-      fullName: "",
-      email: "",
-      address: "",
-      contact_no: "",
-      website: "",
-      logo: "",
-    },
-
-    validationSchema: Yup.object({
-      name: Yup.string()
-        .max(15, "Must be 15 characters or less")
-        .required("Required"),
-      email: Yup.string().email("Invalid email").required("Required"),
-      address: Yup.string().required("Required"),
-      // country: Yup.string()
-      //   .required("Required"),
-      // state: Yup.string()
-      //   .required("Required"),
-      contact_no: Yup.string().required("Required"),
-      logo: Yup.string().required("Required"),
-      website: Yup.string(),
-    }),
-  });
+  
+      
   const form = new FormData();
   form.append("name", name);
   form.append("email", email);
   form.append("website", website);
   form.append("contact_phone", contact_phone);
   form.append("logo", logo);
+  form.append("address", address);
   let vendor = {
     name,
     website,
@@ -74,7 +49,7 @@ export default function EditVendor(props) {
         headers: {
         // "Content-Type": "multipart/form-data",
           accept: "multipart/form-data",
-          authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJuZWJpeWF0QGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiMTIzNDU2NzgiLCJpc0FkbWluIjpudWxsLCJjcmVhdGVkX2F0IjpudWxsLCJ1cGRhdGVkX2F0IjpudWxsLCJjcmVhdGVkX2J5IjpudWxsLCJ1cGRhdGVkX2J5IjpudWxsLCJkZXBhcnRtZW50IjoiU29mdHdhcmUgYXMgYSBTZXJ2aWMiLCJmaXJzdE5hbWUiOiJuZWJpeWF0IiwiZ2VuZGVyIjoibWFsZSIsImlzX2RlbGV0ZWQiOmZhbHNlLCJsYXN0TmFtZSI6Im5lYml5YXQiLCJ0ZWwiOiIwOTc2NTM1MzQzIiwiaWF0IjoxNjc1MzE4MjgyLCJleHAiOjE2NzU0MDQ2ODJ9.iMmzbZySSqU2XYI-ZRCga6j-ChQe77YLVvCXd6Juav4"
+          authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXNmdUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiZGVwYXJ0bWVudCI6IlNvZnR3YXJlIGFzIGEgc2VydmljIiwiZmlyc3ROYW1lIjoiVGVzZmFodW4iLCJnZW5kZXIiOiJNYWxlIiwiaXNfZGVsZXRlZCI6ZmFsc2UsImxhc3ROYW1lIjoiQmlyZWdhIiwidGVsIjoiMDkxMjM0MjM0NSIsImlhdCI6MTY3NjAxOTE1MCwiZXhwIjoxNjc2MTA1NTUwfQ.z9TE5i2D4LdGJKzMxPxHfmlfGOf3di2c6yY8qwRstkI"
         },
       })
       .then(function (response) {
@@ -84,7 +59,6 @@ export default function EditVendor(props) {
         console.log(error, "errorrrrrrrrrrrrrrr");
       });
   };
-
 
   return (
     <div
@@ -115,10 +89,8 @@ export default function EditVendor(props) {
             type="text"
             placeholder='Vendor Name'
             onChange={(e)=>setName(e.target.value)}
-            onBlur={formik.handleBlur}
             value={name}
           />
-          {formik.touched.name && formik.errors.name ? <p>{formik.errors.name}</p> : null}
         </div>
         <div className='m-[10px]'>
           <input
@@ -128,40 +100,10 @@ export default function EditVendor(props) {
             type="email"
             placeholder='example@example.com'
             onChange={(e)=>setEmail(e.target.value)}
-            onBlur={formik.handleBlur}
-            // value={formik.values.email}
+            value={email}
           />
-          {formik.touched.email && formik.errors.email ? <p>{formik.errors.email}</p> : null}
-        </div>
-        
-        {/* <div className='m-[10px]'>
-          <input
-            className='border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]'
-            id="country"
-            name="country"
-            type="text"
-            placeholder='country'
-            onChange={(e)=>setCountry(e.target.value)}
-            onBlur={formik.handleBlur}
-            // value={formik.values.country}
-          />
-          {formik.touched.country && formik.errors.country ? <p>{formik.errors.country}</p> : null}
-        </div> */}
-        {/* <div className='m-[10px]'>
-          <input
-            className='border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]'
-            id="state"
-            name="state"
-            type="text"
-            placeholder='state'
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.state}
-          />
-          {formik.touched.state && formik.errors.state ? <p>{formik.errors.state}</p> : null}
-        </div>
-         */}
-        {/* <div className='m-[10px]'>
+        </div>     
+        <div className='m-[10px]'>
           <input
             className='border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]'
             id="address"
@@ -169,11 +111,9 @@ export default function EditVendor(props) {
             type="text"
             placeholder='Address'
             onChange={(e)=>setAddress(e.target.value)}
-            onBlur={formik.handleBlur}
-            // value={formik.values.address}
+            value={address}
           />
-          {formik.touched.address && formik.errors.address ? <p>{formik.errors.address}</p> : null}
-        </div> */}
+        </div>
         <div className='m-[10px]'>
           <input
             className='border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]'
@@ -182,10 +122,8 @@ export default function EditVendor(props) {
             type="phoneNumber"
             placeholder='Contact Number'
             onChange={(e)=>setContact_phone(e.target.value)}
-            onBlur={formik.handleBlur}
-            // value={formik.values.contact_phone}
+            value={contact_phone}
           />
-          {formik.touched.contact_phone && formik.errors.contact_phone ? <p>{formik.errors.contact_phone}</p> : null}
         </div>
         <div className='m-[10px]'>
           <input
@@ -195,10 +133,8 @@ export default function EditVendor(props) {
             type="text"
             placeholder='Website'
             onChange={(e)=>setWebsite(e.target.value)}
-            onBlur={formik.handleBlur}
-            // value={formik.values.website}
+            value={website}
           />
-          {formik.touched.website && formik.errors.website ? <p>{formik.errors.website}</p> : null}
         </div>
         <div className='m-[10px] flex gap-3 justify-center items-center'>
           <input
@@ -210,9 +146,7 @@ export default function EditVendor(props) {
             onChange={(e) => {
               handleChange(e);
             }}
-            onBlur={formik.handleBlur}
           />
-          {formik.touched.logo && formik.errors.logo ? <p>{formik.errors.logo}</p> : null}
         </div>
         
         <div className='flex items-center justify-center gap-[60px] my-[25px]'>

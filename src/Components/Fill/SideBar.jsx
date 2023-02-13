@@ -9,7 +9,7 @@ import ProjectFill from './projectFill';
 import Certificate from '../Admin/certificate';
 import Partners from './partnersFill';
 
-export default function SidePanal() {
+export default function SideBar() {
 
     const OpportunityTabData = [
         {

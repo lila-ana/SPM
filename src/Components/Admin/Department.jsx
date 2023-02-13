@@ -4,83 +4,82 @@ import { MdDelete } from "react-icons/md";
 import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 import { AiFillEdit, AiOutlineCloseCircle } from "react-icons/ai";
 import AddButton from "../Common/Button/addButton";
-import get from "../../features/get";
-import ProjectPop from "../Modal/projectPop";
-import ProjectFill from "../Fill/projectFill";
 import axios from "axios";
-import { API_BASE_URL, IMG_API } from "../../api/endPoint";
 import { Tooltip } from "@mui/material";
+import { API_BASE_URL, IMG_API } from "../../api/endPoint";
 import NoRecord from "./noRecord";
+import DepartmentFill from "../Fill/DepartmentFill";
+import EditDepartment from "../ModalEdit/editDepartment";
+import DepartmentPop from "../Modal/DepartmentPop";
 
+export default function Department() {
 
-export default function Projects(props) {
-    
-   const [projectModal,setProjectModal]=useState(false)
-   const [addModal,setAddModal]=useState(false)
-   const [data, setData] = useState(null);
+  const [clientmodal, setClientModal] = useState(false);
+  const [data, setData] = useState(null);
+  const [detail, setDetail] = useState(null);
+  const [addModal, setAddModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [datas, setDatas] = useState();
 
-
   const BearerToken = localStorage.getItem("accessToken");
 
+  function HandleModal(e, items) {
+    setClientModal(true);
+    setDetail(items);
+  }
+  function HandleAddModal() {
+    setAddModal(true);
+  }
+  function HandleEditModal(e, items) {
+    setEditModal(true);
+    setData(items);
+  }
+  const getUser = ()=> {
+   axios
+   .get(`${API_BASE_URL}department`)
+   .then((res) => setDatas(res.data?.data))
+   .catch((err) => console.log(err));
+ }
+ useEffect(() => {
+   getUser()
+ },[]);
 
-   
-   function HandleAddModal () {
-      setAddModal(true)
-   }
-   function HandleEditModal(e, items) {
-      setEditModal(true);
-      setData(items);
-    }
-      
-      useEffect(() => {
-        axios
-          .get(`${API_BASE_URL}project`)
-          .then((res) => setDatas(res.data?.data))
-          .catch((err) => console.log(err));
-      },[]);
-     function HandleModal () {
-        setProjectModal(true)
-
-     }
-   const HandleDelete = (e, id)=>{
-      e.preventDefault();
-          axios
-          .delete(`${API_BASE_URL}project/${id}`, {
-            headers: {
-          'Content-Type': "application/json",
-          // accept:"application/json",
-          authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImVtYWlsIjoiZGFuaWVsYUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRVWkRJSHQuVHIxQ0MvU1FwTW56VkFPd1JRNS5vSkdlcS5OcURRTnVYVzBvdE1PNzB5VUJGcSIsImlzQWRtaW4iOm51bGwsImNyZWF0ZWRfYXQiOiIyMDIzLTAyLTEzVDA3OjAwOjI0LiIsInVwZGF0ZWRfYXQiOm51bGwsImNyZWF0ZWRfYnkiOjEsInVwZGF0ZWRfYnkiOm51bGwsImRlcGFydG1lbnQiOiJTb2Z0d2FyZSBhcyBhIFNlcnZpYyIsImZpcnN0TmFtZSI6IkRhbmllbCIsImdlbmRlciI6Im1hbGUiLCJpc19kZWxldGVkIjpmYWxzZSwibGFzdE5hbWUiOiJBbGVtdSIsInRlbCI6IjA5NzY5OTY1MyIsImlhdCI6MTY3NjI3MTkxNCwiZXhwIjoxNjc2MzU4MzE0fQ.5aQPQIWWXFjTQqZTNBmSTcY1b6vlPboJe5o5O8FRLfU"
+  const HandleDelete = (e, id) => {
+    e.preventDefault();
+    axios
+      .delete(`${API_BASE_URL}department/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+            authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImVtYWlsIjoiZGFuaWVsYUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRVWkRJSHQuVHIxQ0MvU1FwTW56VkFPd1JRNS5vSkdlcS5OcURRTnVYVzBvdE1PNzB5VUJGcSIsImlzQWRtaW4iOm51bGwsImNyZWF0ZWRfYXQiOiIyMDIzLTAyLTEzVDA3OjAwOjI0LiIsInVwZGF0ZWRfYXQiOm51bGwsImNyZWF0ZWRfYnkiOjEsInVwZGF0ZWRfYnkiOm51bGwsImRlcGFydG1lbnQiOiJTb2Z0d2FyZSBhcyBhIFNlcnZpYyIsImZpcnN0TmFtZSI6IkRhbmllbCIsImdlbmRlciI6Im1hbGUiLCJpc19kZWxldGVkIjpmYWxzZSwibGFzdE5hbWUiOiJBbGVtdSIsInRlbCI6IjA5NzY5OTY1MyIsImlhdCI6MTY3NjI3MTkxNCwiZXhwIjoxNjc2MzU4MzE0fQ.5aQPQIWWXFjTQqZTNBmSTcY1b6vlPboJe5o5O8FRLfU"
+            // BearerToken
         },
-          })
-          .then(function (response) {
-            console.log(response);
-           
-          })
-          .catch(function (error) {
-            console.log(error, "errorrrrrrrrrrrrrrr");
-          });
-        }
-    return (
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error, "errorrrrrrrrrrrrrrr");
+      });
+  };
+
+  return (
     <div className="grid gap-5">
       <div className="flex justify-center">
         <AddButton
           styles="bg-[#1b9c85] w-[150px] text-white font-light p-[10px] flex items-center justify-center rounded-[10px]"
-          name="Add Project"
+          name="Add Department"
           action={HandleAddModal}
         />
       </div>
       {datas?.length !== 0 ? (
         <div className="grid grid-cols-12 gap-4">
-           {datas?.map((items) => (
+          {datas?.map((items) => (
           <div  class="col-span-4 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
           <img
                 src={`${IMG_API}/${items?.logo}`}
                 className="w-[285px] h-[125px]"
                 onClick={(e) => HandleModal(e, items)}
               />
-
               <div className="flex justify-between items-center h-[80px] px-5">
                 <Tooltip title={items?.name}>
                   <div
@@ -115,7 +114,7 @@ export default function Projects(props) {
                             <div className="pt-[5px]">
                               <button
                                 className="w-[15px]"
-                                onClick={(e) => HandleDelete (e, items?.id)}
+                                onClick={(e) => HandleDelete(e, items?.id)}
                               >
                                 <AiOutlineCloseCircle className="fill-white w-[20px] h-[20px]" />
                               </button>
@@ -126,8 +125,8 @@ export default function Projects(props) {
                     </Menu>
 
                     {/* <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
-                     <span class="font-medium">Successfully deleted!</span> 
-                  </div> */}
+                        <span class="font-medium">Successfully deleted!</span> 
+                     </div> */}
                   </div>
                 </div>
               </div>
@@ -138,9 +137,9 @@ export default function Projects(props) {
         <NoRecord />
       )}
 
-      {projectModal ? <ProjectPop modal={setProjectModal} /> : ""}
-      {addModal ? <ProjectFill modal={setAddModal} /> : ""}
-      {editModal ? <EditProject modal={setEditModal} data={data} /> : ""}
+      {clientmodal ? <DepartmentPop modal={setClientModal} data={detail} /> : ""}
+      {addModal ? <DepartmentFill modal={setAddModal} /> : ""}
+      {editModal ? <EditDepartment modal={setEditModal} data={data} /> : ""}
     </div>
   );
 }

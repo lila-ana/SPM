@@ -6,18 +6,6 @@ const ButtonTab = (props) => {
       <div className="grid gap-4 text-sm">
         {props.data.map((tab, idx) => {
           return (
-            // <button
-            //   key={idx}
-            //   className={`border-b-2 px-2 text-sm transition-colors duration-300 ${
-            //     idx === props.activeTab
-            //       ? "border-white text-white"
-            //       : "border-none text-white"
-            //   }`}
-            //   // Change the active tab on click.
-            //   onClick={() => props.handlechange(idx)}
-            // >
-            //   {tab.label}
-            // </button>
              <button 
              className={`bg-[#1b9c85] w-[150px] text-white font-light p-[10px] flex items-center justify-center rounded-[10px] ${
                     idx === props.activeTab

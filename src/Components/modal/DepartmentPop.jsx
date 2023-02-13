@@ -2,13 +2,11 @@ import React from 'react'
 import { AiFillCloseCircle } from 'react-icons/ai';
 import { IMG_API } from '../../api/endPoint';
 
-export default function VendorPop(props) {
+export default function DepartmentPop(props) {
 
 function HandleClose() {
     props.modal(false);
   }
-
-
   return (
     <div
       className="fixed pin z-50 overflow-auto bg-smoke-light flex"
@@ -37,7 +35,7 @@ function HandleClose() {
                     <div className="flex items-center justify-center">
                       <img
                         className="flex items-center justify-center w-[100px] h-[100px] p-[10px] m-[10px] "
-                        src={`${IMG_API}/${props?.data?.logo}`}
+                        src= {`${IMG_API}/${props?.data?.logo}`}
                         alt="Company Logo"
                       />
                     </div>
@@ -45,16 +43,7 @@ function HandleClose() {
                       {props?.data?.name}
                     </div>
                     <div className="text-[15px] m-[13px] text-gray-500 border-[#1b9c85] border-[1px] font-light flex items-center justify-center w-[250px] rounded-[5px] h-[30px]">
-                      {props?.data?.email}
-                    </div>
-                    <div className="text-[15px] m-[13px] text-gray-500 border-[#1b9c85] border-[1px] font-light flex items-center justify-center w-[250px] rounded-[5px] h-[30px]">
-                      {props?.data?.contact_no}
-                    </div>
-                    <div className="text-[15px] m-[13px] text-gray-500 border-[#1b9c85] border-[1px] font-light flex items-center justify-center w-[250px] rounded-[5px] h-[30px]">
-                      {props?.data?.website}
-                    </div>
-                    <div className="text-[15px] m-[13px] text-gray-500 border-[#1b9c85] border-[1px] font-light flex items-center justify-center w-[250px] rounded-[5px] h-[30px]">
-                      {props?.data?.logo}
+                      {props?.data?.description}
                     </div>
                   </div>
                 </div>

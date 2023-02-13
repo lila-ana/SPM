@@ -3,7 +3,7 @@ import axios from "axios";
 import { API_BASE_URL } from "../../api/endPoint";
 import { GrClose } from "react-icons/gr";
 
-export default function EditCertificate(props) {
+export default function EditPartner(props) {
   
   const BearerToken = localStorage.getItem("accessToken");
 
@@ -23,13 +23,13 @@ export default function EditCertificate(props) {
   };
 
   const form = new FormData();
-  form.append("certeficate", certeficate);
+  form.append("partner", partner);
   form.append("name", name);
   
   const HandleSubmit = (e) => {
     e.preventDefault();
     axios
-      .patch(`${API_BASE_URL}certeficate/${props?.data?.id}`, form, {
+      .patch(`${API_BASE_URL}partner/${props?.data?.id}`, form, {
         headers: {
           "Content-Type": "multipart/form-data",
           accept: "multipart/form-data",
@@ -55,7 +55,7 @@ export default function EditCertificate(props) {
         className="w-[630px] h-[600px]  px-8 py-8 rounded-lg bg-white flex flex-col gap-4 overflow-x-hidden overflow-y-auto"
       >
         <div className="flex pb-4 justify-between">
-          <span className="text-[28px] font-semibold">Edit Certificate</span>
+          <span className="text-[28px] font-semibold">Edit Partner</span>
           <div onClick={HandleClose} className="pt-2">
             <GrClose className="w-[40px] h-[25px]" />
           </div>
@@ -72,7 +72,7 @@ export default function EditCertificate(props) {
                   id="name"
                   name="name"
                   type="text"
-                  placeholder="Certeficate Name"
+                  placeholder="Partner Name"
                   onChange={(e) => setName(e.target.value)}
                   value={name}
                 />

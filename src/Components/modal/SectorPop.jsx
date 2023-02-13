@@ -2,10 +2,11 @@ import React from "react";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { IMG_API } from "../../api/endPoint";
 
-export default function CertificatePop(props) {
+export default function SectorPop(props) {
   function HandleClose() {
     props.modal(false);
   }
+
   return (
     <div
       className="fixed pin z-50 overflow-auto bg-smoke-light flex"
@@ -31,14 +32,7 @@ export default function CertificatePop(props) {
                     <AiFillCloseCircle className="flex  fill-[#1b9c85] w-[25px] h-[25px] rounded-full" />
                   </h3>
                   <div className="mt-2">
-                    <div className="flex items-center justify-center">
-                      <img
-                        className="flex items-center justify-center w-[200px] h-[120px] p-[10px] m-[10px] "
-                        src={`${IMG_API}/${props?.data?.ceretifcate}`}
-                        alt="Certificate"
-                      />
-                    </div>
-                    <div className="text-[15px] m-[13px] text-gray-500 border-[#1b9c85] border-[1px] font-light flex items-center justify-center w-[250px] rounded-[5px] h-[30px]">
+                    <div className="text-[15px] m-[13px] text-gray-500 border-[#1b9c85] border-[1px] text-semibold flex items-center justify-center w-[250px] rounded-[5px] h-[30px]">
                       {props?.data?.name}
                     </div>
                   </div>

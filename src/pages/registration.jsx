@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import {useFormik} from 'formik';
-import * as Yup from 'yup';
 import axios from 'axios';
 import { API_BASE_URL } from '../api/endPoint';
 
@@ -15,25 +13,7 @@ export default function Registration(props) {
     const [password, setPassword]=useState("")
     const [confirmPassword, setConfirmPassword]=useState("")
 
-    // view = [
-    //     {
-    //         firstName : " ",
-    //         lastName : " ",
-    //         department : " ",
-    //     }
-    // ]
-    const formik = useFormik ({
-        
-        initialValues: {
-            fullName: "",
-            gender:"",
-            email: "",
-            department: "",
-            role: "",
-            password: "",
-            confirmPassword: "",
-        },
-    })
+    
     const form = new FormData();
     form.append("firstName", firstName);
     form.append("lastName", lastName);
@@ -43,6 +23,7 @@ export default function Registration(props) {
     form.append("tel", tel);
     form.append("password", password);
     form.append("confirmPassword", confirmPassword);
+    
     let registration={
         firstName:firstName,
         lastName:lastName,
@@ -51,8 +32,8 @@ export default function Registration(props) {
         department:department,
         tel:tel,
         password:password,
-
         }
+
     const HandleSubmit=(e)=>{
         e.preventDefault();
             axios
@@ -60,20 +41,18 @@ export default function Registration(props) {
               headers: {
                 // "Content-Type": "application/json",
                 accept: "application/json",
-                // authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6Ik5hb2xsbCIsImVtYWlsIjoiTmFvbGxsQGdtYWlsLmNvbSIsImdlbmRlciI6Im1hbGUiLCJkZXBhcnRtZW50IjoiU29mdHdhcmUgYXMgYSBTZXJ2aWMiLCJqb2IiOiJFUlAiLCJwYXNzd29yZCI6IjEyMzhnZ2ZqOCIsImlzQWRtaW4iOm51bGwsImNyZWF0ZWRfYXQiOm51bGwsInVwZGF0ZWRfYXQiOm51bGwsImlzX2RlbGV0ZWQiOnRydWUsImNyZWF0ZWRfYnkiOjIsInVwZGF0ZWRfYnkiOm51bGwsImlhdCI6MTY3MzUyNDcxOSwiZXhwIjoxNjczNjExMTE5fQ.n8D5nEppe3v49Btx4UZog6csO2gVeJpOKHVKJ5iZLws",
-                
-              },
+                authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXNmdUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiZGVwYXJ0bWVudCI6IlNvZnR3YXJlIGFzIGEgc2VydmljIiwiZmlyc3ROYW1lIjoiVGVzZmFodW4iLCJnZW5kZXIiOiJNYWxlIiwiaXNfZGVsZXRlZCI6ZmFsc2UsImxhc3ROYW1lIjoiQmlyZWdhIiwidGVsIjoiMDkxMjM0MjM0NSIsImlhdCI6MTY3NjI3MDMxMSwiZXhwIjoxNjc2MzU2NzExfQ.W2e-K2YZE2punCwD1n9zfBZmQahFJUz2T9iYRYUHl_Y",
+            },
             })
-            .then(function (response) {
-              console.log(response);
-             
+            .then((response) => {
+                // window.location.replace("/login");
+                console.log(response, "Change location to login");
             })
             .catch(function (error) {
               console.log(error, "errorrrrrrrrrrrrrrr");
             });
       }
       
-    //   console.log(registration,"formik.errors")
 
 return (
     <div className='h-screen grid items-center justify-center '>
