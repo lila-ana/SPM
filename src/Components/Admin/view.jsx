@@ -13,6 +13,7 @@ import Certificate from "./certificate";
 import Partners from "../Home/Partners";
 import PartnersImage from "./PartnersImage";
 import registration from "../../pages/registration";
+import Department from "../Fill/departmentFill";
 
 export default function View() {
 	const OpportunityTabData = [
@@ -51,6 +52,12 @@ export default function View() {
 			available: 6,
 			content: <PartnersImage/>
 		  },
+		  {
+			label: "Department",
+			available: 7,
+			content: <Department/>
+		  },
+
 	];
 	
 	const BearerToken = localStorage.getItem("accessToken");
@@ -70,7 +77,6 @@ export default function View() {
     const [data,setData]=useState();
     useEffect(() => {
         axios.get(`${API_BASE_URL}registration`)
-			// authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6Ik5hb2xsbCIsImVtYWlsIjoiTmFvbGxsQGdtYWlsLmNvbSIsImdlbmRlciI6Im1hbGUiLCJkZXBhcnRtZW50IjoiU29mdHdhcmUgYXMgYSBTZXJ2aWMiLCJqb2IiOiJFUlAiLCJwYXNzd29yZCI6IjEyMzhnZ2ZqOCIsImlzQWRtaW4iOm51bGwsImNyZWF0ZWRfYXQiOm51bGwsInVwZGF0ZWRfYXQiOm51bGwsImlzX2RlbGV0ZWQiOnRydWUsImNyZWF0ZWRfYnkiOjIsInVwZGF0ZWRfYnkiOm51bGwsImlhdCI6MTY3MzUyNDcxOSwiZXhwIjoxNjczNjExMTE5fQ.n8D5nEppe3v49Btx4UZog6csO2gVeJpOKHVKJ5iZLws",
         .then(res => setData(res.data?.data))
         .catch(err => console.log(err))
       },[])

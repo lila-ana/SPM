@@ -12,7 +12,7 @@ export default function ProjectFill(props) {
   const [name, setName] = useState(null);
   const [description, setDescription] = useState(null);
   const [solution, setSolution] = useState(null);
-  const [vendor, setVendor] = useState(null);
+  const [client, setCient] = useState(null);
   const [representative_info, setRepresentative_info] = useState(null);
 
   function HandleClose() {
@@ -53,17 +53,17 @@ export default function ProjectFill(props) {
   });
   const form = new FormData();
   form.append("name", name);
-  form.append("decsirption", description);
-  form.append("solution", solution);
-  form.append("vendor", vendor);
+  form.append("description", description);
+  // form.append("solution", solution);
+  form.append("client", client);
   form.append("representative_info", representative_info);
 
   let project = {
     name,
     description,
-    solution,
-    vendor,
-    representative_info,
+    // solution,
+    // client,
+    // representative_info,
   };
 
   // console.log(project, "rerttr");
@@ -74,8 +74,10 @@ export default function ProjectFill(props) {
       .post(`${API_BASE_URL}project/create`, form, {
         headers: {
           // "Content-Type": "multipart/form-data",
-          accept: "multipart/",
-          authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZW1haWwiOiJUZXNmYUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiZGVwYXJ0bWVudCI6IlNvZnR3YXJlIGFzIGEgU2VydmljIiwiZmlyc3ROYW1lIjoidGVzZmFodW4iLCJnZW5kZXIiOiJtYWxlIiwiaXNfZGVsZXRlZCI6ZmFsc2UsImxhc3ROYW1lIjpudWxsLCJ0ZWwiOiIwOTI0MjMyNTIiLCJpYXQiOjE2NzU0MDMyMzIsImV4cCI6MTY3NTQ4OTYzMn0.8gaBOpbjq_wwav6ksURwSCz2byJYZRVVUDjEn8gls2s"
+          accept: "multipart/form-data",
+
+          // "application/json",
+          authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXNmdUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiZGVwYXJ0bWVudCI6IlNvZnR3YXJlIGFzIGEgc2VydmljIiwiZmlyc3ROYW1lIjoiVGVzZmFodW4iLCJnZW5kZXIiOiJNYWxlIiwiaXNfZGVsZXRlZCI6ZmFsc2UsImxhc3ROYW1lIjoiQmlyZWdhIiwidGVsIjoiMDkxMjM0MjM0NSIsImlhdCI6MTY3NTc2MDMxNiwiZXhwIjoxNjc1ODQ2NzE2fQ.j2xRpudhqfulXLl6OiesA5szRME9bVgUVKMytW5OODE"
         },
       })
       .then(function (response) {

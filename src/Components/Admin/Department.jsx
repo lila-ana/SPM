@@ -12,20 +12,23 @@ import { Tooltip } from "@mui/material";
 import { API_BASE_URL, IMG_API } from "../../api/endPoint";
 import NoRecord from "./noRecord";
 import EditClient from "../ModalEdit/editClient";
+import Department from "../Fill/departmentFill";
+import DepartmentPop from "../Modal/DepartmentPop";
+import DepartmentFill from "../Fill/departmentFill";
 
-export default function Client(props) {
+export default function Department(props) {
 
-  const [clientmodal, setClientModal] = useState(false);
-  const [data, setData] = useState(null);
+  const [departmentModal, setDepartmentModal] = useState(false);
+  const [department, setDepartment] = useState(false);
   const [detail, setDetail] = useState(null);
   const [addModal, setAddModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
-  const [datas, setDatas] = useState();
+  const [data, setData] = useState(null);
 
   const BearerToken = localStorage.getItem("accessToken");
 
   function HandleModal(e, items) {
-    setClientModal(true);
+    setDepartmentModal(true);
     setDetail(items);
   }
   function HandleAddModal() {
@@ -37,14 +40,14 @@ export default function Client(props) {
   }
   useEffect(() => {
   axios
-    .get(`${API_BASE_URL}client`)
-    .then((res) => setDatas(res.data?.data))
+    .get(`${API_BASE_URL}department`)
+    .then((res) => setDepartment(res.data?.data))
     .catch((err) => console.log(err));
   },[]);
   const HandleDelete = (e, id) => {
     e.preventDefault();
     axios
-      .delete(`${API_BASE_URL}client/${id}`, {
+      .delete(`${API_BASE_URL}department/${id}`, {
         headers: {
           "Content-Type": "application/json",
           //  accept:"application/json"
@@ -72,9 +75,9 @@ export default function Client(props) {
           action={HandleAddModal}
         />
       </div>
-      {datas?.length !== 0 ? (
+      {department?.length !== 0 ? (
         <div className="grid grid-cols-12 gap-4">
-          {datas?.map((items) => (
+          {department?.map((items) => (
           <div  class="col-span-4 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
           <img
                 src={`${IMG_API}/${items?.logo}`}
@@ -139,8 +142,8 @@ export default function Client(props) {
         <NoRecord />
       )}
 
-      {clientmodal ? <ClientPop modal={setClientModal} data={detail} /> : ""}
-      {addModal ? <ClientFill modal={setAddModal} /> : ""}
+      {departmentModal? <DepartmentPop modal={setDepartmentModal} data={detail} /> : ""}
+      {addModal ? <DepartmentFill modal={setAddModal} /> : ""}
       {editModal ? <EditClient modal={setEditModal} data={data} /> : ""}
     </div>
   );
