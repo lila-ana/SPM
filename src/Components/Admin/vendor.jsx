@@ -10,20 +10,32 @@ import { Tooltip } from '@mui/material'
 import axios from 'axios'
 import { API_BASE_URL, IMG_API } from '../../api/endPoint'
 import EditVendor from '../ModalEdit/editVendor'
+import VendorPop from '../Modal/vendorPop'
+import NoRecord from './noRecord'
 
-export default function Vendor(props) {
+
+export default function Vendor() {
     
    const BearerToken = localStorage.getItem("accessToken");
 
    const [addModal,setAddModal]=useState(false)
-    const [vendorModal,setVendorModal]=useState(false)
-    const [data, setData] = useState(null);
-    const [editModal, setEditModal] = useState(false);
-  
+   const [vendorModal,setVendorModal]=useState(false)
+   const [data, setData] = useState(null);
+   const [editModal, setEditModal] = useState(false);
+   const [datas, setDatas] = useState();
 
+  
+    function HandleModal () {
+      setVendorModal(true)
+    }
     function HandleAddModal () {
       setAddModal(true)
    }
+   function HandleEditModal(e, items) {
+      setEditModal(true);
+      setData(items);
+    } 
+
    const HandleDelete = (e, id) => {
       e.preventDefault();
       axios
@@ -31,8 +43,8 @@ export default function Vendor(props) {
           headers: {
             "Content-Type": "application/json",
             //  accept:"application/json"
-              authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJuZWJpeWF0QGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiMTIzNDU2NzgiLCJpc0FkbWluIjpudWxsLCJjcmVhdGVkX2F0IjpudWxsLCJ1cGRhdGVkX2F0IjpudWxsLCJjcmVhdGVkX2J5IjpudWxsLCJ1cGRhdGVkX2J5IjpudWxsLCJkZXBhcnRtZW50IjoiU29mdHdhcmUgYXMgYSBTZXJ2aWMiLCJmaXJzdE5hbWUiOiJuZWJpeWF0IiwiZ2VuZGVyIjoibWFsZSIsImlzX2RlbGV0ZWQiOmZhbHNlLCJsYXN0TmFtZSI6Im5lYml5YXQiLCJ0ZWwiOiIwOTc2NTM1MzQzIiwiaWF0IjoxNjc1MzE4MjgyLCJleHAiOjE2NzU0MDQ2ODJ9.iMmzbZySSqU2XYI-ZRCga6j-ChQe77YLVvCXd6Juav4"
-          },
+            authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImVtYWlsIjoiZGFuaWVsYUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRVWkRJSHQuVHIxQ0MvU1FwTW56VkFPd1JRNS5vSkdlcS5OcURRTnVYVzBvdE1PNzB5VUJGcSIsImlzQWRtaW4iOm51bGwsImNyZWF0ZWRfYXQiOiIyMDIzLTAyLTEzVDA3OjAwOjI0LiIsInVwZGF0ZWRfYXQiOm51bGwsImNyZWF0ZWRfYnkiOjEsInVwZGF0ZWRfYnkiOm51bGwsImRlcGFydG1lbnQiOiJTb2Z0d2FyZSBhcyBhIFNlcnZpYyIsImZpcnN0TmFtZSI6IkRhbmllbCIsImdlbmRlciI6Im1hbGUiLCJpc19kZWxldGVkIjpmYWxzZSwibGFzdE5hbWUiOiJBbGVtdSIsInRlbCI6IjA5NzY5OTY1MyIsImlhdCI6MTY3NjI3MTkxNCwiZXhwIjoxNjc2MzU4MzE0fQ.5aQPQIWWXFjTQqZTNBmSTcY1b6vlPboJe5o5O8FRLfU"
+         },
         })
         .then(function (response) {
           console.log(response);
@@ -41,21 +53,19 @@ export default function Vendor(props) {
           console.log(error, "errorrrrrrrrrrrrrrr");
         });
     };
-    function HandleEditModal(e, items) {
-    setEditModal(true);
-    setData(items);
-  }
     
-    const [datas, setDatas] = useState();
-    useEffect(() => {
+    const getUser = ()=> {
       axios
-        .get(`${API_BASE_URL}vendor`)
-        .then((res) => setDatas(res.data?.data))
-        .catch((err) => console.log(err));
-    },[]);
-   function HandleModal () {
-      setVendorModal(true)
-   }
+      .get(`${API_BASE_URL}vendor`)
+      .then((res) => setDatas(res.data?.data))
+      .catch((err) => console.log(err));
+    }
+    useEffect(() => {
+      getUser()
+    },[datas]);
+   
+   //  console.log(datas, "datas")
+
     return (
     <div className="grid gap-5">
     

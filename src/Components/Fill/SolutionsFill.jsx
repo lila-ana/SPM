@@ -1,10 +1,8 @@
-import React, { useState } from "react";
-import { useFormik } from "formik";
-import * as Yup from "yup";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import get from "../../features/get";
 import { GrClose } from "react-icons/gr";
 import { API_BASE_URL } from "../../api/endPoint";
+import { useParams } from "react-router-dom";
 
 export default function SolutionsFIll(props) {
   const BearerToken = localStorage.getItem("accessToken");
@@ -12,7 +10,10 @@ export default function SolutionsFIll(props) {
   const [name, setName] = useState(null);
   const [description, setDescription] = useState(null);
   const [logo, setLogo] = useState(null);
+  const [departments, setDepartments] = useState();  
+  const [data, setData] = useState();
 
+  const params = useParams();
 
   function HandleClose() {
     props.modal(false);
@@ -25,25 +26,6 @@ export default function SolutionsFIll(props) {
     setLogo(img);
   };
 
-  const formik = useFormik({
-    initialValues: {
-      solutionName: "",
-      email: "",
-      country: "",
-      state: "",
-      address: "",
-      contactNumber: "",
-      website: "",
-    },
-
-    validationSchema: Yup.object({
-      name: Yup.string().required("Required"),
-      logo: Yup.string()
-        .min(100, "Minimum 100 character")
-        .max(500, "Maximum 500 character")
-        .required("Required"),
-    }),
-  });
   const form = new FormData();
   form.append("name", name);
   form.append("description", description);
@@ -52,28 +34,36 @@ export default function SolutionsFIll(props) {
   let solution = {
     name,
     description,
-  };
+// logo:logo.data
+  }
   const HandleSubmit = (e) => {
     e.preventDefault();
     axios
       .post(`${API_BASE_URL}solution/create`, form, {
         headers: {
-         "Content-Type": "multipart/form-data",
-          //accept: "multipart/form-data",
-          authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZW1haWwiOiJUZXNmYUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiZGVwYXJ0bWVudCI6IlNvZnR3YXJlIGFzIGEgU2VydmljIiwiZmlyc3ROYW1lIjoidGVzZmFodW4iLCJnZW5kZXIiOiJtYWxlIiwiaXNfZGVsZXRlZCI6ZmFsc2UsImxhc3ROYW1lIjpudWxsLCJ0ZWwiOiIwOTI0MjMyNTIiLCJpYXQiOjE2NzU0MDMyMzIsImV4cCI6MTY3NTQ4OTYzMn0.8gaBOpbjq_wwav6ksURwSCz2byJYZRVVUDjEn8gls2s"
+        //  "Content-Type": "multipart/form-data",
+          accept: "multipart/form-data",
+          authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXNmdUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiZGVwYXJ0bWVudCI6IlNvZnR3YXJlIGFzIGEgc2VydmljIiwiZmlyc3ROYW1lIjoiVGVzZmFodW4iLCJnZW5kZXIiOiJNYWxlIiwiaXNfZGVsZXRlZCI6ZmFsc2UsImxhc3ROYW1lIjoiQmlyZWdhIiwidGVsIjoiMDkxMjM0MjM0NSIsImlhdCI6MTY3NTkyNzAwOCwiZXhwIjoxNjc2MDEzNDA4fQ.TCdj6-zbTjImPnhUrblMJ-xIjsbPrNsZjMaCyRyTIOo"
           // BearerToken
         },
       })
-      .then(function (response) {
+      .then(response => {
+        setDepartments(response.department?.id); 
         console.log(response);
-        HandleClose();
+        // HandleClose();
       })
       .catch(function (error) {
         console.log(error, "errorrrrrrrrrrrrrrr");
       });
   };
+  useEffect(() => {
+    axios
+      .get(`${API_BASE_URL}department`)
+      .then((res) => setDepartments(res.data?.data))
+      .catch((err) => console.log(err));
+  }, []);
   
-
+// console.log(solution,"solutions")
   return (
     <div
       onClick={(e) => props?.setmodal(false)}
@@ -94,6 +84,20 @@ export default function SolutionsFIll(props) {
             onSubmit={HandleSubmit}
             className="grid items-center justify-center rounded-[10px] border-solid border-[#1b9c85] border-[1px] w-[500px]  "
           >
+            <div className="grid items-center justify-center gap-3 mt-3">
+              <label className="block mb-[2px] text-sm font-nunito font-regular text-[#696969] w-[120px] dark:text-white">
+                Department
+              </label>
+              
+            <select className="border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]">
+                <option value="" disabled>
+                  Choose Department
+                </option>
+                {departments?.map((department) => (
+                  <option value={department?.id}>{department?.name}</option>
+                ))}
+              </select>
+              </div>
             <div className="m-[10px]">
               <div className="m-[10px]">
                 <input
@@ -103,8 +107,6 @@ export default function SolutionsFIll(props) {
                   type="text"
                   placeholder="Solution Name"
                   onChange={(e) => setName(e.target.value)}
-                  onBlur={formik.handleBlur}
-                  // value={formik.values.name}
                 />
               </div>
               <div className="m-[10px]">
@@ -115,8 +117,6 @@ export default function SolutionsFIll(props) {
                   type="text"
                   placeholder="Solution Description"
                   onChange={(e) => setDescription(e.target.value)}
-                  onBlur={formik.handleBlur}
-                  // value={formik.values.logo}
                 />
                
               </div>
@@ -130,7 +130,6 @@ export default function SolutionsFIll(props) {
             onChange={(e) => {
               handleChange(e);
             }}
-            // onBlur={formik.handleBlur}
           />
         </div>
 

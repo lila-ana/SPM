@@ -15,6 +15,7 @@ export default function index(props) {
         {props.children}
       </div>
       <Footer />
+      
     </div>
   );
 }

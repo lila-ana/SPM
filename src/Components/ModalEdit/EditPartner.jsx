@@ -3,13 +3,13 @@ import axios from "axios";
 import { API_BASE_URL } from "../../api/endPoint";
 import { GrClose } from "react-icons/gr";
 
-export default function DepartmentFill(props) {
+export default function EditPartner(props) {
   
   const BearerToken = localStorage.getItem("accessToken");
 
-  const [name, setName] = useState(null);
-  const [description, setDescription] =useState(null);
-  const [logo, setLogo] = useState(null);
+  const [certeficate, setCerteficate] = useState(props?.data?.certificate);
+  const [name, setName] = useState(props?.data?.name);
+
 
   function HandleClose() {
     props.modal(false);
@@ -19,23 +19,17 @@ export default function DepartmentFill(props) {
       name: e?.target?.files[0].name,
       data: e?.target?.files[0],
     };
-    setLogo(img?.data);
+    setCerteficate(img?.data);
   };
-  
+
   const form = new FormData();
+  form.append("partner", partner);
   form.append("name", name);
-  form.append("description", description);
-  form.append("logo", logo);
   
-  let department = {
-    name,
-    description,
-    logo,
-  };
   const HandleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post(`${API_BASE_URL}department/create`, form, {
+      .patch(`${API_BASE_URL}partner/${props?.data?.id}`, form, {
         headers: {
           "Content-Type": "multipart/form-data",
           accept: "multipart/form-data",
@@ -50,11 +44,10 @@ export default function DepartmentFill(props) {
         console.log(error, "errorrrrrrrrrrrrrrr");
       });
   };
-  
 
   return (
     <div
-      onClick={(e) => props?.setmodal(false)}
+      onClick={HandleClose}
       className="fixed left-0 right-0 top-0 bottom-0 bg-[#000000cc] flex items-center justify-center "
     >
       <div
@@ -62,7 +55,7 @@ export default function DepartmentFill(props) {
         className="w-[630px] h-[600px]  px-8 py-8 rounded-lg bg-white flex flex-col gap-4 overflow-x-hidden overflow-y-auto"
       >
         <div className="flex pb-4 justify-between">
-          <span className="text-[28px] font-semibold">Add Department</span>
+          <span className="text-[28px] font-semibold">Edit Partner</span>
           <div onClick={HandleClose} className="pt-2">
             <GrClose className="w-[40px] h-[25px]" />
           </div>
@@ -79,47 +72,34 @@ export default function DepartmentFill(props) {
                   id="name"
                   name="name"
                   type="text"
-                  placeholder="Department Name"
+                  placeholder="Partner Name"
                   onChange={(e) => setName(e.target.value)}
-                  required
+                  value={name}
                 />
               </div>
-              <div className="m-[10px]">
+              
+              <div className="m-[10px] flex gap-3 justify-center items-center">
                 <input
                   className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                  id="description"
-                  name="description"
-                  type="text"
-                  placeholder="Description"
-                  onChange={(e) => setDescription(e.target.value)}
-                  required
-                />
-              </div>
-             
-              <div className="mx-2 grid items-center">
-                <input
-                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                  id="logo"
-                  name="logo"
+                  id="certeficate"
+                  name="certeficate"
                   type="file"
                   placeholder="Add image"
                   onChange={(e) => {
                     handleChange(e);
                   }}
                 />
-                <label className="text-sm text-gray-900">Insert image</label>
               </div>
-
               <div className="flex items-center justify-center gap-[60px] my-[25px]">
                 <button
                   type="submit"
-                  className="text-[#fff] border-[#ffffff] border-[1px] bg-[#1b9c85] hover:bg-gray focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-1 text-center dark:bg-[#fcfcfc]  dark:hover:bg-[#fcfcfc]  dark:focus:ring-[#fcfcfc] "
+                  className="bg-[#1b9c85] font-nunito text-[15px] font-light text-white rounded-[12px] p-[10px] w-[120px] "
                 >
                   Submit
                 </button>
                 <button
                   type="reset"
-                  className="text-[#1b9c85] border-[#1b9c85] border-[1px] bg-[#ffffff] hover:bg-gray  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-1 text-center dark:bg-[#fcfcfc]  dark:hover:bg-[#fcfcfc]  dark:focus:ring-[#fcfcfc] "
+                  className="bg-[#1b9c85] font-nunito text-[15px] font-light text-white rounded-[12px] p-[10px] w-[120px] "
                 >
                   Cancel
                 </button>

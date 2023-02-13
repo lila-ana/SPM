@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-import get from "../../features/get";
 import { API_BASE_URL } from "../../api/endPoint";
 import { GrClose } from "react-icons/gr";
 

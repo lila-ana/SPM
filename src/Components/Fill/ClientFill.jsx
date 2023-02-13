@@ -13,7 +13,7 @@ export default function ClientFill(props) {
   const [name, setName] = useState(null);
   const [website, setWebSite] = useState(null);
   const [email, setEmail] = useState(null);
-  const [contact_no, setContact] = useState(null);
+  const [contact_phone, setContact_phone] = useState(null);
   const [address, setAddress] = useState(null);
   const [logo, setLogo] = useState(null);
 
@@ -28,44 +28,19 @@ export default function ClientFill(props) {
     setLogo(img?.data);
   };
   
-
-  const formik = useFormik({
-    initialValues: {
-      fullName: "",
-      email: "",
-      address: "",
-      contact_no: "",
-      website: "",
-      logo: "",
-    },
-
-    validationSchema: Yup.object({
-      name: Yup.string()
-        .max(15, "Must be 15 characters or less")
-        .required("Required"),
-      email: Yup.string().email("Invalid email").required("Required"),
-      address: Yup.string().required("Required"),
-      // country: Yup.string()
-      //   .required("Required"),
-      // state: Yup.string()
-      //   .required("Required"),
-      contact_no: Yup.string().required("Required"),
-      logo: Yup.string().required("Required"),
-      website: Yup.string(),
-    }),
-  });
   const form = new FormData();
   form.append("name", name);
   form.append("email", email);
   form.append("website", website);
   form.append("address", address);
-  form.append("contact_no", contact_no);
+  form.append("contact_phone", contact_phone);
   form.append("logo", logo);
+  
   let client = {
     name,
     website,
     email,
-    contact_no,
+    contact_phone,
     address,
     logo,
   };
@@ -75,7 +50,7 @@ export default function ClientFill(props) {
       .post(`${API_BASE_URL}client/create`, form, {
         headers: {
           accept: "multipart/form-data",
-          authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZW1haWwiOiJUZXNmYUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiZGVwYXJ0bWVudCI6IlNvZnR3YXJlIGFzIGEgU2VydmljIiwiZmlyc3ROYW1lIjoidGVzZmFodW4iLCJnZW5kZXIiOiJtYWxlIiwiaXNfZGVsZXRlZCI6ZmFsc2UsImxhc3ROYW1lIjpudWxsLCJ0ZWwiOiIwOTI0MjMyNTIiLCJpYXQiOjE2NzU0MDMyMzIsImV4cCI6MTY3NTQ4OTYzMn0.8gaBOpbjq_wwav6ksURwSCz2byJYZRVVUDjEn8gls2s"
+          authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImVtYWlsIjoiZGFuaWVsYUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRVWkRJSHQuVHIxQ0MvU1FwTW56VkFPd1JRNS5vSkdlcS5OcURRTnVYVzBvdE1PNzB5VUJGcSIsImlzQWRtaW4iOm51bGwsImNyZWF0ZWRfYXQiOiIyMDIzLTAyLTEzVDA3OjAwOjI0LiIsInVwZGF0ZWRfYXQiOm51bGwsImNyZWF0ZWRfYnkiOjEsInVwZGF0ZWRfYnkiOm51bGwsImRlcGFydG1lbnQiOiJTb2Z0d2FyZSBhcyBhIFNlcnZpYyIsImZpcnN0TmFtZSI6IkRhbmllbCIsImdlbmRlciI6Im1hbGUiLCJpc19kZWxldGVkIjpmYWxzZSwibGFzdE5hbWUiOiJBbGVtdSIsInRlbCI6IjA5NzY5OTY1MyIsImlhdCI6MTY3NjI3MTkxNCwiZXhwIjoxNjc2MzU4MzE0fQ.5aQPQIWWXFjTQqZTNBmSTcY1b6vlPboJe5o5O8FRLfU"
         },
       })
       .then(function (response) {
@@ -116,7 +91,6 @@ export default function ClientFill(props) {
                   type="text"
                   placeholder="Client Name"
                   onChange={(e) => setName(e.target.value)}
-                  onBlur={formik.handleBlur}
                   required
                 />
               </div>
@@ -128,7 +102,6 @@ export default function ClientFill(props) {
                   type="email"
                   placeholder="example@example.com"
                   onChange={(e) => setEmail(e.target.value)}
-                  onBlur={formik.handleBlur}
                   required
                 />
               </div>
@@ -138,9 +111,8 @@ export default function ClientFill(props) {
                   id="address"
                   name="address"
                   type="text"
-                  placeholder="Address"
+                  placeholder="City, Country "
                   onChange={(e) => setAddress(e.target.value)}
-                  onBlur={formik.handleBlur}
                 />
               </div>
               <div className="m-[10px]">
@@ -150,8 +122,7 @@ export default function ClientFill(props) {
                   name="contactNumber"
                   type="string"
                   placeholder="Contact Number"
-                  onChange={(e) => setContact(e.target.value)}
-                  onBlur={formik.handleBlur}
+                  onChange={(e) => setContact_phone(e.target.value)}
                 />
               </div>
               <div className="m-[10px]">
@@ -162,7 +133,6 @@ export default function ClientFill(props) {
                   type="text"
                   placeholder="Website"
                   onChange={(e) => setWebSite(e.target.value)}
-                  onBlur={formik.handleBlur}
                 />
               </div>
               <div className="mx-2 grid items-center">
@@ -175,14 +145,12 @@ export default function ClientFill(props) {
                   onChange={(e) => {
                     handleChange(e);
                   }}
-                  // onBlur={formik.handleBlur}
                 />
                 <label className="text-sm text-gray-900">Insert image</label>
               </div>
 
               <div className="flex items-center justify-center gap-[60px] my-[25px]">
                 <button
-                  // onClick={handleApi}
                   type="submit"
                   className="text-[#fff] border-[#ffffff] border-[1px] bg-[#1b9c85] hover:bg-gray focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-1 text-center dark:bg-[#fcfcfc]  dark:hover:bg-[#fcfcfc]  dark:focus:ring-[#fcfcfc] "
                 >

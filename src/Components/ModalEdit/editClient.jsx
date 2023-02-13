@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-import get from "../../features/get";
 import { API_BASE_URL } from "../../api/endPoint";
 import { GrClose } from "react-icons/gr";
 
@@ -14,7 +13,7 @@ export default function EditClient(props) {
   const [website, setWebSite] = useState(props?.data?.website);
   const [email, setEmail] = useState(props?.data?.email);
   const [contact_no, setContact] = useState(props?.data?.contact_no);
-  const [address, setAddress] = useState(props?.data?.address);
+  const [addresss, setAddresss] = useState(props?.data?.addresss);
   const [logo, setLogo] = useState(props?.data?.logo);
 
   function HandleClose() {
@@ -63,6 +62,7 @@ export default function EditClient(props) {
   const form = new FormData();
   form.append("name", name);
   form.append("email", email);
+  form.append("addresss", addresss);
   form.append("contact_no", contact_no);
   form.append("logo", logo);
   let client = {
@@ -70,7 +70,7 @@ export default function EditClient(props) {
     website,
     email,
     contact_no,
-    address,
+    addresss,
     logo,
   };
 
@@ -81,7 +81,7 @@ export default function EditClient(props) {
         headers: {
           // "Content-Type": "multipart/form-data",
           accept: "multipart/form-data",
-          authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJuZWJpeWF0QGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiMTIzNDU2NzgiLCJpc0FkbWluIjpudWxsLCJjcmVhdGVkX2F0IjpudWxsLCJ1cGRhdGVkX2F0IjpudWxsLCJjcmVhdGVkX2J5IjpudWxsLCJ1cGRhdGVkX2J5IjpudWxsLCJkZXBhcnRtZW50IjoiU29mdHdhcmUgYXMgYSBTZXJ2aWMiLCJmaXJzdE5hbWUiOiJuZWJpeWF0IiwiZ2VuZGVyIjoibWFsZSIsImlzX2RlbGV0ZWQiOmZhbHNlLCJsYXN0TmFtZSI6Im5lYml5YXQiLCJ0ZWwiOiIwOTc2NTM1MzQzIiwiaWF0IjoxNjc1MzE4MjgyLCJleHAiOjE2NzU0MDQ2ODJ9.iMmzbZySSqU2XYI-ZRCga6j-ChQe77YLVvCXd6Juav4"
+          authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJsaWxhQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiMTIzNDU2NzgiLCJpc0FkbWluIjpudWxsLCJjcmVhdGVkX2F0IjpudWxsLCJ1cGRhdGVkX2F0IjpudWxsLCJjcmVhdGVkX2J5IjpudWxsLCJ1cGRhdGVkX2J5IjpudWxsLCJkZXBhcnRtZW50IjpudWxsLCJmaXJzdE5hbWUiOm51bGwsImdlbmRlciI6bnVsbCwiaXNfZGVsZXRlZCI6ZmFsc2UsImxhc3ROYW1lIjpudWxsLCJ0ZWwiOm51bGwsImlhdCI6MTY3NjAzNjExNCwiZXhwIjoxNjc2MTIyNTE0fQ.Dz7bxQFkpvHDdmsvoyfkY4S0ZlYJMhMzdqqq-7XAEV8"
         },
       })
       .then(function (response) {
@@ -138,6 +138,19 @@ export default function EditClient(props) {
                   value={email}
                 />
               </div>
+              <div className="m-[10px]">
+                <input
+                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  id="address"
+                  name="address"
+                  type="address"
+                  placeholder="City, Ethiopia"
+                  onChange={(e) => setAddresss(e.target.value)}
+                  onBlur={formik.handleBlur}
+                  value={addresss}
+                />
+              </div>
+
 
               <div className="m-[10px]">
                 <input

@@ -3,32 +3,28 @@ import React, { useEffect, useState } from "react";
 import { MdDelete } from "react-icons/md";
 import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 import { AiFillEdit, AiOutlineCloseCircle } from "react-icons/ai";
-import ClientPop from "../Modal/clientPop";
-import get from "../../features/get";
 import AddButton from "../Common/Button/addButton";
-import ClientFill from "../Fill/ClientFill";
 import axios from "axios";
 import { Tooltip } from "@mui/material";
 import { API_BASE_URL, IMG_API } from "../../api/endPoint";
 import NoRecord from "./noRecord";
-import EditClient from "../ModalEdit/editClient";
-import Department from "../Fill/departmentFill";
+import DepartmentFill from "../Fill/DepartmentFill";
+import EditDepartment from "../ModalEdit/editDepartment";
 import DepartmentPop from "../Modal/DepartmentPop";
-import DepartmentFill from "../Fill/departmentFill";
 
-export default function Department(props) {
+export default function Department() {
 
-  const [departmentModal, setDepartmentModal] = useState(false);
-  const [department, setDepartment] = useState(false);
+  const [clientmodal, setClientModal] = useState(false);
+  const [data, setData] = useState(null);
   const [detail, setDetail] = useState(null);
   const [addModal, setAddModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
-  const [data, setData] = useState(null);
+  const [datas, setDatas] = useState();
 
   const BearerToken = localStorage.getItem("accessToken");
 
   function HandleModal(e, items) {
-    setDepartmentModal(true);
+    setClientModal(true);
     setDetail(items);
   }
   function HandleAddModal() {
@@ -38,53 +34,52 @@ export default function Department(props) {
     setEditModal(true);
     setData(items);
   }
-  useEffect(() => {
-  axios
-    .get(`${API_BASE_URL}department`)
-    .then((res) => setDepartment(res.data?.data))
-    .catch((err) => console.log(err));
-  },[]);
+  const getUser = ()=> {
+   axios
+   .get(`${API_BASE_URL}department`)
+   .then((res) => setDatas(res.data?.data))
+   .catch((err) => console.log(err));
+ }
+ useEffect(() => {
+   getUser()
+ },[]);
+
   const HandleDelete = (e, id) => {
     e.preventDefault();
     axios
       .delete(`${API_BASE_URL}department/${id}`, {
         headers: {
           "Content-Type": "application/json",
-          //  accept:"application/json"
-            authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXNmdUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiZGVwYXJ0bWVudCI6IlNvZnR3YXJlIGFzIGEgc2VydmljIiwiZmlyc3ROYW1lIjoiVGVzZmFodW4iLCJnZW5kZXIiOiJNYWxlIiwiaXNfZGVsZXRlZCI6ZmFsc2UsImxhc3ROYW1lIjoiQmlyZWdhIiwidGVsIjoiMDkxMjM0MjM0NSIsImlhdCI6MTY3NTc2MDMxNiwiZXhwIjoxNjc1ODQ2NzE2fQ.j2xRpudhqfulXLl6OiesA5szRME9bVgUVKMytW5OODE"
+            authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImVtYWlsIjoiZGFuaWVsYUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRVWkRJSHQuVHIxQ0MvU1FwTW56VkFPd1JRNS5vSkdlcS5OcURRTnVYVzBvdE1PNzB5VUJGcSIsImlzQWRtaW4iOm51bGwsImNyZWF0ZWRfYXQiOiIyMDIzLTAyLTEzVDA3OjAwOjI0LiIsInVwZGF0ZWRfYXQiOm51bGwsImNyZWF0ZWRfYnkiOjEsInVwZGF0ZWRfYnkiOm51bGwsImRlcGFydG1lbnQiOiJTb2Z0d2FyZSBhcyBhIFNlcnZpYyIsImZpcnN0TmFtZSI6IkRhbmllbCIsImdlbmRlciI6Im1hbGUiLCJpc19kZWxldGVkIjpmYWxzZSwibGFzdE5hbWUiOiJBbGVtdSIsInRlbCI6IjA5NzY5OTY1MyIsImlhdCI6MTY3NjI3MTkxNCwiZXhwIjoxNjc2MzU4MzE0fQ.5aQPQIWWXFjTQqZTNBmSTcY1b6vlPboJe5o5O8FRLfU"
             // BearerToken
         },
       })
       .then(function (response) {
         console.log(response);
-        
       })
       .catch(function (error) {
         console.log(error, "errorrrrrrrrrrrrrrr");
       });
   };
 
-  
   return (
     <div className="grid gap-5">
       <div className="flex justify-center">
-       
         <AddButton
           styles="bg-[#1b9c85] w-[150px] text-white font-light p-[10px] flex items-center justify-center rounded-[10px]"
-          name="Add Client"
+          name="Add Department"
           action={HandleAddModal}
         />
       </div>
-      {department?.length !== 0 ? (
+      {datas?.length !== 0 ? (
         <div className="grid grid-cols-12 gap-4">
-          {department?.map((items) => (
+          {datas?.map((items) => (
           <div  class="col-span-4 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
           <img
                 src={`${IMG_API}/${items?.logo}`}
                 className="w-[285px] h-[125px]"
                 onClick={(e) => HandleModal(e, items)}
               />
-
               <div className="flex justify-between items-center h-[80px] px-5">
                 <Tooltip title={items?.name}>
                   <div
@@ -142,9 +137,9 @@ export default function Department(props) {
         <NoRecord />
       )}
 
-      {departmentModal? <DepartmentPop modal={setDepartmentModal} data={detail} /> : ""}
+      {clientmodal ? <DepartmentPop modal={setClientModal} data={detail} /> : ""}
       {addModal ? <DepartmentFill modal={setAddModal} /> : ""}
-      {editModal ? <EditClient modal={setEditModal} data={data} /> : ""}
+      {editModal ? <EditDepartment modal={setEditModal} data={data} /> : ""}
     </div>
   );
 }
