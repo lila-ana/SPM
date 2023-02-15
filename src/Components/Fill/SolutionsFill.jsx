@@ -50,7 +50,7 @@ export default function SolutionsFIll(props) {
       .then(response => {
         setDepartments(response.department?.id); 
         console.log(response);
-        // HandleClose();
+        HandleClose();
       })
       .catch(function (error) {
         console.log(error, "errorrrrrrrrrrrrrrr");

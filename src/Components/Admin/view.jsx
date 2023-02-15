@@ -127,7 +127,9 @@ console.log(datas, "datas")
 
 				<div className="border-l-[2px] border-[#1b9c85] flex items-center justify-between w-[150px]">
 				<AiOutlineSetting className="m-[10px] fill-[#1b9c85] w-[25px] h-[25px]" />
-				<MdOutlineNotificationsNone className="m-[10px] fill-[#1b9c85] w-[25px] h-[25px]" />
+				<MdOutlineNotificationsNone 
+				
+				className="m-[10px] fill-[#1b9c85] w-[25px] h-[25px]" />
 				<Menu as="div" className="relative inline-block text-left">
 					<Menu.Button>
 						<FaUserCircle className="m-[10px] fill-[#1b9c85] w-[25px] h-[25px]" />

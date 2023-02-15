@@ -1,9 +1,17 @@
 import React, { useState } from 'react'
 import axios from 'axios';
 import { API_BASE_URL } from '../api/endPoint';
+import { useNavigate } from 'react-router-dom';
 
 export default function Registration(props) {
     // const BearerToken = localStorage.getItem("accessToken");
+    
+    const navigate = useNavigate ();
+    
+    function handleClick () {
+        navigate ("/login")
+    }
+
     const [firstName, setFirstName]=useState("")
     const [lastName, setLastName]=useState("")
     const [gender, setGender]=useState("")
@@ -41,7 +49,7 @@ export default function Registration(props) {
               headers: {
                 // "Content-Type": "application/json",
                 accept: "application/json",
-                authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXNmdUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiZGVwYXJ0bWVudCI6IlNvZnR3YXJlIGFzIGEgc2VydmljIiwiZmlyc3ROYW1lIjoiVGVzZmFodW4iLCJnZW5kZXIiOiJNYWxlIiwiaXNfZGVsZXRlZCI6ZmFsc2UsImxhc3ROYW1lIjoiQmlyZWdhIiwidGVsIjoiMDkxMjM0MjM0NSIsImlhdCI6MTY3NjI3MDMxMSwiZXhwIjoxNjc2MzU2NzExfQ.W2e-K2YZE2punCwD1n9zfBZmQahFJUz2T9iYRYUHl_Y",
+                authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXNmdUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiZGVwYXJ0bWVudCI6IlNvZnR3YXJlIGFzIGEgc2VydmljIiwiZmlyc3ROYW1lIjoiVGVzZmFodW4iLCJnZW5kZXIiOiJNYWxlIiwiaXNfZGVsZXRlZCI6ZmFsc2UsImxhc3ROYW1lIjoiQmlyZWdhIiwidGVsIjoiMDkxMjM0MjM0NSIsImlhdCI6MTY3NjQ1MTY5NSwiZXhwIjoxNjc2NTM4MDk1fQ.6XK0YUf4x7NnZu0cfIhhDQfxygN1KJgiQ3s0s7vvD1M"
             },
             })
             .then((response) => {
@@ -153,6 +161,7 @@ return (
   </div>
     <div className='flex items-center justify-center gap-[40px] mb-[20px]'>
         <button 
+            // onClick={handleClick}
             type="submit" 
             className="text-white bg-[#1b9c85] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             Submit

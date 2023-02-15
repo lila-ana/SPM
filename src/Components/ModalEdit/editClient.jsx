@@ -26,39 +26,8 @@ export default function EditClient(props) {
     };
     setLogo(img?.data);
   };
-  // const handleApi = () => {
-  //   const formData = new formData ()
-  //   formData.append ('image', image)
-  //   axios.post('url', formData).then((res) => {
-  //     console.log(res)
-  //   })
-  // }
-
-  const formik = useFormik({
-    initialValues: {
-      fullName: "",
-      email: "",
-      address: "",
-      contact_no: "",
-      website: "",
-      logo: "",
-    },
-
-    validationSchema: Yup.object({
-      name: Yup.string()
-        .max(15, "Must be 15 characters or less")
-        .required("Required"),
-      email: Yup.string().email("Invalid email").required("Required"),
-      address: Yup.string().required("Required"),
-      // country: Yup.string()
-      //   .required("Required"),
-      // state: Yup.string()
-      //   .required("Required"),
-      contact_no: Yup.string().required("Required"),
-      logo: Yup.string().required("Required"),
-      website: Yup.string(),
-    }),
-  });
+  
+;
   const form = new FormData();
   form.append("name", name);
   form.append("email", email);
@@ -81,7 +50,7 @@ export default function EditClient(props) {
         headers: {
           // "Content-Type": "multipart/form-data",
           accept: "multipart/form-data",
-          authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJsaWxhQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiMTIzNDU2NzgiLCJpc0FkbWluIjpudWxsLCJjcmVhdGVkX2F0IjpudWxsLCJ1cGRhdGVkX2F0IjpudWxsLCJjcmVhdGVkX2J5IjpudWxsLCJ1cGRhdGVkX2J5IjpudWxsLCJkZXBhcnRtZW50IjpudWxsLCJmaXJzdE5hbWUiOm51bGwsImdlbmRlciI6bnVsbCwiaXNfZGVsZXRlZCI6ZmFsc2UsImxhc3ROYW1lIjpudWxsLCJ0ZWwiOm51bGwsImlhdCI6MTY3NjAzNjExNCwiZXhwIjoxNjc2MTIyNTE0fQ.Dz7bxQFkpvHDdmsvoyfkY4S0ZlYJMhMzdqqq-7XAEV8"
+          authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImVtYWlsIjoiZGFuaWVsYUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRVWkRJSHQuVHIxQ0MvU1FwTW56VkFPd1JRNS5vSkdlcS5OcURRTnVYVzBvdE1PNzB5VUJGcSIsImlzQWRtaW4iOm51bGwsImNyZWF0ZWRfYXQiOiIyMDIzLTAyLTEzVDA3OjAwOjI0LiIsInVwZGF0ZWRfYXQiOm51bGwsImNyZWF0ZWRfYnkiOjEsInVwZGF0ZWRfYnkiOm51bGwsImRlcGFydG1lbnQiOiJTb2Z0d2FyZSBhcyBhIFNlcnZpYyIsImZpcnN0TmFtZSI6IkRhbmllbCIsImdlbmRlciI6Im1hbGUiLCJpc19kZWxldGVkIjpmYWxzZSwibGFzdE5hbWUiOiJBbGVtdSIsInRlbCI6IjA5NzY5OTY1MyIsImlhdCI6MTY3NjI3MTkxNCwiZXhwIjoxNjc2MzU4MzE0fQ.5aQPQIWWXFjTQqZTNBmSTcY1b6vlPboJe5o5O8FRLfU"
         },
       })
       .then(function (response) {
@@ -122,7 +91,6 @@ export default function EditClient(props) {
                   type="text"
                   placeholder="Full Name"
                   onChange={(e) => setName(e.target.value)}
-                  onBlur={formik.handleBlur}
                   value={name}
                 />
               </div>
@@ -134,7 +102,6 @@ export default function EditClient(props) {
                   type="email"
                   placeholder="example@example.com"
                   onChange={(e) => setEmail(e.target.value)}
-                  onBlur={formik.handleBlur}
                   value={email}
                 />
               </div>
@@ -146,7 +113,6 @@ export default function EditClient(props) {
                   type="address"
                   placeholder="City, Ethiopia"
                   onChange={(e) => setAddresss(e.target.value)}
-                  onBlur={formik.handleBlur}
                   value={addresss}
                 />
               </div>
@@ -160,7 +126,6 @@ export default function EditClient(props) {
                   type="string"
                   placeholder="Contact Number"
                   onChange={(e) => setContact(e.target.value)}
-                  onBlur={formik.handleBlur}
                   value={contact_no}
                 />
               </div>
@@ -172,7 +137,6 @@ export default function EditClient(props) {
                   type="text"
                   placeholder="Website"
                   onChange={(e) => setWebSite(e.target.value)}
-                  onBlur={formik.handleBlur}
                   value={website}
                 />
               </div>
@@ -186,7 +150,6 @@ export default function EditClient(props) {
                   onChange={(e) => {
                     handleChange(e);
                   }}
-                  onBlur={formik.handleBlur}
                 />
               </div>
               <div className="flex items-center justify-center gap-[60px] my-[25px]">

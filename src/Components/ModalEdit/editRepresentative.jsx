@@ -12,6 +12,7 @@ export default function EditRepresentative(props) {
   const [contact_1, setContact_1] = useState(props?.data?.contact_1);
   const [contact_2, setContact_2] = useState(props?.data?.contact_2);
   const [position, setPosition] = useState(props?.data?.position);
+  const [address, setAddress] = useState(props?.data?.address);
  
   function HandleClose() {
     props.modal(false);
@@ -23,6 +24,7 @@ export default function EditRepresentative(props) {
   form.append("contact_1", contact_1);
   form.append("contact_2", contact_2);
   form.append("position", position);
+  form.append("address", address);
   
   let representative = {
     name,
@@ -127,6 +129,17 @@ export default function EditRepresentative(props) {
             placeholder='Position'
             onChange={(e)=>setPosition(e.target.value)}
             value={position}
+          />
+        </div>
+        <div className='m-[10px]'>
+          <input
+            className='border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]'
+            id="address"
+            name="address"
+            type="text"
+            placeholder='Address'
+            onChange={(e)=>setAddress(e.target.value)}
+            value={address}
           />
         </div>
         

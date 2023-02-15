@@ -17,6 +17,7 @@ export default function Representative() {
     
     const [addModal,setAddModal]=useState(false)
     const [representativeModal,setRepresentativeModal]=useState(false)
+    const [detail,setDetail]=useState(false)
     const [data, setData] = useState(null);
     const [editModal, setEditModal] = useState(false);
     const [datas, setDatas] = useState();
@@ -58,7 +59,7 @@ export default function Representative() {
           headers: {
             "Content-Type": "application/json",
             //  accept:"application/json"
-            authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImVtYWlsIjoiZGFuaWVsYUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRVWkRJSHQuVHIxQ0MvU1FwTW56VkFPd1JRNS5vSkdlcS5OcURRTnVYVzBvdE1PNzB5VUJGcSIsImlzQWRtaW4iOm51bGwsImNyZWF0ZWRfYXQiOiIyMDIzLTAyLTEzVDA3OjAwOjI0LiIsInVwZGF0ZWRfYXQiOm51bGwsImNyZWF0ZWRfYnkiOjEsInVwZGF0ZWRfYnkiOm51bGwsImRlcGFydG1lbnQiOiJTb2Z0d2FyZSBhcyBhIFNlcnZpYyIsImZpcnN0TmFtZSI6IkRhbmllbCIsImdlbmRlciI6Im1hbGUiLCJpc19kZWxldGVkIjpmYWxzZSwibGFzdE5hbWUiOiJBbGVtdSIsInRlbCI6IjA5NzY5OTY1MyIsImlhdCI6MTY3NjI3MTkxNCwiZXhwIjoxNjc2MzU4MzE0fQ.5aQPQIWWXFjTQqZTNBmSTcY1b6vlPboJe5o5O8FRLfU"
+            authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXNmdUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiZGVwYXJ0bWVudCI6IlNvZnR3YXJlIGFzIGEgc2VydmljIiwiZmlyc3ROYW1lIjoiVGVzZmFodW4iLCJnZW5kZXIiOiJNYWxlIiwiaXNfZGVsZXRlZCI6ZmFsc2UsImxhc3ROYW1lIjoiQmlyZWdhIiwidGVsIjoiMDkxMjM0MjM0NSIsImlhdCI6MTY3NjM2MDA3MiwiZXhwIjoxNjc2NDQ2NDcyfQ.i3QtJ1cFdRoPCWcQhtR-OJPTyRiaDH8cYsCwxqo4wrQ"
           },
         })
         .then(function (response) {
@@ -69,6 +70,7 @@ export default function Representative() {
         });
     };
 
+    console.log(datas, "show me datas")
     return (
     <div className="grid gap-5">
       <div className='flex justify-center'>
@@ -137,7 +139,7 @@ export default function Representative() {
     
     </div>:<NoRecord/>}
    
-{representativeModal ? <RepresentativePop modal={setClientModal} data={detail} /> : ""}
+{representativeModal ? <RepresentativePop modal={setRepresentativeModal} data={detail} /> : ""}
 {addModal?<RepresentativeFill modal={setAddModal}/>:""}
 {editModal ? <EditRepresentative modal={setEditModal} data={data} /> : ""}
 

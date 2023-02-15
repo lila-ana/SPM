@@ -7,7 +7,7 @@ export default function SolutionsDashboard() {
   return (
     <div>
         <SolutionCard/>
-        <SectorsNavbar/>
+        {/* <SectorsNavbar/> */}
     </div>
   )
 }

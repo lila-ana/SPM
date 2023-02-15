@@ -14,6 +14,7 @@ import Card from "./Components/Common/card";
 import Registration from "./pages/registration";
 import SolutionsDashboard from "./pages/SolutionsDashboard";
 import Multiselect from "./pages/multiSelect";
+import MultiSelectDropdownWithAxios from "./pages/MultiSelectDropdownWithAxios";
 
 const App = () => {
   return (
@@ -39,7 +40,7 @@ const App = () => {
           element={<ProjectDescription />}
         />
         <Route path="/solutionsDashboard" element ={<SolutionsDashboard/>}/>
-        <Route path="/multiSelect" element ={<Multiselect/>}/>
+        <Route path="/MultiSelectDropdownWithAxios" element ={<MultiSelectDropdownWithAxios/>}/>
         
       </Routes>
     </BrowserRouter>

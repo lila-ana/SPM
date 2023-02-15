@@ -31,13 +31,7 @@ function HandleClose() {
                     <AiFillCloseCircle className="flex  fill-[#1b9c85] w-[25px] h-[25px] rounded-full" />
                   </h3>
                   <div className="mt-2">
-                    <div className="flex items-center justify-center">
-                      <img
-                        className="flex items-center justify-center w-[100px] h-[100px] p-[10px] m-[10px] "
-                        src="https://www.ethiopiatrustfund.org/wp-content/uploads/2018/09/cbe-logo.png"
-                        alt="Company Logo"
-                      />
-                    </div>
+                    
                     <div className="text-[15px] m-[13px] text-gray-500 border-[#1b9c85] border-[1px] font-light flex items-center justify-center w-[250px] rounded-[5px] h-[30px]">
                       {props?.data?.name}
                     </div>
@@ -52,6 +46,9 @@ function HandleClose() {
                     </div>
                     <div className="text-[15px] m-[13px] text-gray-500 border-[#1b9c85] border-[1px] font-light flex items-center justify-center w-[250px] rounded-[5px] h-[30px]">
                       {props?.data?.contact_2}
+                    </div>
+                    <div className="text-[15px] m-[13px] text-gray-500 border-[#1b9c85] border-[1px] font-light flex items-center justify-center w-[250px] rounded-[5px] h-[30px]">
+                      {props?.data?.position}
                     </div>
                     
                   </div>

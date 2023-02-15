@@ -13,9 +13,12 @@ export default function RepresentativeFill(props) {
   const [address, setAddress]= useState(null);
   const [contact_1, setContact_1]= useState(null);
   const [contact_2, setContact_2]= useState(null);
-  const [position, setPosition]=useState(false)
+  const [position, setPosition]=useState(null)
   const [fragment, setFragment]=useState(false)
-  const [datas, setDatas]=useState(false)
+  const [vendors, setVendors]=useState()
+  const [clients, setClients]=useState()
+  const [vendorId, setVendorId]=useState(null)
+  const [clientId, setClientId]=useState(null)
 
   
   
@@ -23,21 +26,27 @@ export default function RepresentativeFill(props) {
     setFragment (!fragment)
   }
   
-  function HandleVendor() {
-    setClient(true);
-  }
+  // function HandleVendor() {
+  //   setClient(true);
+  // }
   function HandleClose() {
     props.modal(false);
   }
 
-     
   let representative = {
     name: name,
     email: email,
     contact_1: contact_1,
     contact_2: contact_2,
     position: position,
+    address:address,
+    client_id:clientId ?Number(clientId) : "",
+    vendor_id:vendorId ?Number(vendorId) : ""
+
+
   };
+
+  console.log(representative, "this is data to be sent to database")
  
     const form = new FormData();
     form.append("name", name);
@@ -47,7 +56,26 @@ export default function RepresentativeFill(props) {
     form.append("address", address);
     form.append("position", position);
 
+    const getUser = ()=> {
+      axios
+      .get(`${API_BASE_URL}client`)
+      .then((res) => setClients(res.data?.data))
+      .catch((err) => console.log(err));
+    }
+    useEffect(() => {
+      getUser()
+    },[]);
     
+    const getVendor = ()=> {
+      axios
+      .get(`${API_BASE_URL}vendor`)
+      .then((res) => setVendors(res.data?.data))
+      .catch((err) => console.log(err));
+    }
+    useEffect(() => {
+      getVendor()
+    },[]);
+
     const HandleSubmit = (e) => {
     e.preventDefault(); 
     axios
@@ -55,10 +83,10 @@ export default function RepresentativeFill(props) {
         headers: {
           // "content-type": "application/json",
            accept: "application/json",
-           authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImVtYWlsIjoiZGFuaWVsYUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRVWkRJSHQuVHIxQ0MvU1FwTW56VkFPd1JRNS5vSkdlcS5OcURRTnVYVzBvdE1PNzB5VUJGcSIsImlzQWRtaW4iOm51bGwsImNyZWF0ZWRfYXQiOiIyMDIzLTAyLTEzVDA3OjAwOjI0LiIsInVwZGF0ZWRfYXQiOm51bGwsImNyZWF0ZWRfYnkiOjEsInVwZGF0ZWRfYnkiOm51bGwsImRlcGFydG1lbnQiOiJTb2Z0d2FyZSBhcyBhIFNlcnZpYyIsImZpcnN0TmFtZSI6IkRhbmllbCIsImdlbmRlciI6Im1hbGUiLCJpc19kZWxldGVkIjpmYWxzZSwibGFzdE5hbWUiOiJBbGVtdSIsInRlbCI6IjA5NzY5OTY1MyIsImlhdCI6MTY3NjI3MTkxNCwiZXhwIjoxNjc2MzU4MzE0fQ.5aQPQIWWXFjTQqZTNBmSTcY1b6vlPboJe5o5O8FRLfU"
+           authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXNmdUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiZGVwYXJ0bWVudCI6IlNvZnR3YXJlIGFzIGEgc2VydmljIiwiZmlyc3ROYW1lIjoiVGVzZmFodW4iLCJnZW5kZXIiOiJNYWxlIiwiaXNfZGVsZXRlZCI6ZmFsc2UsImxhc3ROYW1lIjoiQmlyZWdhIiwidGVsIjoiMDkxMjM0MjM0NSIsImlhdCI6MTY3NjQ1MTY5NSwiZXhwIjoxNjc2NTM4MDk1fQ.6XK0YUf4x7NnZu0cfIhhDQfxygN1KJgiQ3s0s7vvD1M"
           },
       })
-      .then(function (response) {
+      .then(response => {
         console.log(response);
         HandleClose();
       })
@@ -67,18 +95,7 @@ export default function RepresentativeFill(props) {
       });
   };
 
-  const getUser = ()=> {
-    axios
-    .get(`${API_BASE_URL}project`)
-    .then((res) => setDatas(res.data?.data))
-    .catch((err) => console.log(err));
-  }
-  useEffect(() => {
-    getUser()
-  },[datas]);
-
-
-
+  
 return (
   <div
   onClick={(e) => props?.setmodal(false)}
@@ -118,19 +135,18 @@ return (
               <>
                 <label className="block mb-[2px] text-sm font-nunito font-normal text-[#696969] w-[80px] dark:text-white">Vendor</label>
               
-                <select className="block w-full p-2 text-sm font-nunito text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <select onChange={(event)=>setVendorId(event.target.value)} className="block w-full p-2 text-sm font-nunito text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                   <option value="" disabled>Choose Vendor</option>
-                    {get?.getvendor()?.map((items)=>(
+                    {vendors?.map((items)=>(
                       <option 
                       value={items?.id}>{items?.name}</option>           
                     ))}
                 </select>
                 </>:              <>
                 <label className="block mb-[2px] text-sm font-nunito font-normal text-[#696969] w-[80px] dark:text-white">Client</label>
-              
-                <select className="block w-full p-2 text-sm font-nunito text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <select onChange={(event)=>setClientId(event.target.value)} className="block w-full p-2 text-sm font-nunito text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                   <option value="" disabled>Choose Client</option>
-                    {get?.getclient()?.map((items)=>(
+                    {clients?.map((items)=>(
                       <option 
                       value={items?.id}>{items?.name}</option>           
                     ))}

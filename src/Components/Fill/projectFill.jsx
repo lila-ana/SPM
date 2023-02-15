@@ -3,6 +3,8 @@ import axios from "axios";
 import get from "../../features/get";
 import { API_BASE_URL } from "../../api/endPoint";
 import { GrClose } from "react-icons/gr";
+import Select from 'react-select';
+
 
 export default function ProjectFill(props) {
   const BearerToken = localStorage.getItem("accessToken");
@@ -10,29 +12,61 @@ export default function ProjectFill(props) {
   const [name, setName] = useState(null);
   const [description, setDescription] = useState(null);
   const [clients, setClients] = useState(null);
-  const [vendor, setVendor] = useState(null);
-  const [representative_info, setRepresentative_info] = useState(null);
+  const [vendors, setVendors] = useState(null);
+  const [solutions, setSolutions] = useState(null);
+  const [sectors, setSectors] = useState(null);
+  const [clientId, setClientId] = useState(null);
+  const [vendorId, setVendorId] = useState(null);
+  const [solutionId, setSolutionId] = useState(null);
+  const [representativeId, setRepresentativeId] = useState(null);
+  const [sectorId, setSectorId] = useState(null);
+  const [options, setOptions] = useState([])
+  const [selectedOptions, setSelectedOptions] = useState([])
+
+  const loadOptions = async (inputValue, callback) => {
+    try {
+      const response = await 
+      axios.get(`${API_BASE_URL}client?query=${inputValue}`);
+      const data = response.data.map((item) => ({
+        value: item.value,
+        label: item.label,
+      }));
+      setOptions(data);
+      callback(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleSelectChange = (selectedOptions) => {
+    setSelectedOptions(selectedOptions);
+  };
 
   function HandleClose() {
     props.modal(false);
   }
-  const handleChange = (e) => {
-    const img = {
-      name: e?.target?.files[0].name,
-      data: e?.target?.files[0],
-    };
-    setLogo(img?.data);
+ 
+  let project = {
+    name: name,
+    description: description,
+    client_id: clientId ,
+    // vendor_id: vendorId,
+    // solution_id: solutionId,
+    // representative_id: representativeId,
+    // sector_id: sectorId,
+
   };
 
   const form = new FormData();
   form.append("name", name);
   form.append("description", description);
+  form.append("client_id", clientId);
+  form.append("vendor_id", vendorId);
+  form.append("solution_id", solutionId);
+  form.append("representative_id", representativeId);
+  form.append("sector_id", sectorId);
 
-  let project = {
-    name,
-    description,
-  };
-
+ 
   const getUser = ()=> {
     axios
     .get(`${API_BASE_URL}client`)
@@ -43,18 +77,49 @@ export default function ProjectFill(props) {
     getUser()
   },[]);
 
+  const getVendor = ()=> {
+    axios
+    .get(`${API_BASE_URL}vendor`)
+    .then((res) => setVendors(res.data?.data))
+    .catch((err) => console.log(err));
+  }
+  useEffect(() => {
+    getVendor()
+  },[]);
+
+  const getSolution = ()=> {
+    axios
+    .get(`${API_BASE_URL}solution`)
+    .then((res) => setSolutions(res.data?.data))
+    .catch((err) => console.log(err));
+  }
+  useEffect(() => {
+    getSolution()
+  },[]);
+
+  const getSector = ()=> {
+    axios
+    .get(`${API_BASE_URL}sector`)
+    .then((res) => setSectors(res.data?.data))
+    .catch((err) => console.log(err));
+  }
+  useEffect(() => {
+    getSector()
+  },[]);
+
   const HandleSubmit = (e) => {
     e.preventDefault();
     axios
       .post(`${API_BASE_URL}project/create`, project, {
         headers: {
-          // "Content-Type": "multipart/form-data",
-          accept: "application/json",
-          authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImVtYWlsIjoiZGFuaWVsYUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRVWkRJSHQuVHIxQ0MvU1FwTW56VkFPd1JRNS5vSkdlcS5OcURRTnVYVzBvdE1PNzB5VUJGcSIsImlzQWRtaW4iOm51bGwsImNyZWF0ZWRfYXQiOiIyMDIzLTAyLTEzVDA3OjAwOjI0LiIsInVwZGF0ZWRfYXQiOm51bGwsImNyZWF0ZWRfYnkiOjEsInVwZGF0ZWRfYnkiOm51bGwsImRlcGFydG1lbnQiOiJTb2Z0d2FyZSBhcyBhIFNlcnZpYyIsImZpcnN0TmFtZSI6IkRhbmllbCIsImdlbmRlciI6Im1hbGUiLCJpc19kZWxldGVkIjpmYWxzZSwibGFzdE5hbWUiOiJBbGVtdSIsInRlbCI6IjA5NzY5OTY1MyIsImlhdCI6MTY3NjI3MTkxNCwiZXhwIjoxNjc2MzU4MzE0fQ.5aQPQIWWXFjTQqZTNBmSTcY1b6vlPboJe5o5O8FRLfU"
+          // "Content-Type": "application/json",
+           accept: "application/json",
+          authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXNmdUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiZGVwYXJ0bWVudCI6IlNvZnR3YXJlIGFzIGEgc2VydmljIiwiZmlyc3ROYW1lIjoiVGVzZmFodW4iLCJnZW5kZXIiOiJNYWxlIiwiaXNfZGVsZXRlZCI6ZmFsc2UsImxhc3ROYW1lIjoiQmlyZWdhIiwidGVsIjoiMDkxMjM0MjM0NSIsImlhdCI6MTY3NjQ1MTY5NSwiZXhwIjoxNjc2NTM4MDk1fQ.6XK0YUf4x7NnZu0cfIhhDQfxygN1KJgiQ3s0s7vvD1M"
         },
       })
-      .then(function (response) {
+      .then((response) => {
         console.log(response);
+        HandleClose();
       })
       .catch(function (error) {
         console.log(error, "errorrrrrrrrrrrrrrr");
@@ -87,32 +152,76 @@ console.log(clients, "Show me clients")
               <label className="block mb-[2px] text-sm font-nunito font-regular text-[#696969] w-[120px] dark:text-white">
                 Client
               </label>
-              <select className="border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]">
+              <Select 
+              
+              isMulti
+      cacheOptions
+      defaultOptions
+      loadOptions={loadOptions}
+      onChange={(event) => handleSelectChange(event.target.value)}
+              className="border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]">
                 <option value="" disabled>
                   Choose client
                 </option>
                 {clients?.map((client) => (
                   <option value={client?.id}>{client?.name}</option>
                 ))}
-              </select>
+              </Select>
 
-              <div className=" gird justify-center items-center gap-[5px]">
+              {/* <div className=" gird justify-center items-center gap-[5px]">
               <label className="block mb-[2px] text-sm font-nunito font-normal text-[#696969] w-[120px] dark:text-white">
                 Representative
               </label>
-                <select className="border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]">
+                <select onChange={(event)=>setRepresentativeId(event.target.value)} className="border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]">
                   <option value="" disabled>
                     Choose representative
                   </option>
                   {clients?.map((rep) => (
-                                      rep?.representative_info?.map((items) => (
-                                        <option value={items?.id}>{items?.name}</option>
-
-                                      ))
-
+                      rep?.representative_info?.map((items) => (
+                        <option value={items?.id}>{items?.name}</option>
+                      ))
                   ))}
                 </select>
+                </div>
+                <div>
+                <label className="block mb-[2px] text-sm font-nunito font-regular text-[#696969] w-[120px] dark:text-white">
+                Vendor
+              </label>
+              <select onChange={(event)=>setVendorId(event.target.value)} className="border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]">
+                <option value="" disabled>
+                  Choose vendor
+                </option>
+                {vendors?.map((vendor) => (
+                  <option value={vendor?.id}>{vendor?.name}</option>
+                ))}
+              </select>
               </div>
+                <div>
+                <label className="block mb-[2px] text-sm font-nunito font-regular text-[#696969] w-[120px] dark:text-white">
+                Sector
+              </label>
+              <select onChange={(event)=>setSectorId(event.target.value)} className="border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]">
+                <option value="" disabled>
+                  Choose Sector
+                </option>
+                {sectors?.map((sector) => (
+                  <option value={sector?.id}>{sector?.name}</option>
+                ))}
+              </select>
+              </div>
+              <div>
+              <label className="block mb-[2px] text-sm font-nunito font-regular text-[#696969] w-[120px] dark:text-white">
+                Solution 
+              </label>
+              <select onChange={(event)=>setSolutionId(event.target.value)} className="border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]">
+                <option value="" disabled>
+                  Choose solution
+                </option>
+                {solutions?.map((solution) => (
+                  <option value={solution?.id}>{solution?.name}</option>
+                ))}
+              </select>
+              </div> */}
 
               <input
                 className="border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]"

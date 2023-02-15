@@ -1,11 +1,14 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import clients from '../../utils/Clients.json'
 import certificate1 from '../../Image/Certificate.jpg'
 import certificate2 from '../../Image/Certificate2.webp'
 import {AiOutlineLeft, AiOutlineRight} from "react-icons/ai"
 import axios from 'axios';
+import { API_BASE_URL, IMG_API } from '../../api/endPoint'
 
 export default function Certifications() {
+
+    const [datas, setDatas] = useState();
 
     const slideLeft = () => {
         let slider = document.getElementById('slidercertificate');
@@ -27,6 +30,16 @@ export default function Certifications() {
         console.log(error.response);
     });
 
+    const getUser = ()=> {
+        axios
+        .get(`${API_BASE_URL}certeficate`)
+        .then((res) => setDatas(res.data?.data))
+        .catch((err) => console.log(err));
+      }
+      useEffect(() => {
+        getUser()
+      },[]);
+
 
 return (
     <div className='px-[100px]'>
@@ -39,12 +52,14 @@ return (
     </div>   
     <div id="slidercertificate" className='w-full h-full overflow-x-scroll scroll scrollbar-hide  scroll-smooth'>
     <div className='grid grid-flow-col gap-[20px] items-center'>    
-        {clients?.map((items)=> ( 
+        {datas?.map((items)=> ( 
             <div key = {items.id} className='stroke-[#1b9c85] w-[300px] rounded-sm hover:shadow-[#1b9c8585] inline-block ease-in-out duration-300 shadow-xl  p-[15px] text-[#4E4E4F] font-semibold font-nunito text-[20px] border-[#1b9c85] border-[1px]  '>
                 <p className='pb-[10px]'>
                     <img
-                     src={items.id < 2 ?certificate1: certificate2}
-                    // src={require()}
+                        alt={items.name}
+                        className="pb-[10px]"
+                        src={`${IMG_API}/${items?.logo}`}
+                        //  src={items.id < 2 ?certificate1: certificate2}
                      />
                 </p>
             </div>
