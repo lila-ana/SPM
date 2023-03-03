@@ -1,7 +1,11 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 
 export default function Navbar(props) {
   const [show, setShow] = useState(false);
+  const params = useParams();
+
+
   function handleShow() {
     setShow(true);
   }
@@ -26,7 +30,9 @@ export default function Navbar(props) {
                 <a href="/aboutus">About </a>
               </li>
               <li className=" hover:text-[#1b9c85] hover:font-semibold">
-                <a href="/solutionsDashboard">Solutions </a>
+                <a href="solutionsDashboard">
+                  Solutions 
+                  </a>
               </li>
             </ul>
           </div>

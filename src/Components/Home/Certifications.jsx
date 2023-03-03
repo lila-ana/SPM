@@ -58,7 +58,7 @@ return (
                     <img
                         alt={items.name}
                         className="pb-[10px]"
-                        src={`${IMG_API}/${items?.logo}`}
+                        src={`${IMG_API}/${items?.certeficate}`}
                         //  src={items.id < 2 ?certificate1: certificate2}
                      />
                 </p>

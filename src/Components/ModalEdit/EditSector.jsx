@@ -27,7 +27,7 @@ export default function EditSector (props) {
         headers: {
           // "Content-Type": "multipart/form-data",
           accept: "application/json",
-          authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjAsImVtYWlsIjoibGlsYUBpZW5ldHdvcmtzLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHd5a1BSVHhhSy53MGg4WGdRSTlNUmVjOHEwNVNLSHUwVm1CMWFPamV2Mm5rWUtvQU1PR0dLIiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6IjIwMjMtMDItMTdUMDc6NDI6MjYuIiwidXBkYXRlZF9hdCI6bnVsbCwiY3JlYXRlZF9ieSI6MSwidXBkYXRlZF9ieSI6bnVsbCwiZGVwYXJ0bWVudCI6IlNvZnR3YXJlIGFzIGEgU2VydmljIiwiZmlyc3ROYW1lIjoiR2VsaWxhIiwiZ2VuZGVyIjoiIiwiaXNfZGVsZXRlZCI6ZmFsc2UsImxhc3ROYW1lIjoiVGVnZWduZSAiLCJ0ZWwiOiIrMjUxLTk1MzQyMjYxOTAiLCJpYXQiOjE2NzY2MTk5NTgsImV4cCI6MTY3NjcwNjM1OH0.rQlUdbn3z_PAV0CoVG0bITFgqVFRJGxYnbuGaEo7ULA"
+          authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjYsImVtYWlsIjoibmFyZG9zQGllbmV0d29ya3MuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkRXdSVjZZWFhsQU5NZ2d4VUZmYmdHT1ZmZHlINDRSd3l6VlpTS211ay5zSnl2N3plRmFIYVMiLCJpc0FkbWluIjpudWxsLCJjcmVhdGVkX2F0IjoiMjAyMy0wMi0xN1QxNDoyNzoyMC4iLCJ1cGRhdGVkX2F0IjpudWxsLCJjcmVhdGVkX2J5IjpudWxsLCJ1cGRhdGVkX2J5IjpudWxsLCJkZXBhcnRtZW50IjoiU29mdHdhcmUgYXMgYSBTZXJ2aWMiLCJmaXJzdE5hbWUiOiJOYXJkb3MiLCJnZW5kZXIiOiIiLCJpc19kZWxldGVkIjpmYWxzZSwibGFzdE5hbWUiOiJUZXNnYXllIiwidGVsIjoiMDk4NzY1NDMyMSIsImlhdCI6MTY3NzgyMzY5NiwiZXhwIjoxNjc3OTEwMDk2fQ.MUJmV3h4cJv41WKbjptV6WHBweATrrxM3XQ-M48eEXY"
           // BearerToken
         },
       })

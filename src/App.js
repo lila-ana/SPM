@@ -24,7 +24,7 @@ const App = () => {
           <Route element={<RequireAuth />}>
             <Route path="/fill" element={<Fill />} />
             <Route path="/admin" element={<Admin />} />
-
+            <Route path="/registration" element={<Registration/>} />
             <Route path="/modal" element={<Modal />} />
           </Route>
           <Route element={<RequireGuest />}>
@@ -38,7 +38,6 @@ const App = () => {
           path="/projectDescription/:id"
           element={<ProjectDescription />}
         />
-        <Route path="/registration" element={<Registration/>} />
         <Route path="/solutionsDashboard" element ={<SolutionsDashboard/>}/>
         <Route path="/MultiSelectDropdownWithAxios" element ={<MultiSelectDropdownWithAxios/>}/>
         <Route path="/Multiselect" element ={<Multiselect/>}/>

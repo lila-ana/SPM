@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom';
 import { API_BASE_URL } from '../../api/endPoint';
-import sector from "../../utils/Sectors.json"
 import NoRecord from '../Admin/noRecord';
 
 export default function SectorsNavbar() {
@@ -9,9 +9,12 @@ export default function SectorsNavbar() {
     const [sectors, setSectors] = useState ();
     const [projects, setProjects] = useState ();
     
+    const params = useParams();
+
     const getProject = ()=> {
         axios
         .get(`${API_BASE_URL}project`)
+        // .get(`${API_BASE_URL}project/${params?.id}`)
         .then((res) => setProjects(res.data?.data))
         .catch((err) => console.log(err));
         }
@@ -29,7 +32,7 @@ export default function SectorsNavbar() {
         getUser()
       },[]);
 
-    console.log(projects, "Give me projects")
+    // console.log(projects, "Give me projects")
     
     return (
         <div>            
@@ -53,7 +56,10 @@ export default function SectorsNavbar() {
       <div className="container mx-auto mt-12">
                 <div className="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-3">
                     <a
-                      href={`/projectDescription/${1}`}
+                      href= {`/projectDescription/${projects?.id}`}
+
+                    //   "projectDescription"
+                    //   {`/projectDescription/${params?.id}`}
                     >
                     {projects?.map((project)=> (
                     <div className="w-full px-4 py-5 bg-white rounded-lg shadow shadow-gray-300 ">

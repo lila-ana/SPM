@@ -124,11 +124,24 @@ console.log(user, "Display users")
 				/>
 
 				<div className="border-l-[2px] border-[#1b9c85] flex items-center justify-between w-[150px]">
-				<AiOutlineSetting className="m-[10px] fill-[#1b9c85] w-[25px] h-[25px]" />
+				<Menu as="div" className="relative inline-block text-left">
+					{/* <AiOutlineSetting className="m-[10px] fill-[#1b9c85] w-[25px] h-[25px]" 
+						<Menu.Button>
+							<FaUserCircle className="m-[10px] fill-[#1b9c85] w-[25px] h-[25px]" />
+						</Menu.Button>
+						<a
+                        href="/registration"
+                        className="font-medium text-[#10a37f] hover:underline"
+                    >
+                        Sign up
+                    </a>
+
+					/> */}
+				
 				<MdOutlineNotificationsNone 
 				
 				className="m-[10px] fill-[#1b9c85] w-[25px] h-[25px]" />
-				<Menu as="div" className="relative inline-block text-left">
+				{/* <Menu as="div" className="relative inline-block text-left"> */}
 					<Menu.Button>
 						<FaUserCircle className="m-[10px] fill-[#1b9c85] w-[25px] h-[25px]" />
 					</Menu.Button>

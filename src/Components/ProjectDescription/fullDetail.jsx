@@ -16,7 +16,8 @@ export default function FullDetail(props) {
   
   const getUser = ()=> {
     axios
-    .get(`${API_BASE_URL}project/${params.id}`)
+    .get(`${API_BASE_URL}project`)
+    // .get(`${API_BASE_URL}project/${params.id}`)
     .then((res) => setDatas(res.data?.data))
     .catch((err) => console.log(err));
   }
@@ -69,10 +70,13 @@ console.log(datas,"datatta")
       <div className="flex items-center gap-[40px]">
       <div className="grid grid-cols-12 gap-[30px] mx-[0px] my-[50px] justify-center items-center">
           <div  class="col-span-6 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-              {datas?.client?.map((items) => (
+              {datas?.map((items) => (
+                items?.clients?.map((item) => (
                 <>
-                <div class="gird items-center justify-center mb-2 text-2xl font-bold tracking-tight text-[#1b9c85] dark:text-white">{items?.name}</div>
+                <div class="gird items-center justify-center mb-2 text-2xl font-bold tracking-tight text-[#1b9c85] dark:text-white">{item?.name}</div>
                 </>
+                ))
+                
                 ))}
               <div class="grid items-center justify-center font-normal text-[18px] text-gray-700 dark:text-gray-400">Client{" "}</div>
 
@@ -107,12 +111,12 @@ console.log(datas,"datatta")
             <div className="flex items-center gap-[10px] m-[10px]">
               <FaUserCircle className="fill-[#1b9c85] w-[25px] h-[25px]" />
               <div className="text-[20px] font-normal font-nunito text-gray-700">
-                {get.getrepresentative()?.map((items) => (
+                {data?.projects?.map((items) => (
                   <div value={items?.id}>
                     {items.name}
                   </div>
                 ))}
-                Mr. Daniel Gardew
+                {/* Mr. Daniel Gardew */}
                 {/* {get?.getproject()?.map((items)=>(
                                 <div 
                                     value={items?.id}>{items?.name}</div>           
