@@ -17,7 +17,7 @@ export default function VendorFill(props) {
   const [email, setEmail] = useState(null);
   const [contact_phone, setContact_phone] = useState(null);
   const [address, setAddress] = useState(null);
-  const [clients, setClients] = useState(null);
+  const [client, setClients] = useState(null);
 
   function HandleClose() {
     props.modal(false);
@@ -46,19 +46,6 @@ export default function VendorFill(props) {
     contact_phone,
     address,
   };
-  // for (let pair of form.entries()) {
-  //   console.log(pair[0] + ", " + pair[1], "hahahaha");
-  // }
-  
-  const getUser = ()=> {
-    axios
-    .get(`${API_BASE_URL}client`)
-    .then((res) => setClients(res.data?.data))
-    .catch((err) => console.log(err));
-  }
-  useEffect(() => {
-    getUser()
-  },[]);
 
   const HandleSubmit = (e) => {
     e.preventDefault();
@@ -67,7 +54,8 @@ export default function VendorFill(props) {
         headers: {
           // "Content-Type": "multipart/form-data",
           accept: "multipart/form-data",
-          authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImVtYWlsIjoiZGFuaWVsYUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRVWkRJSHQuVHIxQ0MvU1FwTW56VkFPd1JRNS5vSkdlcS5OcURRTnVYVzBvdE1PNzB5VUJGcSIsImlzQWRtaW4iOm51bGwsImNyZWF0ZWRfYXQiOiIyMDIzLTAyLTEzVDA3OjAwOjI0LiIsInVwZGF0ZWRfYXQiOm51bGwsImNyZWF0ZWRfYnkiOjEsInVwZGF0ZWRfYnkiOm51bGwsImRlcGFydG1lbnQiOiJTb2Z0d2FyZSBhcyBhIFNlcnZpYyIsImZpcnN0TmFtZSI6IkRhbmllbCIsImdlbmRlciI6Im1hbGUiLCJpc19kZWxldGVkIjpmYWxzZSwibGFzdE5hbWUiOiJBbGVtdSIsInRlbCI6IjA5NzY5OTY1MyIsImlhdCI6MTY3NjI3MTkxNCwiZXhwIjoxNjc2MzU4MzE0fQ.5aQPQIWWXFjTQqZTNBmSTcY1b6vlPboJe5o5O8FRLfU"
+          authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjYsImVtYWlsIjoibmFyZG9zQGllbmV0d29ya3MuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkRXdSVjZZWFhsQU5NZ2d4VUZmYmdHT1ZmZHlINDRSd3l6VlpTS211ay5zSnl2N3plRmFIYVMiLCJpc0FkbWluIjpudWxsLCJjcmVhdGVkX2F0IjoiMjAyMy0wMi0xN1QxNDoyNzoyMC4iLCJ1cGRhdGVkX2F0IjpudWxsLCJjcmVhdGVkX2J5IjpudWxsLCJ1cGRhdGVkX2J5IjpudWxsLCJkZXBhcnRtZW50IjoiU29mdHdhcmUgYXMgYSBTZXJ2aWMiLCJmaXJzdE5hbWUiOiJOYXJkb3MiLCJnZW5kZXIiOiIiLCJpc19kZWxldGVkIjpmYWxzZSwibGFzdE5hbWUiOiJUZXNnYXllIiwidGVsIjoiMDk4NzY1NDMyMSIsImlhdCI6MTY3NzgyMzY5NiwiZXhwIjoxNjc3OTEwMDk2fQ.MUJmV3h4cJv41WKbjptV6WHBweATrrxM3XQ-M48eEXY"
+          // BearerToken
         },
       })
 
@@ -80,7 +68,7 @@ export default function VendorFill(props) {
       });
   };
 
-  console.log(clients, "Give me clients")
+  // console.log(clients, "Give me clients")
 
   return (
     <div
@@ -101,27 +89,11 @@ export default function VendorFill(props) {
           onSubmit={HandleSubmit}
           className="grid items-center justify-center rounded-[10px] border-solid border-[#1b9c85] border-[1px] w-[500px] h-[500px] "
         >
-          <div className="mx-[20px] mt-[20px] w-[350px] ">
-            <div className="m-[4px] flex justify-center items-center gap-[5px]">
-              <label className="block mb-[2px] text-sm font-nunito font-light text-[#696969] w-[120px] dark:text-white">
-                Client
-              </label>
-              <select className="block w-full p-2 text-sm font-nunito text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <option value="" disabled>
-                  Choose Client
-                </option>
-                {get?.getclient()?.map((items) => (
-                  <option value={items?.id}>{items?.name}</option>
-                ))}
-              </select>
-            </div>
-          </div>
-
           <div className="m-[10px]">
             <div className="m-[10px]">
               <input
-                className="border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]"
-                id="name"
+                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  id="name"
                 name="name"
                 type="text"
                 placeholder="Vendor Name"
@@ -130,8 +102,8 @@ export default function VendorFill(props) {
             </div>
             <div className="m-[10px]">
               <input
-                className="border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]"
-                id="email"
+                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  id="email"
                 name="email"
                 type="email"
                 placeholder="example@example.com"
@@ -140,8 +112,8 @@ export default function VendorFill(props) {
             </div>
             <div className="m-[10px]">
               <input
-                className="border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]"
-                id="contact_phone"
+                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  id="contact_phone"
                 name="contact_phone"
                 type="phoneNumber"
                 placeholder="Contact Number"
@@ -150,8 +122,8 @@ export default function VendorFill(props) {
             </div>
             <div className="m-[10px]">
               <input
-                className="border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]"
-                id="address"
+                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  id="address"
                 name="address"
                 type="text"
                 placeholder="City, Country"
@@ -160,26 +132,28 @@ export default function VendorFill(props) {
             </div>
             <div className="m-[10px]">
               <input
-                className="border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]"
-                id="website"
+                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  id="website"
                 name="website"
                 type="text"
                 placeholder="Website"
                 onChange={(e) => setWebsite(e.target.value)}
               />
             </div>
-            <div className="m-[10px] flex gap-3 justify-center items-center">
+              <div className="mx-2 grid items-center">
               <input
-                className="border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]"
-                id="logo"
+                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  id="logo"
                 name="logo"
                 type="file"
                 placeholder="Add image"
                 onChange={(e) => {
                   handleChange(e);
                 }}
-              />     
+              />  
+                          <label className="text-sm text-gray-900">Insert image</label>   
             </div>
+
             <div className="flex items-center justify-center gap-[60px] my-[25px]">
               <button
                 type="submit"

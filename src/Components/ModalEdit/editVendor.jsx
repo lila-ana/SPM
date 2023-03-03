@@ -49,7 +49,7 @@ export default function EditVendor(props) {
         headers: {
         // "Content-Type": "multipart/form-data",
           accept: "multipart/form-data",
-          authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXNmdUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiZGVwYXJ0bWVudCI6IlNvZnR3YXJlIGFzIGEgc2VydmljIiwiZmlyc3ROYW1lIjoiVGVzZmFodW4iLCJnZW5kZXIiOiJNYWxlIiwiaXNfZGVsZXRlZCI6ZmFsc2UsImxhc3ROYW1lIjoiQmlyZWdhIiwidGVsIjoiMDkxMjM0MjM0NSIsImlhdCI6MTY3NjAxOTE1MCwiZXhwIjoxNjc2MTA1NTUwfQ.z9TE5i2D4LdGJKzMxPxHfmlfGOf3di2c6yY8qwRstkI"
+          authorization: "Bearer " + BearerToken
         },
       })
       .then(function (response) {
@@ -82,7 +82,7 @@ export default function EditVendor(props) {
           >
             <div className='m-[10px]'>
         <div className='m-[10px]'>
-          <input
+          <textarea
             className='border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]'
             id="name"
             name="name"
@@ -93,7 +93,7 @@ export default function EditVendor(props) {
           />
         </div>
         <div className='m-[10px]'>
-          <input
+          <textarea
             className='border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]'
             id="email"
             name="email"

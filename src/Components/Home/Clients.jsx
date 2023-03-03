@@ -1,8 +1,4 @@
 import React, { useEffect, useState } from "react";
-import clients from "../../utils/Clients.json";
-import certificate1 from "../../Image/Certificate.jpg";
-import certificate2 from "../../Image/Certificate2.webp";
-
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import axios from "axios";
 import { API_BASE_URL, IMG_API } from "../../api/endPoint";
@@ -21,19 +17,6 @@ export default function Clients() {
     let slider = document.getElementById("sliderclient");
     slider.scrollLeft = slider.scrollLeft + 500;
   };
-  const [data, setData] = useState();
-  axios
-    .get(`http://172.16.33.131:8000/api/v1/client`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-    .then((response) => {
-      setData(response.data);
-    })
-    .catch((error) => {
-      console.log(error.response);
-    });
 
     const getUser = ()=> {
       axios
@@ -72,7 +55,6 @@ export default function Clients() {
                     alt={items.name}
                     className="pb-[10px]"
                     src={`${IMG_API}/${items?.logo}`}
-                    //  src={items.id < 2 ?certificate1: certificate2}
                   />
                 </p>
               </div>

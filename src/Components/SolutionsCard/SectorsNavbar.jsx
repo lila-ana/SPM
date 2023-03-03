@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { API_BASE_URL } from '../../api/endPoint';
 import sector from "../../utils/Sectors.json"
+import NoRecord from '../Admin/noRecord';
 
 export default function SectorsNavbar() {
   
@@ -28,11 +29,11 @@ export default function SectorsNavbar() {
         getUser()
       },[]);
 
-    // console.log(sectors, "Give me Sectors")
+    console.log(projects, "Give me projects")
     
     return (
         <div>            
-            <nav class="flex bg-[rgb(16,163,127)] border-gray-200 px-2 sm:px-4 py-2.5  dark:bg-gray-900">
+            <nav class="flex bg-[#1b9c85] border-gray-200 px-2 sm:px-4 py-2.5  dark:bg-gray-900">
                 <ul className="flex gap-[50px] text-[#FFFFFF] font-semibold mr-[25px] ">
                 {sectors?.map((sector) => (
                         <a
@@ -40,26 +41,45 @@ export default function SectorsNavbar() {
                             className="  hover:text-white hover:font-bold hover:border-b-2 hover:border-[#e0e0e0] duration-100 "
                         >
                             <span>
-                                
                                 {sector.name}
                             </span>
                         </a>
                 ))}
                 </ul>
             </nav>
-    <div className="container mx-auto mt-12">
-        <div className="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-3"></div>
-            {projects?.map((projectcard) => (
-                <div className="w-full px-4 py-5 bg-white rounded-lg shadow">
-                    <div className="text-sm font-medium text-gray-500 truncate">
-                        {projectcard.client_id}sdfjdfs 
+ {projects?.length !== 0 ? (
+
+    <div className='flex'>
+      <div className="container mx-auto mt-12">
+                <div className="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-3">
+                    <a
+                      href={`/projectDescription/${1}`}
+                    >
+                    {projects?.map((project)=> (
+                    <div className="w-full px-4 py-5 bg-white rounded-lg shadow shadow-gray-300 ">
+                            <div className="mt-1 text-2xl font-semibold text-gray-900">
+                                {project.name}   
+                                    {project?.name?.length >= 20
+                                    ? project?.name?.slice(0, 20) + "..."
+                                    : project?.name}  
+
+                            </div>
+                            <div className="text-sm font-medium text-gray-500 truncate">
+                                {project.description}
+                                        {project?.description?.length >= 20
+                                        ? project?.description?.slice(0, 20) + "..."
+                                        : project?.description}  
+                            </div>  
                     </div>
-                    <div className="mt-1 text-2xl font-semibold text-gray-900">
-                        {projectcard.name}   sjfhkashfdjas                     
-                    </div>
+                    ))}
+             </a>
                 </div>
-            ))}
-    </div>
+        </div>
+    </div> ) :  (
+        <NoRecord />
+
+ )} 
+
 </div>
   )
 }

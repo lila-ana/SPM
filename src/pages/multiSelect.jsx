@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { API_BASE_URL } from '../api/endPoint';
 import Dropdown from '../Components/Common/Dropdown';
 
 
@@ -6,10 +8,22 @@ const Multiselect = () => {
     // state showing if dropdown is open or closed
     const [dropdown, setDropdown] = useState(false);
     // managing dropdown items (list of dropdown items)
-    const [items, setItems] = useState(['john', 'milos', 'steph', 'kathreine']);
+    
+    // const [items, setItems] = useState(['john', 'milos', 'steph', 'kathreine']);
+    const [items, setItems] = useState([]);
+
     // contains selected items
     const [selectedItems, setSelected] = useState([]);
 
+    const getUser = ()=> {
+        axios
+        .get(`${API_BASE_URL}client`)
+        .then((res) => setItems(res.data?.data))
+        .catch((err) => console.log(err));
+      }
+      useEffect(() => {
+        getUser()
+      },[]);
 
     const toogleDropdown = () => {
         setDropdown(!dropdown)
@@ -36,7 +50,7 @@ const Multiselect = () => {
                         {
                             selectedItems.map((tag, index) => {
                                 return (
-                                    <div key={index} className="flex justify-center items-center m-1 font-medium py-1 px-2 bg-white rounded-full text-teal-700 bg-teal-100 border border-teal-300 ">
+                                    <div key={index} className="flex justify-center items-center m-1 font-medium py-1 px-2 rounded-full text-teal-700 bg-teal-100 border border-teal-300 ">
                                             <div className="text-xs font-normal leading-none max-w-full flex-initial">{ tag }</div>
                                             <div className="flex flex-auto flex-row-reverse">
                                                 <div onClick={() => removeTag(tag)}>
@@ -95,3 +109,11 @@ export default Multiselect;
 //     </div>
 //   );
 // }
+
+const handleChangesoutions = (e, i) => {
+    e.preventDefault();
+    const value = e.target.value;
+    const Solutionlists = [...solutions];
+    Solutionlists[i] = value;
+    setSolutions(Solutionlists);
+  };

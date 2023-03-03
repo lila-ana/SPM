@@ -65,7 +65,7 @@ export default function EditProject(props) {
         headers: {
         "Content-Type": "multipart/form-data",
           accept: "multipart/form-data",
-          authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJuZWJpeWF0QGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiMTIzNDU2NzgiLCJpc0FkbWluIjpudWxsLCJjcmVhdGVkX2F0IjpudWxsLCJ1cGRhdGVkX2F0IjpudWxsLCJjcmVhdGVkX2J5IjpudWxsLCJ1cGRhdGVkX2J5IjpudWxsLCJkZXBhcnRtZW50IjoiU29mdHdhcmUgYXMgYSBTZXJ2aWMiLCJmaXJzdE5hbWUiOiJuZWJpeWF0IiwiZ2VuZGVyIjoibWFsZSIsImlzX2RlbGV0ZWQiOmZhbHNlLCJsYXN0TmFtZSI6Im5lYml5YXQiLCJ0ZWwiOiIwOTc2NTM1MzQzIiwiaWF0IjoxNjc1MzE4MjgyLCJleHAiOjE2NzU0MDQ2ODJ9.iMmzbZySSqU2XYI-ZRCga6j-ChQe77YLVvCXd6Juav4"
+          authorization: "Bearer " + BearerToken
         },
       })
       .then(function (response) {
@@ -100,7 +100,7 @@ export default function EditProject(props) {
           >
             <div className='m-[10px]'>
         <div className='m-[10px]'>
-          <input
+          <textarea
             className='border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]'
             id="name"
             name="name"
@@ -113,7 +113,7 @@ export default function EditProject(props) {
           {formik.touched.name && formik.errors.name ? <p>{formik.errors.name}</p> : null}
         </div>
         <div className='m-[10px]'>
-          <input
+          <textarea
             className='border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]'
             id="description"
             name="description"

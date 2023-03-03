@@ -11,7 +11,7 @@ export default function SolutionsFIll(props) {
   const [description, setDescription] = useState(null);
   const [logo, setLogo] = useState(null);
   const [departments, setDepartments] = useState();  
-  const [data, setData] = useState();
+  const [departmentId, setDepartmentId] = useState();
 
   const params = useParams();
 
@@ -30,6 +30,7 @@ export default function SolutionsFIll(props) {
   form.append("name", name);
   form.append("description", description);
   form.append("logo", logo?.data);
+  form.append("departmend_id", departmentId)
 
   let solution = {
     name,
@@ -43,12 +44,11 @@ export default function SolutionsFIll(props) {
         headers: {
         //  "Content-Type": "multipart/form-data",
           accept: "multipart/form-data",
-          authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXNmdUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiZGVwYXJ0bWVudCI6IlNvZnR3YXJlIGFzIGEgc2VydmljIiwiZmlyc3ROYW1lIjoiVGVzZmFodW4iLCJnZW5kZXIiOiJNYWxlIiwiaXNfZGVsZXRlZCI6ZmFsc2UsImxhc3ROYW1lIjoiQmlyZWdhIiwidGVsIjoiMDkxMjM0MjM0NSIsImlhdCI6MTY3NTkyNzAwOCwiZXhwIjoxNjc2MDEzNDA4fQ.TCdj6-zbTjImPnhUrblMJ-xIjsbPrNsZjMaCyRyTIOo"
+          authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjYsImVtYWlsIjoibmFyZG9zQGllbmV0d29ya3MuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkRXdSVjZZWFhsQU5NZ2d4VUZmYmdHT1ZmZHlINDRSd3l6VlpTS211ay5zSnl2N3plRmFIYVMiLCJpc0FkbWluIjpudWxsLCJjcmVhdGVkX2F0IjoiMjAyMy0wMi0xN1QxNDoyNzoyMC4iLCJ1cGRhdGVkX2F0IjpudWxsLCJjcmVhdGVkX2J5IjpudWxsLCJ1cGRhdGVkX2J5IjpudWxsLCJkZXBhcnRtZW50IjoiU29mdHdhcmUgYXMgYSBTZXJ2aWMiLCJmaXJzdE5hbWUiOiJOYXJkb3MiLCJnZW5kZXIiOiIiLCJpc19kZWxldGVkIjpmYWxzZSwibGFzdE5hbWUiOiJUZXNnYXllIiwidGVsIjoiMDk4NzY1NDMyMSIsImlhdCI6MTY3NzgyMzY5NiwiZXhwIjoxNjc3OTEwMDk2fQ.MUJmV3h4cJv41WKbjptV6WHBweATrrxM3XQ-M48eEXY"
           // BearerToken
         },
       })
       .then(response => {
-        setDepartments(response.department?.id); 
         console.log(response);
         HandleClose();
       })
@@ -63,7 +63,7 @@ export default function SolutionsFIll(props) {
       .catch((err) => console.log(err));
   }, []);
   
-// console.log(solution,"solutions")
+console.log(form,"form")
   return (
     <div
       onClick={(e) => props?.setmodal(false)}
@@ -89,7 +89,7 @@ export default function SolutionsFIll(props) {
                 Department
               </label>
               
-            <select className="border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]">
+            <select onChange={(event)=>setDepartmentId(event.target.value)} className="border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]">
                 <option value="" disabled>
                   Choose Department
                 </option>
@@ -110,7 +110,7 @@ export default function SolutionsFIll(props) {
                 />
               </div>
               <div className="m-[10px]">
-                <input
+                <textarea
                   className="border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px] h-[200px] grid justify-start"
                   id="description"
                   name="description"

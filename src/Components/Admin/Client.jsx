@@ -53,8 +53,7 @@ export default function Client() {
         headers: {
           "Content-Type": "application/json",
           //  accept:"application/json"
-          authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXNmdUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiZGVwYXJ0bWVudCI6IlNvZnR3YXJlIGFzIGEgc2VydmljIiwiZmlyc3ROYW1lIjoiVGVzZmFodW4iLCJnZW5kZXIiOiJNYWxlIiwiaXNfZGVsZXRlZCI6ZmFsc2UsImxhc3ROYW1lIjoiQmlyZWdhIiwidGVsIjoiMDkxMjM0MjM0NSIsImlhdCI6MTY3NjQ1MTY5NSwiZXhwIjoxNjc2NTM4MDk1fQ.6XK0YUf4x7NnZu0cfIhhDQfxygN1KJgiQ3s0s7vvD1M"
-          // BearerToken
+          authorization: "Bearer " + BearerToken
         },
 
       })
@@ -67,7 +66,7 @@ export default function Client() {
       });
   };
 
-  // console.log(datas, "show me datas")
+  console.log(datas, "show me datas")
 
   return (
     <div className="grid gap-5">

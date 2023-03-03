@@ -26,7 +26,7 @@ export default function ProjectFill(props) {
   const loadOptions = async (inputValue, callback) => {
     try {
       const response = await 
-      axios.get(`${API_BASE_URL}client?query=${inputValue}`);
+      axios.get(`${API_BASE_URL}vendor?query=${inputValue}`);
       const data = response.data.map((item) => ({
         value: item.value,
         label: item.label,
@@ -37,10 +37,48 @@ export default function ProjectFill(props) {
       console.error(error);
     }
   };
-
-  const handleSelectChange = (selectedOptions) => {
-    setSelectedOptions(selectedOptions);
+  
+  const Vendorlist = [];
+  vendors?.map((items) =>
+  Vendorlist.push({
+      value: items?.id,
+      label: items?.name,
+    })
+  )
+  const Vendors_Ids = [];
+  if (vendorId !== null) {
+    for (let id in vendorId) {
+      Vendors_Ids.push(vendorId[id]?.value);
+    }
+  }
+  const loadOptionss = async (inputValue, callback) => {
+    try {
+      const response = await 
+      axios.get(`${API_BASE_URL}solution?query=${inputValue}`);
+      const data = response.data.map((item) => ({
+        value: item.value,
+        label: item.label,
+      }));
+      setOptions(data);
+      callback(data);
+    } catch (error) {
+      console.error(error);
+    }
   };
+  
+  const solutionlist = [];
+  solutions?.map((items) =>
+  solutionlist.push({
+      value: items?.id,
+      label: items?.name,
+    })
+  )
+  const Solution_Ids = [];
+  if (solutionId !== null) {
+    for (let id in solutionId) {
+      Solution_Ids.push(solutionId[id]?.value);
+    }
+  }
 
   function HandleClose() {
     props.modal(false);
@@ -50,10 +88,10 @@ export default function ProjectFill(props) {
     name: name,
     description: description,
     client_id: clientId ,
-    // vendor_id: vendorId,
-    // solution_id: solutionId,
-    // representative_id: representativeId,
-    // sector_id: sectorId,
+    vendor_id: Vendors_Ids,
+    solution_id: Solution_Ids,
+    representative_id: representativeId,
+    sector_id: sectorId,
 
   };
 
@@ -61,8 +99,8 @@ export default function ProjectFill(props) {
   form.append("name", name);
   form.append("description", description);
   form.append("client_id", clientId);
-  form.append("vendor_id", vendorId);
-  form.append("solution_id", solutionId);
+  form.append("vendor_id", Vendors_Ids);
+  form.append("solution_id", Solution_Ids);
   form.append("representative_id", representativeId);
   form.append("sector_id", sectorId);
 
@@ -114,8 +152,9 @@ export default function ProjectFill(props) {
         headers: {
           // "Content-Type": "application/json",
            accept: "application/json",
-          authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXNmdUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiZGVwYXJ0bWVudCI6IlNvZnR3YXJlIGFzIGEgc2VydmljIiwiZmlyc3ROYW1lIjoiVGVzZmFodW4iLCJnZW5kZXIiOiJNYWxlIiwiaXNfZGVsZXRlZCI6ZmFsc2UsImxhc3ROYW1lIjoiQmlyZWdhIiwidGVsIjoiMDkxMjM0MjM0NSIsImlhdCI6MTY3NjQ1MTY5NSwiZXhwIjoxNjc2NTM4MDk1fQ.6XK0YUf4x7NnZu0cfIhhDQfxygN1KJgiQ3s0s7vvD1M"
-        },
+           authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjYsImVtYWlsIjoibmFyZG9zQGllbmV0d29ya3MuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkRXdSVjZZWFhsQU5NZ2d4VUZmYmdHT1ZmZHlINDRSd3l6VlpTS211ay5zSnl2N3plRmFIYVMiLCJpc0FkbWluIjpudWxsLCJjcmVhdGVkX2F0IjoiMjAyMy0wMi0xN1QxNDoyNzoyMC4iLCJ1cGRhdGVkX2F0IjpudWxsLCJjcmVhdGVkX2J5IjpudWxsLCJ1cGRhdGVkX2J5IjpudWxsLCJkZXBhcnRtZW50IjoiU29mdHdhcmUgYXMgYSBTZXJ2aWMiLCJmaXJzdE5hbWUiOiJOYXJkb3MiLCJnZW5kZXIiOiIiLCJpc19kZWxldGVkIjpmYWxzZSwibGFzdE5hbWUiOiJUZXNnYXllIiwidGVsIjoiMDk4NzY1NDMyMSIsImlhdCI6MTY3NzgyMzY5NiwiZXhwIjoxNjc3OTEwMDk2fQ.MUJmV3h4cJv41WKbjptV6WHBweATrrxM3XQ-M48eEXY"
+          //  BearerToken
+          },
       })
       .then((response) => {
         console.log(response);
@@ -127,6 +166,7 @@ export default function ProjectFill(props) {
   };
 
 console.log(clients, "Show me clients")
+console.log(project, "show me projects")
 
   return (
     <div
@@ -152,23 +192,16 @@ console.log(clients, "Show me clients")
               <label className="block mb-[2px] text-sm font-nunito font-regular text-[#696969] w-[120px] dark:text-white">
                 Client
               </label>
-              <Select 
-              
-              isMulti
-      cacheOptions
-      defaultOptions
-      loadOptions={loadOptions}
-      onChange={(event) => handleSelectChange(event.target.value)}
-              className="border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]">
-                <option value="" disabled>
-                  Choose client
-                </option>
-                {clients?.map((client) => (
-                  <option value={client?.id}>{client?.name}</option>
-                ))}
-              </Select>
+              <select onChange={(event)=>setClientId(event.target.value)} className="border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]">
+                  <option value="" disabled>
+                    Choose client
+                  </option>
+                  {clients?.map((items) => (
+                        <option value={items?.id}>{items?.name}</option>
+                  ))}
+                </select>
 
-              {/* <div className=" gird justify-center items-center gap-[5px]">
+              <div className=" gird justify-center items-center gap-[5px]">
               <label className="block mb-[2px] text-sm font-nunito font-normal text-[#696969] w-[120px] dark:text-white">
                 Representative
               </label>
@@ -187,14 +220,18 @@ console.log(clients, "Show me clients")
                 <label className="block mb-[2px] text-sm font-nunito font-regular text-[#696969] w-[120px] dark:text-white">
                 Vendor
               </label>
-              <select onChange={(event)=>setVendorId(event.target.value)} className="border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]">
-                <option value="" disabled>
-                  Choose vendor
-                </option>
-                {vendors?.map((vendor) => (
-                  <option value={vendor?.id}>{vendor?.name}</option>
-                ))}
-              </select>
+              <Select
+              options={Vendorlist}
+              isMulti
+              cacheOptions
+              defaultOptions
+              loadOptions={loadOptions}
+              onChange={(e) => {
+                setVendorId(e);
+              }}              
+              className="border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]"
+              >
+                </Select>
               </div>
                 <div>
                 <label className="block mb-[2px] text-sm font-nunito font-regular text-[#696969] w-[120px] dark:text-white">
@@ -213,15 +250,19 @@ console.log(clients, "Show me clients")
               <label className="block mb-[2px] text-sm font-nunito font-regular text-[#696969] w-[120px] dark:text-white">
                 Solution 
               </label>
-              <select onChange={(event)=>setSolutionId(event.target.value)} className="border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]">
-                <option value="" disabled>
-                  Choose solution
-                </option>
-                {solutions?.map((solution) => (
-                  <option value={solution?.id}>{solution?.name}</option>
-                ))}
-              </select>
-              </div> */}
+              <Select
+              options={solutionlist}
+              isMulti
+              cacheOptions
+              defaultOptions
+              loadOptions={loadOptionss}
+              onChange={(e) => {
+                setSolutionId(e);
+              }}              
+              className="border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]"
+              >
+                </Select>
+              </div>
 
               <input
                 className="border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px]"
@@ -232,7 +273,7 @@ console.log(clients, "Show me clients")
                 onChange={(e) => setName(e.target.value)}
               />
              
-              <input
+              <textarea
                 className="border-[1px] border-[#1b9c85] p-2 rounded-[10px] font-nunito text-sm w-[350px] h-[200px] grid items-center justify-center"
                 id="decsription"
                 name="description"

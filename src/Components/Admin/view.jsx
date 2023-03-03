@@ -66,8 +66,8 @@ export default function View() {
 		  },
 
 	];
-	const [data,setData]=useState();
-    const [datas,setDatas]=useState();
+	
+    const [users, setUsers] = useState();
 
 	const BearerToken = localStorage.getItem("accessToken");
 
@@ -77,35 +77,33 @@ export default function View() {
 	};
 
 	const logoutUser = () => {
-		
 		localStorage.clear();
-		window.location.replace("/login");
-	
+		window.location.replace("/login")
   };
   const getUser = ()=> {
     axios
     .get(`${API_BASE_URL}user/authUser`,{
 		headers: {
-			"Content-Type": "application/json",
+			// "Content-Type": "application/json",
 			accept: "application/json",
-			 token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXNmdUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiZGVwYXJ0bWVudCI6IlNvZnR3YXJlIGFzIGEgc2VydmljIiwiZmlyc3ROYW1lIjoiVGVzZmFodW4iLCJnZW5kZXIiOiJNYWxlIiwiaXNfZGVsZXRlZCI6ZmFsc2UsImxhc3ROYW1lIjoiQmlyZWdhIiwidGVsIjoiMDkxMjM0MjM0NSIsImlhdCI6MTY3NTkzMjUwMiwiZXhwIjoxNjc2MDE4OTAyfQ.-z21UG3Pufm8A7Xy0L5GmaxaD_YLJZ-77ilgn80X3aY",
+			authorization: "Bearer " + BearerToken
 		  },
 	})
-    .then((res) => setDatas(res.data?.data))
+    .then((res) => setUsers(res.data?.data))
     .catch((err) => console.log(err));
   }
   useEffect(() => {
     getUser()
-  },[datas]);
+  },[]);
 
-console.log(datas, "datas")
+// const userNames = users.map((user) => user.name);
+let user = users==undefined?{}:users
+console.log(user, "Display users")
 
-	return (
-		
+	return (	
 		<div className="px-[50px] py-3">
 			
 			<div className="m-[20px] flex justify-between border-b-[2px] border-[#1b9c85] mb-[20px]" >
-			{/* // className="flex justify-between "> */}
 				<div className="">
 					<img
 						className="w-[70px] h-[70px]"
@@ -147,18 +145,15 @@ console.log(datas, "datas")
 						<div className="py-1">
 							<Menu.Item>
 								<div className="grid m-[5px] gap-[5px] items-center justify-center">
-								{/* {registration?.map((items)=> (  */}
 									<div>
 										<div className="grid justify-center items-center pt-[5px] text-nunito text-[#602234] font-semibold text-[15px]">
-											{/* {items.name} */}
-											Hawi Tesfaye
+											{user.firstName + " " + user.lastName}
 										</div>
 										<div className="text-nunito text-[#602234] font-light text-[16px]">
-											{/* {items.department} */}
-											Software Team Lead
+											{user.department}
 										</div>
 									</div>
-								{/* ))} */}
+								 {/* ))}    */}
 									<div className="flex items-center justify-center">
 									<button
 										onClick={logoutUser}

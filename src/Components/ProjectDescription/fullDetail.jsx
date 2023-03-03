@@ -13,13 +13,25 @@ export default function FullDetail(props) {
   const [clients, setClients] = useState([]);
   const [datas, setDatas] = useState();
 
-  useEffect(() => {
+  
+  const getUser = ()=> {
     axios
     .get(`${API_BASE_URL}project/${params.id}`)
     .then((res) => setDatas(res.data?.data))
     .catch((err) => console.log(err));
+  }
+  useEffect(() => {
+    getUser()
+  },[]);
+
+console.log(datas,"datatta")
+  // useEffect(() => {
+  //   axios
+  //   .get(`${API_BASE_URL}project/${params.id}`)
+  //   .then((res) => setDatas(res.data?.data))
+  //   .catch((err) => console.log(err));
   
-  },[])
+  // },[])
 
   return (
     <div>
@@ -44,11 +56,13 @@ export default function FullDetail(props) {
         Solutions
       </div>
       <div className="flex items-center gap-[5px]">
-        {datas?.solutions?.map((items) => (
-          <div className="flex p-[5px] m-[10px] items-center justify-center font-nunito font-light text-[20px] text-[#1b9c85] rounded-[20px] border-[1px] border-[#1b9c85] w-[250px] ">
-            {items?.name}
+        {/* {datas?.map((items) => (
+           items?.clients?.map((item) => (
+              <div className="flex p-[5px] m-[10px] items-center justify-center font-nunito font-light text-[20px] text-[#1b9c85] rounded-[20px] border-[1px] border-[#1b9c85] w-[250px] ">
+                  {item?.name}
+                      ))
           </div>
-        ))}
+        ))} */}
       </div>
  
   

@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import ButtonTab from '../Common/Button/ButtonTab';
 import ClientFill from './ClientFill';
-import ProjectDropDown from './ProjectDropDown';
 import RepresentativeFill from './RepresentativeFill';
 import VendorFill from './VendorFill';
 import SolutionsFill from './SolutionsFill';
@@ -27,11 +26,7 @@ export default function SideBar() {
           available: 2,
           content: <RepresentativeFill/>,
         },
-        {
-          label: "Projects",
-          available: 3,
-          content: <ProjectDropDown/>,
-        },
+        
         {
           label: "Project Fill",
           available: 3,

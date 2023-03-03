@@ -1,9 +1,13 @@
-import React, { Component } from "react";
+import axios from "axios";
+import React, { Component, useEffect } from "react";
 import { render } from "react-dom";
+import { API_BASE_URL, IMG_API } from "../../api/endPoint";
 import "../../style/style.css";
 
 export default function Partner() {
+  
   const [selectedIndex, setSelectedIndex] = React.useState(0);
+  const [datas, setDatas] = React.useState(0);
 
   const checkNext = () => {
     const labels = document.querySelectorAll("#slider label");
@@ -13,6 +17,16 @@ export default function Partner() {
   };
 
   const check = (index) => setSelectedIndex(index);
+
+  const getUser = ()=> {
+    axios
+    .get(`${API_BASE_URL}partner`)
+    .then((res) => setDatas(res.data?.data))
+    .catch((err) => console.log(err));
+  }
+  useEffect(() => {
+    getUser()
+  },[]);
 
   return (
     <div>
@@ -31,6 +45,7 @@ export default function Partner() {
           </div>
         </div>
         <div className="bg-[#1b9c85] w-[300px] h-[300px] rounded-full shadow-xl shadow-[#bfbfbf] ml-5">
+        {/* {datas?.map((items) => ( */}
           <div className="md:w-2/4 md:mb-0 mb-6 flex flex-col text-center items-center ">
             <section
               id="slider"
@@ -70,8 +85,9 @@ export default function Partner() {
               </label>
               <label htmlFor="s2" id="slide2">
                 <img
-                  className="fea"
-                  src="https://picsum.photos/200/200"
+                    // alt={items.name}
+                    className="pb-[10px]"
+                    // src={`${IMG_API}/${items?.logo}`}
                   style={{
                     height: "238px !important",
                     width: "100%",
@@ -92,6 +108,7 @@ export default function Partner() {
               </label>
             </section>
           </div>
+        {/* ))} */}
         </div>
 
         <div className="md:w-1/4 py-32 md:mb-0 mb-6 flex flex-col text-center items-center">

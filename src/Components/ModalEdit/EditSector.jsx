@@ -27,7 +27,8 @@ export default function EditSector (props) {
         headers: {
           // "Content-Type": "multipart/form-data",
           accept: "application/json",
-          authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXNmdUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiZGVwYXJ0bWVudCI6IlNvZnR3YXJlIGFzIGEgc2VydmljIiwiZmlyc3ROYW1lIjoiVGVzZmFodW4iLCJnZW5kZXIiOiJNYWxlIiwiaXNfZGVsZXRlZCI6ZmFsc2UsImxhc3ROYW1lIjoiQmlyZWdhIiwidGVsIjoiMDkxMjM0MjM0NSIsImlhdCI6MTY3NTkyNzAwOCwiZXhwIjoxNjc2MDEzNDA4fQ.TCdj6-zbTjImPnhUrblMJ-xIjsbPrNsZjMaCyRyTIOo"
+          authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjAsImVtYWlsIjoibGlsYUBpZW5ldHdvcmtzLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHd5a1BSVHhhSy53MGg4WGdRSTlNUmVjOHEwNVNLSHUwVm1CMWFPamV2Mm5rWUtvQU1PR0dLIiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6IjIwMjMtMDItMTdUMDc6NDI6MjYuIiwidXBkYXRlZF9hdCI6bnVsbCwiY3JlYXRlZF9ieSI6MSwidXBkYXRlZF9ieSI6bnVsbCwiZGVwYXJ0bWVudCI6IlNvZnR3YXJlIGFzIGEgU2VydmljIiwiZmlyc3ROYW1lIjoiR2VsaWxhIiwiZ2VuZGVyIjoiIiwiaXNfZGVsZXRlZCI6ZmFsc2UsImxhc3ROYW1lIjoiVGVnZWduZSAiLCJ0ZWwiOiIrMjUxLTk1MzQyMjYxOTAiLCJpYXQiOjE2NzY2MTk5NTgsImV4cCI6MTY3NjcwNjM1OH0.rQlUdbn3z_PAV0CoVG0bITFgqVFRJGxYnbuGaEo7ULA"
+          // BearerToken
         },
       })
       .then(function (response) {
@@ -61,7 +62,7 @@ export default function EditSector (props) {
           >
             <div className="m-[10px]">
               <div className="m-[10px]">
-                <input
+                <textarea
                   className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   id="name"
                   name="name"

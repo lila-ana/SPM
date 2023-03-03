@@ -7,10 +7,6 @@ export default function Registration(props) {
     // const BearerToken = localStorage.getItem("accessToken");
     
     const navigate = useNavigate ();
-    
-    function handleClick () {
-        navigate ("/login")
-    }
 
     const [firstName, setFirstName]=useState("")
     const [lastName, setLastName]=useState("")
@@ -45,15 +41,15 @@ export default function Registration(props) {
     const HandleSubmit=(e)=>{
         e.preventDefault();
             axios
-            .post(`${API_BASE_URL}user/create`,registration, {
+            .post(`${API_BASE_URL}user/create`, registration, {
               headers: {
                 // "Content-Type": "application/json",
                 accept: "application/json",
-                authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXNmdUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiZGVwYXJ0bWVudCI6IlNvZnR3YXJlIGFzIGEgc2VydmljIiwiZmlyc3ROYW1lIjoiVGVzZmFodW4iLCJnZW5kZXIiOiJNYWxlIiwiaXNfZGVsZXRlZCI6ZmFsc2UsImxhc3ROYW1lIjoiQmlyZWdhIiwidGVsIjoiMDkxMjM0MjM0NSIsImlhdCI6MTY3NjQ1MTY5NSwiZXhwIjoxNjc2NTM4MDk1fQ.6XK0YUf4x7NnZu0cfIhhDQfxygN1KJgiQ3s0s7vvD1M"
+                // authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXNmdUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiZGVwYXJ0bWVudCI6IlNvZnR3YXJlIGFzIGEgc2VydmljIiwiZmlyc3ROYW1lIjoiVGVzZmFodW4iLCJnZW5kZXIiOiJNYWxlIiwiaXNfZGVsZXRlZCI6ZmFsc2UsImxhc3ROYW1lIjoiQmlyZWdhIiwidGVsIjoiMDkxMjM0MjM0NSIsImlhdCI6MTY3NjUzODYzOCwiZXhwIjoxNjc2NjI1MDM4fQ.LIRZexDRXcJX4L_rygdv3BlF_P4s76-nSzg30BK8X7Q"
             },
             })
             .then((response) => {
-                // window.location.replace("/login");
+                window.location.replace("/login");                
                 console.log(response, "Change location to login");
             })
             .catch(function (error) {
@@ -61,7 +57,6 @@ export default function Registration(props) {
             });
       }
       
-
 return (
     <div className='h-screen grid items-center justify-center '>
         <form

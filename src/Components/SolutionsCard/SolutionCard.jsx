@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { API_BASE_URL } from '../../api/endPoint';
-import SectorNavbar from './SectorNavbar';
 import SectorsNavbar from './SectorsNavbar';
 
 export default function SolutionCard() {
@@ -31,7 +30,7 @@ export default function SolutionCard() {
     return (
 
         <div className="flex">
-            <div className="flex flex-col h-screen p-3 bg-[#10a37f] shadow w-100">
+            <div className="flex flex-col h-screen p-3 bg-[#1b9c85] shadow w-100">
                 <div className="space-y-8">
                     <div className="flex items-center">
                         <h2 className="text-3xl font-bold text-white">Solutions</h2>
