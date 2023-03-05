@@ -31,7 +31,7 @@ export default function SolutionJourney() {
                                 group-hover:translate-y-0"
                     >
                       <div class="">
-                        <p class="text-white text-[11px]">{items?.name}</p>
+                        <p class="text-white font-semibold text-[12px]">{items?.name}</p>
                       </div>
                     </div>
                   </div>

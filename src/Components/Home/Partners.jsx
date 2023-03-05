@@ -85,10 +85,9 @@ export default function Partner() {
               </label>
               <label htmlFor="s2" id="slide2">
                 <img
-                    // alt={items.name}
-                    className="pb-[10px]"
-                    // src={`${IMG_API}/${items?.logo}`}
-                  style={{
+                   className="fea"
+                   src="https://picsum.photos/200/200"
+                   style={{
                     height: "238px !important",
                     width: "100%",
                     marginTop: "48px",

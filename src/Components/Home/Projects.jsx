@@ -38,7 +38,7 @@ export default function Projects() {
           Projects{" "}
         </h1>
       </div>
-      {datas?.length !== 0 ? (
+      {/* {datas?.length !== 0 ? ( */}
 
       <div className="relative flex items-center gap-5">
         <div className="hover:bg-[#1b9c85] hover:text-white rounded-full ">
@@ -52,11 +52,13 @@ export default function Projects() {
             {/* {datas?.map((items) => ( */}
               <div className="stroke-[#1b9c85] w-[300px] h-[290px] rounded-sm hover:shadow-[#1b9c8585] inline-block ease-in-out duration-300 shadow-xl  p-[15px] text-[#4E4E4F] font-semibold font-nunito text-[20px] border-[#1b9c85] border-[1px]  ">
                 <p className="pb-[10px]">
-                  ERA/MoTL
+                  ERA/MoTL (Ethiopian Road Authority/ Ministry of Transport & Logistics.)
+                  
                 </p>
                 <p className="font-normal text-[16px]">
-                  Ethiopian Road Authority/ Ministry of Transport & Logistics. <br></br>
-                  Implementation of the Exchange Mailing Service for Ministry of Transport 
+                  {/* Ethiopian Road Authority/ <br></br>
+                  Ministry of Transport & Logistics. <br></br> <br></br> */}
+                  Implementation of the Exchange Mailing Service for Ministry of Transport. 
  
                 </p>
                 <NavLink 
@@ -138,9 +140,9 @@ export default function Projects() {
         <div className="hover:bg-[#1b9c85] hover:text-white rounded-full ">
           <AiOutlineRight className="text-2xl" onMouseEnter={slideRight} />
         </div> 
-      </div> ) : ("") }
+      {/* </div> ) : ("") } */}
      
-
+</div>
     </div>
   );
 }

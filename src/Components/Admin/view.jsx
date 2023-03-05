@@ -15,6 +15,7 @@ import Department from "./Department";
 import Sector from "./Sector";
 import axios from "axios";
 import { API_BASE_URL } from "../../api/endPoint";
+import { MenuItem } from "@mui/material";
 
 export default function View() {
 	const OpportunityTabData = [
@@ -124,24 +125,32 @@ console.log(user, "Display users")
 				/>
 
 				<div className="border-l-[2px] border-[#1b9c85] flex items-center justify-between w-[150px]">
+				<div>
 				<Menu as="div" className="relative inline-block text-left">
-					{/* <AiOutlineSetting className="m-[10px] fill-[#1b9c85] w-[25px] h-[25px]" 
 						<Menu.Button>
-							<FaUserCircle className="m-[10px] fill-[#1b9c85] w-[25px] h-[25px]" />
+							<AiOutlineSetting className="m-[10px] fill-[#1b9c85] w-[25px] h-[25px]" />
 						</Menu.Button>
-						<a
-                        href="/registration"
-                        className="font-medium text-[#10a37f] hover:underline"
-                    >
-                        Sign up
-                    </a>
-
-					/> */}
-				
+						<Menu.Items className=" grid absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-[#1b9c85] rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+							<MenuItem>
+							<div className="font-semibold text-[16px] text-[#602234]">
+								Create User 
+							</div>
+							<a
+									href="/registration"
+									className="font-medium text-[#10a37f] hover:underline"
+								>
+									Sign up
+								</a>
+							</MenuItem>
+						</Menu.Items>
+				</Menu>
+				</div>
 				<MdOutlineNotificationsNone 
 				
 				className="m-[10px] fill-[#1b9c85] w-[25px] h-[25px]" />
 				{/* <Menu as="div" className="relative inline-block text-left"> */}
+					<div>
+					<Menu>
 					<Menu.Button>
 						<FaUserCircle className="m-[10px] fill-[#1b9c85] w-[25px] h-[25px]" />
 					</Menu.Button>
@@ -154,7 +163,8 @@ console.log(user, "Display users")
                 leaveFrom="transform opacity-100 scale-100"
                 leaveTo="transform opacity-0 scale-95"
               > */}
-					<Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-[#1b9c85] rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+					<Menu.Items 
+					className="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-[#1b9c85] rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
 						<div className="py-1">
 							<Menu.Item>
 								<div className="grid m-[5px] gap-[5px] items-center justify-center">
@@ -179,6 +189,7 @@ console.log(user, "Display users")
 					</Menu.Items>
 					{/* </Transition> */}
 				</Menu>
+				</div>
 			</div>
 			</div>
 

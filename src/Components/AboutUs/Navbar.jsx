@@ -30,7 +30,7 @@ export default function Navbar(props) {
                 <a href="/aboutus">About </a>
               </li>
               <li className=" hover:text-[#1b9c85] hover:font-semibold">
-                <a href="solutionsDashboard">
+                <a href={`solutions/${1}`}>
                   Solutions 
                   </a>
               </li>

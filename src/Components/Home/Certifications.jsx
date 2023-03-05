@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import clients from '../../utils/Clients.json'
 import certificate1 from '../../Image/Certificate.jpg'
-import certificate2 from '../../Image/Certificate2.webp'
+import certificate from "../../utils/certificate.json"
+import IBMPowerSystem from '../../Image/IBM solution proffesional certeficate.png'
 import {AiOutlineLeft, AiOutlineRight} from "react-icons/ai"
 import axios from 'axios';
 import { API_BASE_URL, IMG_API } from '../../api/endPoint'
@@ -53,12 +54,13 @@ return (
     <div id="slidercertificate" className='w-full h-full overflow-x-scroll scroll scrollbar-hide  scroll-smooth'>
     <div className='grid grid-flow-col gap-[20px] items-center'>    
         {datas?.map((items)=> ( 
-            <div key = {items.id} className='stroke-[#1b9c85] w-[300px] rounded-sm hover:shadow-[#1b9c8585] inline-block ease-in-out duration-300 shadow-xl  p-[15px] text-[#4E4E4F] font-semibold font-nunito text-[20px] border-[#1b9c85] border-[1px]  '>
+            <div key = {items.id} className='stroke-[#1b9c85] w-[200px] h-[200px] rounded-sm hover:shadow-[#1b9c8585] inline-block ease-in-out duration-300 shadow-xl  p-[15px] text-[#4E4E4F] font-semibold font-nunito text-[20px] border-[#1b9c85] border-[1px]  '>
                 <p className='pb-[10px]'>
                     <img
                         alt={items.name}
                         className="pb-[10px]"
-                        src={`${IMG_API}/${items?.certeficate}`}
+                        src= {`${IMG_API}/${items?.certeficate}`}
+                        // {items.path}
                         //  src={items.id < 2 ?certificate1: certificate2}
                      />
                 </p>
