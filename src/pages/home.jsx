@@ -5,6 +5,7 @@ import AutoCounter from "../Components/Home/AutoCounter";
 import Clients from "../Components/Home/Clients";
 import Certifications from "../Components/Home/Certifications";
 import Partners from "../Components/Home/Partners";
+import PartnerSST from "../Components/Home/PartnerSST";
 
 const Home = () => {
   return (
@@ -14,7 +15,8 @@ const Home = () => {
           <Projects />
         </div>
         <AutoCounter />
-        <Partners />
+        <PartnerSST/>
+        {/* <Partners /> */}
         <Clients />
         <Certifications />
       </Layout>

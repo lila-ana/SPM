@@ -1,29 +1,43 @@
 
 [
     {
+        "name":"Enterprise Network Services",
+        "abbrevation":"ENS",
+        "description": "Modern Datacenter and Cloud (MDCC) begins with IT infrastructure and a fundamental shift from building infrastructure to buying everything possibleand building only unique value to your business. Converged Infrastructure reduces the time and the cost of deploying, configuring and managing hardware and software components separately and increases time to value for IT investments. Lately IT infrastructures want to buy simple, easy-to-deploy infrastructure platforms on which they can quickly build and run core business applications that differentiate their businesses, while also providing a platform for deploying next-generation applications. MDCC automate the delivery of IT services to lines of business and application owners. IT must deliver, at every level, a self-service experience that is built upon a welldesigned, API-driven management and orchestration toolset—one that frees development teams and other innovators from IT roadblocks.",
+        "img":"C:/Users/Lila/spm_client/src/Image/MDCC.png"
+    },
+    {
         "name":"Modern Data Center and Cloud Services",
         "abbrevation":"MDCC",
         "description": "Modern Datacenter and Cloud (MDCC) begins with IT infrastructure and a fundamental shift from building infrastructure to buying everything possibleand building only unique value to your business. Converged Infrastructure reduces the time and the cost of deploying, configuring and managing hardware and software components separately and increases time to value for IT investments. Lately IT infrastructures want to buy simple, easy-to-deploy infrastructure platforms on which they can quickly build and run core business applications that differentiate their businesses, while also providing a platform for deploying next-generation applications. MDCC automate the delivery of IT services to lines of business and application owners. IT must deliver, at every level, a self-service experience that is built upon a welldesigned, API-driven management and orchestration toolset—one that frees development teams and other innovators from IT roadblocks.",
         "img":"C:/Users/Lila/spm_client/src/Image/MDCC.png"
     },
     {
+        "name":"Business Automation and Intelleigence",
+        "abbrevation":"BAI",
+        "description": "Modern Datacenter and Cloud (MDCC) begins with IT infrastructure and a fundamental shift from building infrastructure to buying everything possibleand building only unique value to your business. Converged Infrastructure reduces the time and the cost of deploying, configuring and managing hardware and software components separately and increases time to value for IT investments. Lately IT infrastructures want to buy simple, easy-to-deploy infrastructure platforms on which they can quickly build and run core business applications that differentiate their businesses, while also providing a platform for deploying next-generation applications. MDCC automate the delivery of IT services to lines of business and application owners. IT must deliver, at every level, a self-service experience that is built upon a welldesigned, API-driven management and orchestration toolset—one that frees development teams and other innovators from IT roadblocks.",
+        "img":"C:/Users/Lila/spm_client/src/Image/MDCC.png"
+    },
+    {
+        "name":"Smart Infrastructure",
+        "abbrevation":"SI",
+        "description": "Modern Datacenter and Cloud (MDCC) begins with IT infrastructure and a fundamental shift from building infrastructure to buying everything possibleand building only unique value to your business. Converged Infrastructure reduces the time and the cost of deploying, configuring and managing hardware and software components separately and increases time to value for IT investments. Lately IT infrastructures want to buy simple, easy-to-deploy infrastructure platforms on which they can quickly build and run core business applications that differentiate their businesses, while also providing a platform for deploying next-generation applications. MDCC automate the delivery of IT services to lines of business and application owners. IT must deliver, at every level, a self-service experience that is built upon a welldesigned, API-driven management and orchestration toolset—one that frees development teams and other innovators from IT roadblocks.",
+        "img":"C:/Users/Lila/spm_client/src/Image/MDCC.png"
+    },
+    {
+        "name":"Data Center Facility and Power",
+        "abbrevation":"DCF",
+        "description": "Modern Datacenter and Cloud (MDCC) begins with IT infrastructure and a fundamental shift from building infrastructure to buying everything possibleand building only unique value to your business. Converged Infrastructure reduces the time and the cost of deploying, configuring and managing hardware and software components separately and increases time to value for IT investments. Lately IT infrastructures want to buy simple, easy-to-deploy infrastructure platforms on which they can quickly build and run core business applications that differentiate their businesses, while also providing a platform for deploying next-generation applications. MDCC automate the delivery of IT services to lines of business and application owners. IT must deliver, at every level, a self-service experience that is built upon a welldesigned, API-driven management and orchestration toolset—one that frees development teams and other innovators from IT roadblocks.",
+        "img":"C:/Users/Lila/spm_client/src/Image/MDCC.png"
+    },
+    
+    {
         "name": "Software as a Service",
         "abbrevation":"SaaS",
         "description": "Modern Datacenter and Cloud (MDCC) begins with IT infrastructure and a fundamental shift from building infrastructure to buying everything possibleand building only unique value to your business. Converged Infrastructure reduces the time and the cost of deploying, configuring and managing hardware and software components separately and increases time to value for IT investments. Lately IT infrastructures want to buy simple, easy-to-deploy infrastructure platforms on which they can quickly build and run core business applications that differentiate their businesses, while also providing a platform for deploying next-generation applications. MDCC automate the delivery of IT services to lines of business and application owners. IT must deliver, at every level, a self-service experience that is built upon a welldesigned, API-driven management and orchestration toolset—one that frees development teams and other innovators from IT roadblocks.",
         "img":"C:/Users/Lila/spm_client/src/Image/MDCC.png"
-    },
-    {
-        "name":"Enterprise Network",
-        "abbrevation":"EN",
-        "description": "Modern Datacenter and Cloud (MDCC) begins with IT infrastructure and a fundamental shift from building infrastructure to buying everything possibleand building only unique value to your business. Converged Infrastructure reduces the time and the cost of deploying, configuring and managing hardware and software components separately and increases time to value for IT investments. Lately IT infrastructures want to buy simple, easy-to-deploy infrastructure platforms on which they can quickly build and run core business applications that differentiate their businesses, while also providing a platform for deploying next-generation applications. MDCC automate the delivery of IT services to lines of business and application owners. IT must deliver, at every level, a self-service experience that is built upon a welldesigned, API-driven management and orchestration toolset—one that frees development teams and other innovators from IT roadblocks.",
-        "img":"C:/Users/Lila/spm_client/src/Image/MDCC.png"
-    },
-    {
-        "name": "Human Resource",
-        "abbrevation":"HR",
-        "description": "Modern Datacenter and Cloud (MDCC) begins with IT infrastructure and a fundamental shift from building infrastructure to buying everything possibleand building only unique value to your business. Converged Infrastructure reduces the time and the cost of deploying, configuring and managing hardware and software components separately and increases time to value for IT investments. Lately IT infrastructures want to buy simple, easy-to-deploy infrastructure platforms on which they can quickly build and run core business applications that differentiate their businesses, while also providing a platform for deploying next-generation applications. MDCC automate the delivery of IT services to lines of business and application owners. IT must deliver, at every level, a self-service experience that is built upon a welldesigned, API-driven management and orchestration toolset—one that frees development teams and other innovators from IT roadblocks.",
-        "img":"C:/Users/Lila/spm_client/src/Image/MDCC.png"
     }
+   
     
     
 ]

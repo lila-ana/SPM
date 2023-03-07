@@ -38,21 +38,21 @@ export default function DepartmentPop(props) {
                         alt="Company Logo"
                       />
                     </div>
-                    <div className="text-[15px] m-[13px] text-gray-500 border-[#1b9c85] border-[1px] text-semibold flex items-center justify-center w-[250px] rounded-[5px] h-[30px]">
+                    <div className="text-[15px] m-[13px] text-gray-500 border-[#1b9c85] border-[1px] text-semibold flex items-center justify-center w-[250px] rounded-[5px] h-[100px]">
                       {props?.data?.name}
                     </div>
-                    <div className="text-[15px] m-[13px] text-gray-500 border-[#1b9c85] border-[1px] text-semibold flex items-center justify-center w-[250px] rounded-[5px] h-[30px]">
+                    <div className="text-[15px] m-[13px] text-gray-500 border-[#1b9c85] border-[1px] text-semibold flex items-center justify-center w-[250px] rounded-[5px] h-[250px]">
                       {props?.data?.description}
                     </div>
-                    <div className="text-[15px] m-[13px] text-gray-500 border-[#1b9c85] border-[1px] text-semibold flex items-center justify-center w-[250px] rounded-[5px] h-[30px]">
+                    {/* <div className="text-[15px] m-[13px] text-gray-500 border-[#1b9c85] border-[1px] text-semibold flex items-center justify-center w-[250px] rounded-[5px] h-[30px]">
                       {props?.data?.contact_no}
                     </div>
                     <div className="text-[15px] m-[13px] text-gray-500 border-[#1b9c85] border-[1px] text-semibold flex items-center justify-center w-[250px] rounded-[5px] h-[30px]">
                       {props?.data?.website}
                     </div>
                     <div className="text-[15px] m-[13px] text-gray-500 border-[#1b9c85] border-[1px] text-semibold flex items-center justify-center w-[250px] rounded-[5px] h-[30px]">
-                      {props?.data?.email}
-                    </div>
+                      {props?.data?.email} */}
+                    {/* </div> */}
                   </div>
                 </div>
               </div>

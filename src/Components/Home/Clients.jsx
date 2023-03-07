@@ -48,7 +48,7 @@ export default function Clients() {
             {datas?.map((items) => (
               <div
                 key={items.id}
-                className="stroke-[#1b9c85] w-[300px] rounded-sm hover:shadow-[#1b9c8585] inline-block ease-in-out duration-300 shadow-xl  p-[15px] text-[#4E4E4F] font-semibold font-nunito text-[20px] border-[#1b9c85] border-[0.5px]  "
+                className="stroke-[#1b9c85] grid items-center justify-center w-[200px] h-[200px] rounded-sm hover:shadow-[#1b9c8585]  ease-in-out duration-300 shadow-xl  p-[15px] text-[#4E4E4F] font-semibold font-nunito text-[20px] border-[#1b9c85] border-[0.5px]  "
               >
                 <p className="pb-[10px]">
                   <img

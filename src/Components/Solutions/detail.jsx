@@ -1,12 +1,15 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import cbeLogo from "../../Image/cbe-logo.png";
 import { IoIosArrowForward } from "react-icons/io";
 import { NavLink, useParams } from "react-router-dom";
-import { API_BASE_URL } from "../../api/endPoint";
+import { API_BASE_URL, IMG_API } from "../../api/endPoint";
 import get from "../../features/get";
 
 export default function Detail(props) {
   const [isHovering, setIsHovering] = useState(false);
+  const [data, setData] = useState();
+  const [datas, setDatas] = useState();
 
   const handleMouseOver = () => {
     setIsHovering(true);
@@ -17,7 +20,16 @@ export default function Detail(props) {
   };
   const params = useParams();
 
-  const [data, setData] = useState();
+  const getUser = ()=> {
+    axios
+    .get(`${API_BASE_URL}client`)
+    .then((res) => setDatas(res.data?.data))
+    .catch((err) => console.log(err));
+  }
+  useEffect(() => {
+    getUser()
+  },[]);
+
   useEffect(() => {
     axios
       .get(`${API_BASE_URL}solution/${params?.id}`)
@@ -33,17 +45,18 @@ export default function Detail(props) {
           Projects
         </h1>
       </div>
-
       <div className="grid grid-cols-12 gap-3">
         <div class="col-span-4">
-          <div class="relative block w-full border-[#1b9c85] mb-[30px] rounded-sm bg-gradient-to-t from-[#1b9c85] to-[#fffff] hover:from-[#1b9c85] hover:to-[#fcfcfc] group">
-            <img
-              class="absolute inset-0 object-cover 
-                                w-full h-full group-hover:opacity-50"
-              src="https://img.freepik.com/free-vector/branding-identity-corporate-vector-logo-design_460848-8717.jpg?w=2000"
-            />
+          <div class="items-center justify-center flex relative w-[200px] h-[200px] border-[#99dbcf] border-[1px] mb-[30px] rounded-sm bg-gradient-to-t from-[#1b9c85] to-[#fffff] hover:from-[#1b9c85] hover:to-[#fcfcfc] group">
+            <div className="flex items-center justify-center">
+              <img
+                class="absolute inset-0 object-cover w-[150px] h-[150px] group-hover:opacity-50 flex items-center justify-center"
+                src= {cbeLogo}
+                // {`${IMG_API}/${items?.logo}`}
+              />
+            </div>
             <div class="relative p-5">
-              <div class="mt-40">
+              <div class="mt-10">
                 <div
                   class="transition-all transform 
                                 translate-y-8 opacity-0 
@@ -52,11 +65,13 @@ export default function Detail(props) {
                 >
 
                   <div class="p-2">
-                  {get?.getproject()?.map((items) => (
+                  {/* {datas?.map((items) => ( */}
                   <div>
                     <p class="text-lg text-white">
-                      {items.name}
+                      {/* {items.name} */}
                       </p>  
+                      <p className="flex items-center justify-center font-semibold text-[18px] text-white m-[10px] "
+                        > Commerical Bank of Ethiopia</p>
                     <a
                       href={`/projectDescription/${1}`}
                       class="px-4 py-2 text-sm  text-white bg-green-600"
@@ -64,7 +79,7 @@ export default function Detail(props) {
                       View More
                     </a>
                     </div>
-                        ))}
+                        {/* ))} */}
 
                   </div>
 
@@ -76,6 +91,7 @@ export default function Detail(props) {
 
         <div className="col-span-4"></div>
       </div>
+
     </div>
     // <div>
     //     <div>

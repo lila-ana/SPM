@@ -58,8 +58,8 @@ export default function Projects() {
                 <p className="font-normal text-[16px]">
                   {/* Ethiopian Road Authority/ <br></br>
                   Ministry of Transport & Logistics. <br></br> <br></br> */}
-                  Implementation of the Exchange Mailing Service for Ministry of Transport. 
- 
+                  Implementation of the Exchange Mailing Service. 
+                  Supply, Installation configuration and end point security protection
                 </p>
                 <NavLink 
                   // to={`/projectDescription/${items.id}`}
@@ -73,15 +73,16 @@ export default function Projects() {
                     Bahirdar University 
                   </p>
                   <p className="font-normal text-[16px]">
-                    In publishing and graphic design, Lorem ipsum is a 
-                    placeholder text commonly used to demonstrate the 
-                    visual form of a document or a typeface without 
-                    relying on meaningful content. 
+                     Procurement of LAN infrastructure materials supply and  
+                     implementation training <br></br>
+                     Outdoor wireless access point supply installation, 
+                     coniguration, and training of stuffs for Bahirdar 
+                     University.
                   </p>
                   <NavLink 
                   // to={`/projectDescription/${items.id}`}
                   className="p-[8px] m-[15px] text-[15px] font-light border-[#1b9c85] font-nunito border-[1px] rounded-3xl flex justify-center bg-[#1b9c85] text-[#FCFCFC]"
-                >
+                > 
                   <div>View More</div>
                 </NavLink>
                 </div>
@@ -101,13 +102,11 @@ export default function Projects() {
                 </div>
                 <div className="stroke-[#1b9c85] w-[300px] h-[290px] rounded-sm hover:shadow-[#1b9c8585] inline-block ease-in-out duration-300 shadow-xl  p-[15px] text-[#4E4E4F] font-semibold font-nunito text-[20px] border-[#1b9c85] border-[1px]  ">
                   <p className="pb-[10px]">
-                    ERA
+                    AAiT/ Addis Ababa Institute of Technology
                   </p>
                   <p className="font-normal text-[16px]">
-                    In publishing and graphic design, Lorem ipsum is a 
-                    placeholder text commonly used to demonstrate the 
-                    visual form of a document or a typeface without 
-                    relying on meaningful content. 
+                      Procurement of LAN infrastructure materials supply, 
+                     implementation training and commissioning project for Addis Ababa University Institute of Technology.
                   </p>
                   <NavLink 
                   // to={`/projectDescription/${items.id}`}

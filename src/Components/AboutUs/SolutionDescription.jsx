@@ -3,7 +3,7 @@ import logo from '../../Image/MDCC.png'
 import ScrollButton from './ScrollButton'
 import description from '../../utils/SolutionDescription.json'
 import axios from 'axios'
-import { API_BASE_URL } from '../../api/endPoint'
+import { API_BASE_URL, IMG_API } from '../../api/endPoint'
 
 
 export default function SolutionDescription(props) {
@@ -34,7 +34,7 @@ return (
                 <img
                   className='w-[200px] h-[200px] '
                   alt={items?.name}
-                  src= {items?.logo}
+                  src={`${IMG_API}/${items?.logo}`}
                 //   {items?.img}
                 />
               </div>

@@ -4,7 +4,8 @@ import { API_BASE_URL } from '../api/endPoint';
 import { useNavigate } from 'react-router-dom';
 
 export default function Registration(props) {
-    // const BearerToken = localStorage.getItem("accessToken");
+   
+    const BearerToken = localStorage.getItem("accessToken");
     
     const navigate = useNavigate ();
 
@@ -45,7 +46,7 @@ export default function Registration(props) {
               headers: {
                 // "Content-Type": "application/json",
                 accept: "application/json",
-                // authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXNmdUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4IiwiaXNBZG1pbiI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbCwiY3JlYXRlZF9ieSI6bnVsbCwidXBkYXRlZF9ieSI6bnVsbCwiZGVwYXJ0bWVudCI6IlNvZnR3YXJlIGFzIGEgc2VydmljIiwiZmlyc3ROYW1lIjoiVGVzZmFodW4iLCJnZW5kZXIiOiJNYWxlIiwiaXNfZGVsZXRlZCI6ZmFsc2UsImxhc3ROYW1lIjoiQmlyZWdhIiwidGVsIjoiMDkxMjM0MjM0NSIsImlhdCI6MTY3NjUzODYzOCwiZXhwIjoxNjc2NjI1MDM4fQ.LIRZexDRXcJX4L_rygdv3BlF_P4s76-nSzg30BK8X7Q"
+                authorization: "Bearer " + BearerToken
             },
             })
             .then((response) => {

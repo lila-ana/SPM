@@ -36,7 +36,7 @@ function HandleClose() {
                       <img
                         className="flex items-center justify-center w-[100px] h-[100px] p-[10px] m-[10px] "
                         src= {`${IMG_API}/${props?.data?.logo}`}
-                        alt="Company Logo"
+                        alt="Solution Logo"
                       />
                     </div>
                     <div className="text-[15px] m-[13px] text-gray-500 border-[#1b9c85] border-[1px] font-light flex items-center justify-center w-[250px] rounded-[5px] h-[30px]">
@@ -45,10 +45,10 @@ function HandleClose() {
                     <div className="text-[15px] m-[13px] text-gray-500 border-[#1b9c85] border-[1px] font-light flex items-center justify-center w-[250px] rounded-[5px] h-[30px]">
                       {props?.data?.description}
                     </div>
-                    {/* <div className="text-[15px] m-[13px] text-gray-500 border-[#1b9c85] border-[1px] font-light flex items-center justify-center w-[250px] rounded-[5px] h-[30px]">
-                      {props?.data?.contact_no}
-                    </div>
                     <div className="text-[15px] m-[13px] text-gray-500 border-[#1b9c85] border-[1px] font-light flex items-center justify-center w-[250px] rounded-[5px] h-[30px]">
+                      {props?.data?.department}
+                    </div>
+                    {/* <div className="text-[15px] m-[13px] text-gray-500 border-[#1b9c85] border-[1px] font-light flex items-center justify-center w-[250px] rounded-[5px] h-[30px]">
                       {props?.data?.website}
                     </div>
                     <div className="text-[15px] m-[13px] text-gray-500 border-[#1b9c85] border-[1px] font-light flex items-center justify-center w-[250px] rounded-[5px] h-[30px]">
