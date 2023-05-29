@@ -91,7 +91,7 @@ console.log(datas,"datatta")
   
       <div className="flex items-center gap-[40px]">
       <div className="grid grid-cols-12 gap-[30px] mx-[0px] my-[50px] justify-center items-center">
-          <div  class="col-span-6 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+          <div  class=" grid items-center justify-center col-span-6  max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
               {/* {datas?.map((items) => ( */}
                 {/* // items?.clients?.map((item) => ( */}
                 <>
@@ -103,7 +103,7 @@ console.log(datas,"datatta")
               <div class="grid items-center justify-center font-normal text-[18px] text-gray-700 dark:text-gray-400">Client</div>
 
           </div>
-          <div  class="col-span-6 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+          <div  class="grid items-center justify-center col-span-6  max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
           {/* {get?.get()?.map((items) => ( */}
             {/* <> */}
             <div class="gird items-center justify-center mb-2 text-2xl font-bold tracking-tight text-[#1b9c85] dark:text-white">Prime Contractor{" "}</div>
@@ -114,7 +114,7 @@ console.log(datas,"datatta")
             <div class="gird items-center justify-center mb-2 text-2xl font-bold tracking-tight text-[#1b9c85] dark:text-white">Addis Ababa, Ethiopia</div>
             <div class="grid items-center justify-center font-normal text-[18px] text-gray-700 dark:text-gray-400">Address{" "}</div>
           </div>
-          <div  class="col-span-6 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+          <div  class="grid items-center justify-center col-span-6  max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
             {/* {get.getvendor()?.map ((items) => ( */}
             <div class="gird items-center justify-center mb-2 text-2xl font-bold tracking-tight text-[#1b9c85] dark:text-white">VMWare{" "}</div>
             {/* ))} */}
