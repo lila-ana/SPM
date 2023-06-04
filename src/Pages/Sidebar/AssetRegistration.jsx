@@ -37,7 +37,7 @@ export default function AssetRegistration() {
       productUniqueNumber,
       productImage,
       productName,
-      product_Id:productId ?Number(productId) : "",
+      // product_Id:productId ?Number(productId) : "",
     };
     const HandleSubmit = (e) => {
       e.preventDefault();
@@ -192,17 +192,14 @@ export default function AssetRegistration() {
                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                      Product Category 
                   </label>
-                    <select
-                    placeholder= 'Product Category'
-                    onChange={(event)=>setProductId(event.target.value)} 
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                      <option value="" disabled>
-                        Choose category
-                      </option>
-                  {/* {clients?.map((items) => (
-                        <option value={items?.id}>{items?.name}</option>
-                  ))} */}
-                  </select>
+                  <input 
+                      type="text" 
+                      id="category" 
+                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                      placeholder="Category" 
+                      onChange={(e)=>setCategory(e.target.value)}
+                      required
+                    />
                 </div>
                 
               </div>

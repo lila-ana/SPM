@@ -1,6 +1,8 @@
 import { Menu } from '@headlessui/react';
 import React, { useState } from 'react'
 import { FaUserCircle } from 'react-icons/fa';
+import { API_BASE_URL } from '../../api/endPoint';
+import axios from 'axios';
 
 export default function Model_19() {
     
@@ -8,16 +10,20 @@ export default function Model_19() {
 
     const [users, setUsers] = useState();
     const [id, setId] = useState();
-    const [qty, setQty] = useState();
-    const [itemTypeDetail, setItemTypeDetail] = useState();
+    const [quantity, setQuantity] = useState();
+    const [type, setType] = useState();
     const [model, setModel] = useState();
+    const [fullName, setFullName] = useState();
+    const [department, setDepartment] = useState();
 
     let asset = {
         users,
         id,
-        qty,
-        itemTypeDetail,
-        model
+        quantity,
+        type,
+        model,
+        fullName,
+        department,
       };
       const HandleSubmit = (e) => {
         e.preventDefault();
@@ -45,6 +51,9 @@ export default function Model_19() {
   
     return (
     <div>
+      <form
+        onSubmit={HandleSubmit}
+      >
       <div className='flex items-center justify-between bg-[#D99C00]'>
         <div className='block m-[20px] p-[5px] text-[20px] font-semibold text-gray-900 dark:text-white bg-[#'>
           <p className=' p-[10px] rounded-[15px]'>Model-20</p>
@@ -96,11 +105,11 @@ export default function Model_19() {
           {/* <div className="relative z-0 mb-6 group "> */}
                 <input 
                     type="text" 
-                    name="firstName" 
-                    id="firstName" 
+                    name="fullName" 
+                    id="fullName" 
                     className="block w-[400px] text-sm text-gray-900 bg-transparent border-0 border-b-[1px] border-[#D99C00] appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
-                    placeholder=" Enter your name" 
-                    onChange={(e)=>setFirstName(e.target.value)}
+                    placeholder=" Enter your full name" 
+                    onChange={(e)=>setFullName(e.target.value)}
                     required />
                 {/* <label htmlFor="name" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Enter your name</label> */}
             {/* </div> */}
@@ -110,11 +119,11 @@ export default function Model_19() {
         {/* <div className='mb-[20px] px-[35px]'> */}
             <input 
                     type="text" 
-                    name="service" 
-                    id="service" 
+                    name="department" 
+                    id="department" 
                     className="block py-2.5 px-0 w-[400px] text-sm text-gray-900 bg-transparent border-0 border-b-[1px] border-[#D99C00] appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
                     placeholder=" Enter department or Service" 
-                    onChange={(e)=>setService(e.target.value)}
+                    onChange={(e)=>setDepartment(e.target.value)}
                     required />
                 {/* <label htmlFor="name" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Service</label> */}
             </div>
@@ -139,6 +148,9 @@ export default function Model_19() {
                         <th scope="col" class="px-6 py-3">
                             Remark
                         </th>
+                        <th scope="col" class="px-6 py-3 w-[120px] font-bold">
+                            Add
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -155,21 +167,21 @@ export default function Model_19() {
                         </td>
                         <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             <input 
-                                type="text" 
-                                id="product_name" 
+                                type="number" 
+                                id="qty" 
                                 class="bg-gray-50 border border-gray-300 text-[#d99000] text-[10px] front-regular  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
                                 placeholder="Qty" 
-                                onChange={(e)=>setProductName(e.target.value)}
+                                onChange={(e)=>setQuantity(e.target.value)}
                                 required
                             />
                         </td>
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             <textarea 
                                 type="text" 
-                                id="itemTypeDetail" 
+                                id="type" 
                                 class="bg-gray-50 border border-gray-300 text-[#d99000] text-[10px] front-regular rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
                                 placeholder="Item type in detail" 
-                                onChange={(e)=>setItemTypeDetail(e.target.value)}
+                                onChange={(e)=>setType(e.target.value)}
                                 required
                             />
                         </th>
@@ -186,12 +198,19 @@ export default function Model_19() {
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             <input 
                                 type="text" 
-                                id="product_name" 
+                                id="remark" 
                                 class="bg-gray-50 border text-[#d99000] text-[10px] front-regular  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
                                 placeholder="" 
-                                onChange={(e)=>setProductName(e.target.value)}
-                                required
+                                onChange={(e)=>setRemark(e.target.value)}
+                                // required
                             />
+                        </th>
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <button 
+                            type="submit" 
+                            class="mt-[10px] p-[5px] text-white bg-[#000000] hover:bg-[#AD8317] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                Add
+                        </button>
                         </th>
                     </tr>
                    
@@ -199,19 +218,20 @@ export default function Model_19() {
             </table>
         </div>
         </div>   
-        <div className= 'm-[20px]'>
+        {/* <div className= 'm-[20px]'>
             <button 
                 type="submit" 
                 class="mt-[10px] p-[5px] text-white bg-[#000000] hover:bg-[#AD8317] focus:ring-4 focus:outline-none focus:ring-[#d99000] font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-bg-[#d99000] dark:hover:bg-[#d99000] dark:focus:ring-[#d99000]">
                     Add Item
             </button>
-        </div>
+        </div> */}
         <div className='grid grid-cols-8 gap-[12px]'>
           <div className='col-span-2 flex justify-center items-center'>
 
           </div>
         </div>
       </div>
+      </form>
     </div>
   )
 }

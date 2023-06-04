@@ -18,8 +18,50 @@ export default function Registration(props) {
     const [IdNo, setIdNo]=useState("")
     const [password, setPassword]=useState("")
     const [confirmPassword, setConfirmPassword]=useState("")
+    const [passwordMatch, setPasswordMatch] = useState(true);
 
-    
+
+// const PasswordForm = () => {
+//   const [password, setPassword] = useState('');
+//   const [confirmPassword, setConfirmPassword] = useState('');
+//   const [passwordMatch, setPasswordMatch] = useState(true);
+
+//   const handlePasswordChange = (event) => {
+//     setPassword(event.target.value);
+//   };
+
+//   const handleConfirmPasswordChange = (event) => {
+//     setConfirmPassword(event.target.value);
+//   };
+
+//   const handleSubmit = (event) => {
+//     event.preventDefault();
+
+//     if (password === confirmPassword) {
+//       // Passwords match
+//       setPasswordMatch(true);
+//       // Perform further actions, such as submitting the form or updating state
+//     } else {
+//       // Passwords don't match
+//       setPasswordMatch(false);
+//     }
+//   };
+
+//   return (
+//     <form onSubmit={handleSubmit}>
+//       <div>
+//         <label>Password:</label>
+//         <input type="password" value={password} onChange={handlePasswordChange} />
+//       </div>
+//       <div>
+//         <label>Confirm Password:</label>
+//         <input type="password" value={confirmPassword} onChange={handleConfirmPasswordChange} />
+//       </div>
+//       {passwordMatch ? null : <p>Passwords do not match.</p>}
+//       <button type="submit">Submit</button>
+//     </form>
+  
+
     const form = new FormData();
     form.append("fullName", fullName);
     form.append("email", email);

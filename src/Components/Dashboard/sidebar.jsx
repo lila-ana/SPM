@@ -2,16 +2,16 @@ import React, { useState } from 'react';
 import image from "../../Assests/ambo-5fe0cb63411f830df0d3e80b91d3f1b9ffa9ce11970b1efbec2a09f2f404f1d2.png"
 import "./sidebar.css";
 import {
-    FaTh,
     FaBars,
-    FaUserAlt,
-    FaRegChartBar,
     FaCommentAlt,
     FaShoppingBag,
-    FaThList
+    FaThList,
+    FaFileInvoiceDollar
 }from "react-icons/fa";
 import { NavLink } from 'react-router-dom';
 import HorizontalBar from '../HorizontalBar/horizontalBar';
+import { MdOutlineInventory } from 'react-icons/md';
+import { AiFillFileAdd, AiOutlineSetting } from 'react-icons/ai';
 
 <HorizontalBar/>
 const Sidebar = ({children}) => {
@@ -22,17 +22,17 @@ const Sidebar = ({children}) => {
         {
             path:"/AssetRegistration",
             name:"Asset Registartion",
-            icon:<FaTh/>
+            icon:<AiFillFileAdd/>
         },
         {
             path:"/Inventory",
             name:"Inventory",
-            icon:<FaUserAlt/>
+            icon:<MdOutlineInventory/>
         },
         {
             path:"/Model_19",
             name:"Model-19",
-            icon:<FaRegChartBar/>
+            icon:<FaFileInvoiceDollar/>
         },
         {
             path:"/Model_20",
@@ -52,7 +52,7 @@ const Sidebar = ({children}) => {
         {
             path:"/Setting",
             name:"Setting",
-            icon:<FaThList/>
+            icon:<AiOutlineSetting/>
         }
     ]
     return (
