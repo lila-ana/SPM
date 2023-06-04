@@ -1,49 +1,54 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Aboutus from "./pages/aboutus";
-import Home from "./pages/home";
-import Login from "./pages/Login";
-import Solutions from "./pages/solutions";
-import Fill from "./pages/fill";
-import Admin from "./pages/admin";
-import ProjectDescription from "./pages/ProjectDescription";
-import Modal from "./pages/Modal";
+// import Aboutus from "./pages/aboutus";
+import Home from "./Pages/Home/Home";
+import Sidebar from "./Components/Dashboard/sidebar";
+import AssetRegistration from "./Pages/Sidebar/AssetRegistration";
+import Inventory from "./Pages/Sidebar/Inventory";
+import Model_19 from "./Pages/Sidebar/Model_19";
+import Model_20 from "./Pages/Sidebar/Model_20";
+import Model_22 from "./Pages/Sidebar/Model_22";
+import Report from "./Pages/Sidebar/Report";
+import Setting from "./Pages/Sidebar/Setting";
+import Login from "./Pages/Login/login";
 import RequireAuth from "./Auth/RequireAuth";
-import RequireGuest from "./Auth/RequireGuset";
-import Card from "./Components/Common/card";
-import Registration from "./pages/registration";
-import SolutionsDashboard from "./pages/SolutionsDashboard";
-import Multiselect from "./pages/multiSelect";
-import MultiSelectDropdownWithAxios from "./pages/MultiSelectDropdownWithAxios";
+import Registration from "./Pages/Signup/registration";
 
 const App = () => {
   return (
+    <>
+    
     <BrowserRouter>
-      <Routes>
-        <Route>
-          <Route element={<RequireAuth />}>
-            <Route path="/fill" element={<Fill />} />
-            <Route path="/admin" element={<Admin />} />
-            <Route path="/registration" element={<Registration/>} />
-            <Route path="/modal" element={<Modal />} />
-          </Route>
-          <Route element={<RequireGuest />}>
-            <Route path="/login" element={<Login />} />
-          </Route>
-        </Route>
-        <Route path="/" element={<Home />} />
-        <Route path="/aboutus" element={<Aboutus />} />
-        <Route path="/solutions/:id" element={<Solutions />} />
-        <Route
-          path="/projectDescription/:id"
-          element={<ProjectDescription />}
-        />
-        <Route path="/solutionsDashboard" element ={<SolutionsDashboard/>}/>
-        <Route path="/MultiSelectDropdownWithAxios" element ={<MultiSelectDropdownWithAxios/>}/>
-        <Route path="/Multiselect" element ={<Multiselect/>}/>
+     <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/registration" element={<Registration/>}/>
         
       </Routes>
     </BrowserRouter>
+    
+   <BrowserRouter>
+   <Sidebar >
+      <Routes>
+        <Route >
+          {/* <Route element={<RequireAuth />}> */}
+            <Route path="/" element={<AssetRegistration/>}/>
+            <Route path="/AssetRegistration" element={<AssetRegistration/>}/>
+            <Route path="/Inventory" element={<Inventory/>}/>
+            <Route path="/model_19" element={<Model_19/>}/>
+            <Route path="/model_20" element={<Model_20/>}/>
+            <Route path="/model_22" element={<Model_22/>}/>
+            <Route path="/report" element={<Report/>}/>
+            <Route path="/setting" element={<Setting/>}/>
+          {/* </Route> */}
+            {/* <Route >
+              <Route path="/login" element={<Login/>}/>
+            </Route> */}
+        </Route>
+      </Routes>
+      </Sidebar>
+    </BrowserRouter>
+    </>
   );
 };
 

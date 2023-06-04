@@ -1,7 +1,6 @@
 import React from "react";
-import Footer from "../Components/AboutUs/Footer";
-import Navbar from "../Components/AboutUs/Navbar";
-// import ProjectDescription from '../pages/ProjectDescription'
+import Footer from "../Components/Footer/footer";
+import Navbar from "../Components/navbar/navbar";
 
 export default function index(props) {
   return (
