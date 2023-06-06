@@ -44,11 +44,11 @@ const Sidebar = ({children}) => {
             name:"Model-22",
             icon:<FaShoppingBag/>
         },
-        {
-            path:"/Report",
-            name:"Report",
-            icon:<FaThList/>
-        },
+        // {
+        //     path:"/Report",
+        //     name:"Report",
+        //     icon:<FaThList/>
+        // },
         {
             path:"/Setting",
             name:"Setting",

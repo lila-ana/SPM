@@ -1,12 +1,23 @@
 import { Menu } from '@headlessui/react'
-import React, { useState } from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import { FaUserCircle } from 'react-icons/fa'
+import { API_BASE_URL } from '../../api/endPoint';
 
 export default function Inventory() {
   
     const BearerToken = localStorage.getItem("accessToken");
 
-    const [users, setUsers] = useState();
+    const [asset, setAsset] = useState();
+    const getUser = ()=> {
+        axios
+        .get(`${API_BASE_URL}storage`)
+        .then((res) => setAsset(res.data?.data))
+        .catch((err) => console.log(err));
+      }
+      useEffect(() => {
+        getUser()
+      },[]);
 
     const logoutUser = () => {
 		localStorage.clear();
@@ -78,53 +89,38 @@ export default function Inventory() {
             </tr>
         </thead>
         <tbody>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+          {asset?.map((item) => (
+            <tr  key={item.id} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    {item.id} 
+                </td>
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Apple MacBook Pro 17"
-                    
-                </th>
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Apple MacBook Pro 17"
+                    {item.ProductName}
                 </th>
                 <td class="px-6 py-4">
-                    Silver
+                    {item.productUniqueNumber}
                 </td>
                 <td class="px-6 py-4">
-                    Laptop
+                    {item.Category}
                 </td>
                 <td class="px-6 py-4">
-                    $2999
+                    {item.itemPerPrice}
+                </td>
+                <td class="px-6 py-4">
+                <input 
+                      type="text" 
+                      id="newValue" 
+                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                      placeholder="New Value" 
+                      onChange={(e)=>setValue(e.target.value)}
+                      required
+                    />
                 </td>
             </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Microsoft Surface Pro
-                </th>
-                <td class="px-6 py-4">
-                    White
-                </td>
-                <td class="px-6 py-4">
-                    Laptop PC
-                </td>
-                <td class="px-6 py-4">
-                    $1999
-                </td>
-            </tr>
-            <tr class="bg-white dark:bg-gray-800">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Magic Mouse 2
-                </th>
-                <td class="px-6 py-4">
-                    Black
-                </td>
-                <td class="px-6 py-4">
-                    Accessories
-                </td>
-                <td class="px-6 py-4">
-                    $99
-                </td>
-            </tr>
+            ))}
+
         </tbody>
+        
     </table>
 </div>
 

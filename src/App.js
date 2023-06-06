@@ -23,30 +23,21 @@ const App = () => {
         <Route path="/" element={<Home/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/registration" element={<Registration/>}/>
-        
       </Routes>
-    </BrowserRouter>
-    
-   <BrowserRouter>
-   <Sidebar >
-      <Routes>
-        <Route >
-          {/* <Route element={<RequireAuth />}> */}
-            <Route path="/" element={<AssetRegistration/>}/>
-            <Route path="/AssetRegistration" element={<AssetRegistration/>}/>
-            <Route path="/Inventory" element={<Inventory/>}/>
-            <Route path="/model_19" element={<Model_19/>}/>
-            <Route path="/model_20" element={<Model_20/>}/>
-            <Route path="/model_22" element={<Model_22/>}/>
-            <Route path="/report" element={<Report/>}/>
-            <Route path="/setting" element={<Setting/>}/>
-          {/* </Route> */}
-            {/* <Route >
-              <Route path="/login" element={<Login/>}/>
-            </Route> */}
-        </Route>
-      </Routes>
-      </Sidebar>
+      <Sidebar >
+          <Routes>
+              <Route element={<RequireAuth />}>
+                <Route path="/" element={<AssetRegistration/>}/>
+                <Route path="/AssetRegistration" element={<AssetRegistration/>}/>
+                <Route path="/Inventory" element={<Inventory/>}/>
+                <Route path="/model_19" element={<Model_19/>}/>
+                <Route path="/model_20" element={<Model_20/>}/>
+                <Route path="/model_22" element={<Model_22/>}/>
+                <Route path="/report" element={<Report/>}/>
+                <Route path="/setting" element={<Setting/>}/>
+              </Route>
+          </Routes>
+          </Sidebar>
     </BrowserRouter>
     </>
   );

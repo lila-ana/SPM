@@ -17,7 +17,7 @@ export default function Header() {
                 <p className='text-[20px] font-bold '>Hachalu Hundessa Campus</p>
             </div>
         </div>
-        <div className='text-[30px] font-extrabold border-r-4 border-[#000000] px-[25px]'>
+        <div className='text-[30px] font-regular flex items-center justify-center border-r-4 border-[#000000] px-[25px]'>
             Web based Inventory Management System 
         </div>
 

@@ -37,12 +37,11 @@ export default function AssetRegistration() {
       productUniqueNumber,
       productImage,
       productName,
-      // product_Id:productId ?Number(productId) : "",
     };
     const HandleSubmit = (e) => {
       e.preventDefault();
       axios
-        .post(`${API_BASE_URL}assetRegistration/create`, asset, {
+        .post(`${API_BASE_URL}storage/create`, asset, {
           headers: {
             // accept: "multipart/form-data",
             accept: "application/json",
@@ -183,7 +182,7 @@ export default function AssetRegistration() {
                       onChange={(e) => {
                         handleChange(e);
                       }}
-                      required
+                      // required
                     />
                 </div>
                 <div>
@@ -198,7 +197,7 @@ export default function AssetRegistration() {
                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
                       placeholder="Category" 
                       onChange={(e)=>setCategory(e.target.value)}
-                      required
+                      // required
                     />
                 </div>
                 

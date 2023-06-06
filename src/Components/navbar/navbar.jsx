@@ -25,7 +25,7 @@ export default function Navbar(props) {
           <div className="items-center">
             <ul className="flex gap-[50px] text-[#000000] font-semibold mr-[25px] ">
               <li className=" hover:text-grey hover:font-extrabold text-[20px]">
-                <a href="/">Login </a>
+                <a href="/login">Login </a>
               </li>
             </ul>
           </div>
@@ -39,7 +39,7 @@ export default function Navbar(props) {
             {" "}
             Hachalu Hundessa Campus 
           </p>
-          <p className=" pt-[150px] text-center text-[24px] font-semibold drop-shadow text-[#000000]">
+          <p className=" pt-[150px] text-center text-[24px] font-extrabold drop-shadow text-[#000000]">
             Web based Inventory Management System 
           </p>
         </div>

@@ -8,34 +8,20 @@ export default function Model_19() {
     
     const BearerToken = localStorage.getItem("accessToken");
 
-    //CREATE
     const [datas, setDatas] = useState ();
-  const [users, setUsers] = useState();
-  const [Id, setId] = useState();
-  const [itemType, setItemType] = useState();
-  const [model, setModel] = useState();
-  const [serial, setSerial] = useState();
-  const [date, setDate] = useState();
-  const [quantity, setQuantity] = useState();
-  const [unitPrice, setUnitPrice] = useState();
-  const [totalPrice, setTotalPrice] = useState();
-  const [remark, setRemark] = useState();
-  const [fullName, setFullName] = useState();
-  const [recipientName, setRecipientName] = useState();
+    const [users, setUsers] = useState();
+    const [Id, setId] = useState();
+    const [itemType, setItemType] = useState();
+    const [model, setModel] = useState();
+    const [serial, setSerial] = useState();
+    const [date, setDate] = useState();
+    const [quantity, setQuantity] = useState();
+    const [unitPrice, setUnitPrice] = useState();
+    const [totalPrice, setTotalPrice] = useState();
+    const [remark, setRemark] = useState();
+    const [fullName, setFullName] = useState();
+    const [recipientName, setRecipientName] = useState();
    
-  //UPDATE
-  const [updateUsers, setUpdateUsers] = useState(datas?.updateUsers);
-  const [updateId, setUpdateId] = useState(datas?.updateId);
-  const [updateItemType, setUpdateItemType] = useState(datas?.updateItemType);
-  const [UpdateModel, setUpdateModel] = useState(datas?.UpdateModel);
-  const [updateSerial, setUpdateSerial] = useState(datas?.updateSerial);
-  const [updateDate, setUpdateDate] = useState(datas?.updateDate);
-  const [updateQuantity, setUpdateQuantity] = useState(datas?.updateQuantity);
-  const [updateUnitPrice, setUpdateUnitPrice] = useState(datas?.updateUnitPrice);
-  const [updateTotalPrice, setUpdateTotalPrice] = useState(datas?.updateTotalPrice);
-  const [updateRemark, setUpdateRemark] = useState(datas?.updateRemark);
-  const [updateFullName, setUpdateFullName] = useState(datas?.updateFullName);
-  const [updateRecipientName, setUpdateRecipientName] = useState(datas?.updateRecipientName);
 
   const form = new FormData();
   form.append("Id", Id);
@@ -51,8 +37,8 @@ export default function Model_19() {
   
   let model_19 = {
     Id,
-fullName,
-recipientName,
+    fullName,
+    recipientName,
     itemType,
     model,
     serial,
@@ -194,6 +180,7 @@ updateRecipientName,
                     className="block w-[400px] text-sm text-gray-900 bg-transparent border-0 border-b-[1px] border-[#D99C00] appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
                     placeholder=" " 
                     onChange={(e)=>setDate(e.target.value)}
+                    value={date}
                     required />
                    
           <p className='m-[5px] px-[5px] text-[13px] font-regular'> from </p>
@@ -339,107 +326,107 @@ updateRecipientName,
         
               </div>
 
-        {/* UPDATE */}
-            {/* <div className='m-[10px] p-[10px]'>
-            <div class="relative overflow-x-auto">
-                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                    <tbody>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                <input 
-                                    type="number" 
-                                    id="no" 
-                                    class="bg-gray-50 border border-gray-300 text-[#d99000] text-[10px] front-regular  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-                                    placeholder="No" 
-                                    onChange={(e)=>setId(e.target.value)}
-                                    required
-                                />
-                            </td>
-                            <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            <textarea 
-                                    type="text" 
-                                    id="itemType" 
-                                    class="bg-gray-50 border border-gray-300 text-[#d99000] text-[10px] front-regular rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-                                    placeholder="Item type in detail" 
-                                    onChange={(e)=>setItemType(e.target.value)}
-                                    required
-                                />
-                                
-                            </td>
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                <input 
-                                    type="model" 
-                                    id="model" 
-                                    class="bg-gray-50 border border-gray-300 text-[#d99000] text-[10px] front-regular  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-                                    placeholder="model" 
-                                    onChange={(e)=>setModel(e.target.value)}
-                                    required
-                                />
-                            </th>
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                <input 
-                                    type="text" 
-                                    id="serial" 
-                                    class="bg-gray-50 border border-gray-300 text-[#d99000] text-[10px] front-regular  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-                                    placeholder="serial" 
-                                    onChange={(e)=>setSerial(e.target.value)}
-                                    // required
-                                />
-                            </th>
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                <input 
-                                    type="number" 
-                                    id="qty" 
-                                    class="bg-gray-50 border border-gray-300 text-[#d99000] text-[10px] front-regular  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-                                    placeholder="Qty" 
-                                    onChange={(e)=>setQuantity(e.target.value)}
-                                    required
-                                />
-                            </th>
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                <input 
-                                    type="text" 
-                                    id="unitPrice" 
-                                    class="bg-gray-50 border text-[#d99000] text-[10px] front-regular  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-                                    placeholder=" Unit Price" 
-                                    onChange={(e)=>setUnitPrice(e.target.value)}
-                                    required
-                                />
-                            </th>
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                <input 
-                                    type="text" 
-                                    id="totalPrice" 
-                                    class="bg-gray-50 border text-[#d99000] text-[10px] front-regular  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-                                    placeholder=" Total Price" 
-                                    onChange={(e)=>setTotalPrice(e.target.value)}
-                                    required
-                                />
-                            </th>
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                <input 
-                                    type="text" 
-                                    id="remark" 
-                                    class="bg-gray-50 border text-[#d99000] text-[10px] front-regular  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-                                    placeholder=" " 
-                                    onChange={(e)=>setRemark(e.target.value)}
-                                    // required
-                                />
-                            </th>
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            <button 
-                                type="submit" 
-                                class="mt-[10px] p-[5px] text-white bg-[#000000] hover:bg-[#AD8317] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                    Add
-                            </button>
-                            </th>
-                        </tr>
-                    
-                    </tbody>
-                </table>
-            </div>
-            </div> */}
-       
+    {/* UPDATE */}
+        <div className='m-[10px] p-[10px]'>
+        <div class="relative overflow-x-auto">
+            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <tbody>
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <input 
+                                type="number" 
+                                id="no" 
+                                class="bg-gray-50 border border-gray-300 text-[#d99000] text-[10px] front-regular  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                                placeholder="No" 
+                                onChange={(e)=>setId(e.target.value)}
+                                required
+                            />
+                        </td>
+                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <textarea 
+                                type="text" 
+                                id="itemType" 
+                                class="bg-gray-50 border border-gray-300 text-[#d99000] text-[10px] front-regular rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                                placeholder="Item type in detail" 
+                                onChange={(e)=>setItemType(e.target.value)}
+                                required
+                            />
+                            
+                        </td>
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <input 
+                                type="model" 
+                                id="model" 
+                                class="bg-gray-50 border border-gray-300 text-[#d99000] text-[10px] front-regular  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                                placeholder="model" 
+                                onChange={(e)=>setModel(e.target.value)}
+                                required
+                            />
+                        </th>
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <input 
+                                type="text" 
+                                id="serial" 
+                                class="bg-gray-50 border border-gray-300 text-[#d99000] text-[10px] front-regular  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                                placeholder="serial" 
+                                onChange={(e)=>setSerial(e.target.value)}
+                                // required
+                            />
+                        </th>
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <input 
+                                type="number" 
+                                id="qty" 
+                                class="bg-gray-50 border border-gray-300 text-[#d99000] text-[10px] front-regular  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                                placeholder="Qty" 
+                                onChange={(e)=>setQuantity(e.target.value)}
+                                required
+                            />
+                        </th>
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <input 
+                                type="text" 
+                                id="unitPrice" 
+                                class="bg-gray-50 border text-[#d99000] text-[10px] front-regular  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                                placeholder=" Unit Price" 
+                                onChange={(e)=>setUnitPrice(e.target.value)}
+                                required
+                            />
+                        </th>
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <input 
+                                type="text" 
+                                id="totalPrice" 
+                                class="bg-gray-50 border text-[#d99000] text-[10px] front-regular  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                                placeholder=" Total Price" 
+                                onChange={(e)=>setTotalPrice(e.target.value)}
+                                required
+                            />
+                        </th>
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <input 
+                                type="text" 
+                                id="remark" 
+                                class="bg-gray-50 border text-[#d99000] text-[10px] front-regular  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                                placeholder=" " 
+                                onChange={(e)=>setRemark(e.target.value)}
+                                // required
+                            />
+                        </th>
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <button 
+                            type="submit" 
+                            class="mt-[10px] p-[5px] text-white bg-[#000000] hover:bg-[#AD8317] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                Add
+                        </button>
+                        </th>
+                    </tr>
+                
+                </tbody>
+            </table>
+        </div>
+        </div>
+    
       </div>
       </form>
     </div>
