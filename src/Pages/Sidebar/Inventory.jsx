@@ -9,20 +9,31 @@ export default function Inventory() {
     const BearerToken = localStorage.getItem("accessToken");
 
     const [asset, setAsset] = useState();
-    const getUser = ()=> {
+    
+    const getStorage = ()=> {
         axios
         .get(`${API_BASE_URL}storage`)
         .then((res) => setAsset(res.data?.data))
         .catch((err) => console.log(err));
       }
       useEffect(() => {
-        getUser()
+        getStorage()
       },[]);
+
+    const updateValue = ()=> {
+        axios
+        .post(`${API_BASE_URL}storage/`)
+        .then((res) => setAsset(res.data?.data))
+        .catch((err) => console.log(err));
+      }
+      useEffect(() => {
+        updateValue()
+      },[]);
+
 
     const logoutUser = () => {
 		localStorage.clear();
 		window.location.replace("/login")}
-  
   
     return (
     <div>
@@ -86,6 +97,9 @@ export default function Inventory() {
                 <th scope="col" class="px-6 py-3">
                     New Value
                 </th>
+                <th scope="col" class="px-6 py-3">
+                    Button
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -116,14 +130,22 @@ export default function Inventory() {
                       required
                     />
                 </td>
+                <td>
+                    <div>
+                        <button
+                            type="submit" 
+                            class="text-[#000000] bg-[#AD8317] w-[50px] hover:bg-[#fcfcfc] border-[#AD8317] border-[1px] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                        >
+                            Update 
+                        </button> 
+                    </div>
+                </td>
             </tr>
             ))}
-
-        </tbody>
-        
+        </tbody>      
     </table>
 </div>
-
+    
       </div>
     </div>
   )

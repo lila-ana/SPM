@@ -3,8 +3,11 @@ import React, { useState } from 'react'
 import Footer from '../../Components/Footer/footer';
 import { API_BASE_URL } from '../../api/endPoint';
 import Header from '../../header/header';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
+  
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -13,13 +16,17 @@ export default function Login() {
       email,
       password,
     };
+
+    
   const HandleSubmit = (e) => {
         e.preventDefault();
         axios
           .post(`${API_BASE_URL}user/login`, login)
           .then((response) => {
             localStorage.setItem("accessToken", response?.data?.accessToken);
-            window.location.replace("/AssetRegistration");
+            localStorage.setItem("data",response.data.data);
+            // window.location.replace("/AssetRegistration");
+            navigate("/AssetRegistration");
             console.log(response, "thi is response");
           })
           .catch((err) => {
@@ -32,6 +39,15 @@ export default function Login() {
     <div>
         <div className="relative flex flex-col justify-center items-center  min-h-screen overflow-hidden">
            <Header/>
+           {/* <div>
+      {userType ? (
+        <>
+          {userType === 'user' ? <UserDashboard /> : <AdminDashboard />}
+        </>
+      ) : (
+        <LoginPage setUserType={setUserType} />
+      )}
+    </div> */}
             <div className="border-[1px] border-[#d99000] w-full p-6 m-auto bg-white rounded-md shadow-xl shadow-[#d4b87e]  lg:max-w-xl">
             <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white justify-center items-center flex">
                   Sign in to your account

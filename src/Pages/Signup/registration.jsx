@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../../header/header';
 import Footer from '../../Components/Footer/footer';
 
-export default function Registration(props) {
+export default function Registration() {
    
     const BearerToken = localStorage.getItem("accessToken");
     
@@ -15,73 +15,60 @@ export default function Registration(props) {
     const [email, setEmail]= useState("")
     const [department, setDepartment]=useState("")
     const [administrativeRole, setAdministrativeRole]=useState("")
+    const [role, setRole]=useState("")
+    const [userType, setUserType] = useState('')
     const [IdNo, setIdNo]=useState("")
     const [password, setPassword]=useState("")
     const [confirmPassword, setConfirmPassword]=useState("")
-    const [passwordMatch, setPasswordMatch] = useState(true);
+    const [confirmPasswordTouched, setConfirmPasswordTouched] = useState(false);
 
-
-// const PasswordForm = () => {
-//   const [password, setPassword] = useState('');
-//   const [confirmPassword, setConfirmPassword] = useState('');
-//   const [passwordMatch, setPasswordMatch] = useState(true);
-
-//   const handlePasswordChange = (event) => {
-//     setPassword(event.target.value);
-//   };
-
-//   const handleConfirmPasswordChange = (event) => {
-//     setConfirmPassword(event.target.value);
-//   };
-
-//   const handleSubmit = (event) => {
-//     event.preventDefault();
-
-//     if (password === confirmPassword) {
-//       // Passwords match
-//       setPasswordMatch(true);
-//       // Perform further actions, such as submitting the form or updating state
-//     } else {
-//       // Passwords don't match
-//       setPasswordMatch(false);
-//     }
-//   };
-
-//   return (
-//     <form onSubmit={handleSubmit}>
-//       <div>
-//         <label>Password:</label>
-//         <input type="password" value={password} onChange={handlePasswordChange} />
-//       </div>
-//       <div>
-//         <label>Confirm Password:</label>
-//         <input type="password" value={confirmPassword} onChange={handleConfirmPasswordChange} />
-//       </div>
-//       {passwordMatch ? null : <p>Passwords do not match.</p>}
-//       <button type="submit">Submit</button>
-//     </form>
-  
-
-    const form = new FormData();
-    form.append("fullName", fullName);
-    form.append("email", email);
-    form.append("department", department);
-    form.append("administrativeRole", administrativeRole);
-    form.append("IdNo", IdNo);
-    form.append("password", password);
-    form.append("confirmPassword", confirmPassword);
+    const handlePasswordChange = (event) => {
+        setPassword(event.target.value);
+      };
     
-    let registration={
-        fullName:fullName,
-        email:email,
-        department:department,
-        administrativeRole:administrativeRole,
-        IdNo:IdNo,
-        password:password,
-        }
+      const handleConfirmPasswordChange = (event) => {
+        setConfirmPassword(event.target.value);
+      };
+    
+      const passwordsMatch = () => {
+        return password === confirmPassword;
+      };
 
-    const HandleSubmit=(e)=>{
-        e.preventDefault();
+      const handleConfirmPasswordBlur = () => {
+        setConfirmPasswordTouched(true);
+      };
+    
+    const InterfaceSelector = ({ userType }) => {
+        if (userType === 'user') {
+          return <UserInterface />;
+        } else if (userType === 'admin') {
+          return <AdminInterface />;
+        } else if (userType === 'purchaser') {
+          return <PurchaserInterface />;
+        } else if (userType === 'auditor') {
+          return <AuditorInterface />;
+        } else if (userType === 'director') {
+          return <DirectorInterface />;
+        } else {
+          return <div>Invalid User Type</div>;
+        }
+      };
+
+    const handleUserTypeChange = (e) => {
+        const selectedUserType = e.target.value;
+        setUserType(selectedUserType);
+           
+        let registration={
+            fullName:fullName,
+            email:email,
+            department:department,
+            administrativeRole:administrativeRole,
+            IdNo:IdNo,
+            role: role,
+            password:password,
+            userType: selectedUserType,
+            }
+
             axios
             .post(`${API_BASE_URL}user/create`, registration, {
               headers: {
@@ -91,24 +78,46 @@ export default function Registration(props) {
             },
             })
             .then((response) => {
-                window.location.replace("/login");                
+                // window.location.replace("/login");    
+                navigate("/login");            
                 console.log(response, "Change location to login");
             })
             .catch(function (error) {
               console.log(error, "errorrrrrrrrrrrrrrr");
             });
-      }
+                
+            console.log(registration, "input data")
+    };
+
+    // const HandleSubmit=(e)=>{
+    //     e.preventDefault();
+    //         axios
+    //         .post(`${API_BASE_URL}user/create`, registration, {
+    //           headers: {
+    //             // "Content-Type": "application/json",
+    //             accept: "application/json",
+    //             authorization: "Bearer " + BearerToken
+    //         },
+    //         })
+    //         .then((response) => {
+    //             // window.location.replace("/login");    
+    //             navigate("/login");            
+    //             console.log(response, "Change location to login");
+    //         })
+    //         .catch(function (error) {
+    //           console.log(error, "errorrrrrrrrrrrrrrr");
+    //         });
+    //   }
       
 return (
     <div>
     <div className="relative flex flex-col justify-center items-center overflow-hidden ">
     <Header/>
         <form
-            onSubmit={HandleSubmit}
-            className='grid items-center justify-center w-[500px] mb-[40px] max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-md shadow-[#83dece] dark:bg-gray-800 dark:border-gray-700'
+            onSubmit={handleUserTypeChange}
+            className='grid items-center justify-center w-[500px] my-[40px] max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-md shadow-[#faf2c0] dark:bg-gray-800 dark:border-gray-700'
         >
-           <div className=''>
-           
+           <div className=''>          
            <div className="grid md:grid-cols-2 md:gap-6 mt-[20px]">
             <div className="relative z-0 w-full mb-6 group ">
                 <input 
@@ -160,7 +169,7 @@ return (
             <div className="grid md:grid-cols-2 md:gap-6">
             <div className="relative z-0 w-full mb-6 group">
                 <input 
-                    type="idNo" 
+                    type="text" 
                     name="idNo" 
                     id="idNo" 
                     className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
@@ -169,31 +178,52 @@ return (
                     required />
                 <label htmlFor="idNo" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">ID No.</label>
             </div>
-        <div className="relative z-0 w-full mb-6 group">
-            <input 
+            <div className="relative z-0 w-full mb-6 group">
+                <select value={userType} onChange={handleUserTypeChange} className="bg-gray-50 border text-gray-500 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option selected>Choose role</option>
+                    <option value="admin">Admin</option>
+                    <option value="user">User</option>
+                    <option value="purchaser">Purchaser</option>
+                    <option value="auditor">Auditor</option>
+                    <option value="director">Director</option>
+                </select>
+                    {/* {userType === 'user' && <div>User Content</div>}
+                    {userType === 'admin' && <div>Admin Content</div>} */}
+            </div>
+            </div>
+            <div className="grid md:grid-cols-2 md:gap-6 mb-[20px]">
+            <div className="relative z-0 w-full group">
+                <input 
                     type="password" 
                     name="password" 
                     id="password" 
                     className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
                     placeholder=" " 
-                    onChange={(e)=>setPassword(e.target.value)}
+                    value={password} 
+                    onChange={handlePasswordChange}
                     required/> 
             <label htmlFor="password" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Password</label>
         </div>
-        </div>
-        <div className="relative z-0 w-full mb-6 group">
+        <div className="relative z-0 w-full group">
             <input 
                 type="password" 
                 name="confirmPassword" 
                 id="confirmPassword" 
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
                 placeholder=" " 
-                onChange={(e)=>setConfirmPassword(e.target.value)}
+                value={confirmPassword} 
+                onBlur={handleConfirmPasswordBlur}
+                onChange={handleConfirmPasswordChange}
                 required />
             <label htmlFor="confirmPassword" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Confirm password</label>
         </div>
-        
-    <div className='flex items-center justify-center gap-[40px] mb-[20px]'>
+                {passwordsMatch() ? (
+                <p></p>
+            ) : (
+                <p className='text-[10px] font-normal text-[#d99000]'>Passwords do not match</p>
+            )}
+        </div>
+    <div className='flex items-center justify-center gap-[60px] mb-[20px]'>
         <button 
             // onClick={handleClick}
             type="submit" 

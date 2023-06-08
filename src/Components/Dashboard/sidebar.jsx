@@ -10,7 +10,7 @@ import {
 }from "react-icons/fa";
 import { NavLink } from 'react-router-dom';
 import HorizontalBar from '../HorizontalBar/horizontalBar';
-import { MdOutlineInventory } from 'react-icons/md';
+import { MdCategory, MdOutlineInventory } from 'react-icons/md';
 import { AiFillFileAdd, AiOutlineSetting } from 'react-icons/ai';
 
 <HorizontalBar/>
@@ -44,11 +44,11 @@ const Sidebar = ({children}) => {
             name:"Model-22",
             icon:<FaShoppingBag/>
         },
-        // {
-        //     path:"/Report",
-        //     name:"Report",
-        //     icon:<FaThList/>
-        // },
+        {
+            path:"/category",
+            name:"Category",
+            icon:<MdCategory/>
+        },
         {
             path:"/Setting",
             name:"Setting",

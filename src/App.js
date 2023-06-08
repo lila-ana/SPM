@@ -11,12 +11,33 @@ import Model_22 from "./Pages/Sidebar/Model_22";
 import Report from "./Pages/Sidebar/Report";
 import Setting from "./Pages/Sidebar/Setting";
 import Login from "./Pages/Login/login";
-import RequireAuth from "./Auth/RequireAuth";
+import RequireAuth,{sidebarCheck} from "./Auth/RequireAuth";
 import Registration from "./Pages/Signup/registration";
+import Category from "./Components/Category/categoryCreate";
 
 const App = () => {
+  // const protect = (prop)=>{
+  //   const access = localStorage.getItem("isAdmin")
+  //   if()
+  // }
+  const InterfaceSelector = ({ userType }) => {
+    if (userType === 'user') {
+      return <UserInterface />;
+    } else if (userType === 'admin') {
+      return <AdminInterface />;
+    } else if (userType === 'purchaser') {
+      return <PurchaserInterface />;
+    } else if (userType === 'auditor') {
+      return <AuditorInterface />;
+    } else if (userType === 'director') {
+      return <DirectorInterface />;
+    } else {
+      return <div>Invalid User Type</div>;
+    }
+  };
   return (
     <>
+    
     
     <BrowserRouter>
      <Routes>
@@ -24,20 +45,22 @@ const App = () => {
         <Route path="/login" element={<Login/>}/>
         <Route path="/registration" element={<Registration/>}/>
       </Routes>
-      <Sidebar >
+      {/* {sidebarCheck()?<Sidebar > */}
+          <Sidebar>
           <Routes>
-              <Route element={<RequireAuth />}>
-                <Route path="/" element={<AssetRegistration/>}/>
+              <Route>
                 <Route path="/AssetRegistration" element={<AssetRegistration/>}/>
                 <Route path="/Inventory" element={<Inventory/>}/>
                 <Route path="/model_19" element={<Model_19/>}/>
                 <Route path="/model_20" element={<Model_20/>}/>
                 <Route path="/model_22" element={<Model_22/>}/>
-                <Route path="/report" element={<Report/>}/>
+                <Route path="/category" element={<Category/>}/>
                 <Route path="/setting" element={<Setting/>}/>
               </Route>
           </Routes>
           </Sidebar>
+          {/* </Sidebar>:<></>} */}
+      
     </BrowserRouter>
     </>
   );
