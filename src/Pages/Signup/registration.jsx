@@ -4,6 +4,7 @@ import { API_BASE_URL } from '../../api/endPoint';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../header/header';
 import Footer from '../../Components/Footer/footer';
+import DirectorInterface from '../../Interface/DirectorInterface';
 
 export default function Registration() {
    
@@ -36,22 +37,6 @@ export default function Registration() {
 
       const handleConfirmPasswordBlur = () => {
         setConfirmPasswordTouched(true);
-      };
-    
-    const InterfaceSelector = ({ userType }) => {
-        if (userType === 'user') {
-          return <UserInterface />;
-        } else if (userType === 'admin') {
-          return <AdminInterface />;
-        } else if (userType === 'purchaser') {
-          return <PurchaserInterface />;
-        } else if (userType === 'auditor') {
-          return <AuditorInterface />;
-        } else if (userType === 'director') {
-          return <DirectorInterface />;
-        } else {
-          return <div>Invalid User Type</div>;
-        }
       };
 
     const handleUserTypeChange = (e) => {
@@ -179,7 +164,7 @@ return (
                 <label htmlFor="idNo" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">ID No.</label>
             </div>
             <div className="relative z-0 w-full mb-6 group">
-                <select value={userType} onChange={handleUserTypeChange} className="bg-gray-50 border text-gray-500 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <select value={userType} onChange={handleUserTypeChange} className="bg-gray-50 border text-gray-500 border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     <option selected>Choose role</option>
                     <option value="admin">Admin</option>
                     <option value="user">User</option>

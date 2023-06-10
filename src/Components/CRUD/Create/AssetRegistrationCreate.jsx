@@ -14,7 +14,9 @@ export default function AssetRegistrationCreate() {
     const [itemPerPrice, setItemPerPrice] = useState();
     const [productUniqueNumber, setProductUniqueNumber] = useState();
     const [productImage, setProductImage] = useState();  
-    const [productId, setProductId]=useState(null)
+    const [categoryId, setCategoryId] = useState();
+    const [data, setData] = useState()
+
 
     const handleChange = (e) => {
       const img = {
@@ -24,12 +26,16 @@ export default function AssetRegistrationCreate() {
       setLogo(img?.data);
     };
     
-    const form = new FormData();
-    form.append("category", category);
-    form.append("itemPerPrice", itemPerPrice);
-    form.append("productUniqueNumber", productUniqueNumber);
-    form.append("productImage", productImage);
-    form.append("productName", productName);
+    const getCategory = ()=> {
+      axios
+      .get(`${API_BASE_URL}category`)
+      .then((res) => setData(res.data?.data))
+      .catch((err) => console.log(err));
+    }
+    useEffect(() => {
+      getCategory()
+    },[]);
+   
     
     let asset = {
       category,
@@ -37,6 +43,7 @@ export default function AssetRegistrationCreate() {
       productUniqueNumber,
       productImage,
       productName,
+      category_id : categoryId,
     };
     const HandleSubmit = (e) => {
       e.preventDefault();
@@ -184,7 +191,7 @@ export default function AssetRegistrationCreate() {
                       // required
                     />
                 </div>
-                <div>
+                {/* <div>
                   <label 
                     for="product_name" 
                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -197,7 +204,24 @@ export default function AssetRegistrationCreate() {
                       placeholder="Category" 
                       onChange={(e)=>setCategory(e.target.value)}
                     />
+                </div> */}
+                <div>
+                  <label 
+                    for="product_name" 
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                      Category
+                  </label>
+                  <select onChange={(event)=>setCategoryId(event.target.value)} 
+                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                      <option value="" disabled>
+                  Choose Category
+                </option>
+                {data?.map((category) => (
+                  <option value={category?.id}>{category?.categoryName}</option>
+                ))}
+              </select>
                 </div>
+               
                 
               </div>
               <div className='mx-[80px] flex justify-center items-center gap-[50px]'>

@@ -7,6 +7,7 @@ import { API_BASE_URL } from '../../api/endPoint';
 export default function CategoryCreate() {
   
   const BearerToken = localStorage.getItem("accessToken");
+  
   const [categoryName, setCategoryName] = useState()
 
     let group = [

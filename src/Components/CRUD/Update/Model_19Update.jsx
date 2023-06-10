@@ -1,7 +1,53 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 export default function Model_19Update(props) {
-  return (
+  
+    const [datas, setDatas] = useState ();
+    const [users, setUsers] = useState();
+    const [Id, setId] = useState();
+    const [itemType, setItemType] = useState();
+    const [model, setModel] = useState();
+    const [serial, setSerial] = useState();
+    const [date, setDate] = useState();
+    const [quantity, setQuantity] = useState();
+    const [unitPrice, setUnitPrice] = useState();
+    const [totalPrice, setTotalPrice] = useState();
+    const [remark, setRemark] = useState();
+    const [fullName, setFullName] = useState();
+    const [recipientName, setRecipientName] = useState();
+    
+    function HandleClose() {
+        props.modal(false);
+      }
+    const form = new FormData();
+        form.append("Id", Id);
+        form.append("itemType", itemType);
+        form.append("model", model);
+        form.append("serial", serial);
+        form.append("date", date);
+        form.append("quantity", quantity);
+        form.append("unitPrice", unitPrice);
+        form.append("totalPrice", totalPrice);
+
+      const HandleSubmit = (e) => {
+        e.preventDefault();
+        axios
+          .patch(`${API_BASE_URL}model_19/${props?.data?.id}`, form, {
+            headers: {
+              // "Content-Type": "multipart/form-data",
+              accept: "multipart/form-data",
+              authorization: "Bearer " + BearerToken
+            },
+          })
+          .then(function (response) {
+            console.log(response);
+            HandleClose();
+          })
+          .catch(function (error) {
+            console.log(error, "errorrrrrrrrrrrrrrr");
+          });
+      };
+    return (
     <div>
       <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead class="text-xs text-gray-700  bg-gray-50 dark:bg-gray-700 dark:text-gray-400">

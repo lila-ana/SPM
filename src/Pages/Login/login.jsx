@@ -5,7 +5,7 @@ import { API_BASE_URL } from '../../api/endPoint';
 import Header from '../../header/header';
 import { useNavigate } from 'react-router-dom';
 
-export default function Login() {
+export default function Login({setData}) {
   
   const navigate = useNavigate();
 
@@ -24,15 +24,17 @@ export default function Login() {
           .post(`${API_BASE_URL}user/login`, login)
           .then((response) => {
             localStorage.setItem("accessToken", response?.data?.accessToken);
-            localStorage.setItem("data",response.data.data);
+            localStorage.setItem("role",response.data.data.isAdmin)
+            setData(response.data.data.isAdmin)
+            // console.log("---->",response.data.data);
             // window.location.replace("/AssetRegistration");
             navigate("/AssetRegistration");
-            console.log(response, "thi is response");
+            
           })
           .catch((err) => {
-            setMessage(err?.response?.data?.message?.message);
+            // setMessage(err?.response?.data?.message?.message);
     
-            console.log(err);
+            console.log("---->",err);
           });
       };
   return (

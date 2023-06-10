@@ -7,7 +7,7 @@ export default function Footer() {
       <footer class="bg-[#D99000] dark:bg-gray-900">
         <div class="px-4 py-6 bg-[#D99000] dark:bg-[#d99000] md:flex md:items-center md:justify-between">
           <span class="text-white hover:text-gray-900 dark:hover:text-white sm:text-center">
-            © {year} <a href="https://www.ienetworksolutions.com//">Ambo University Hachalu Hundessa Campus</a>. All Rights
+            © {year} <a href="https://ambou.edu.et/">Ambo University Hachalu Hundessa Campus</a>. All Rights
             Reserved.
           </span>
           <div class="flex mt-4 space-x-6 sm:justify-center md:mt-0">
@@ -30,7 +30,7 @@ export default function Footer() {
               <span class="sr-only">Facebook page</span>
             </a>
             <a
-              href="https://instagram.com/ie_network_solutions?igshid=YmMyMTA2M2Y="
+              href="https://www.facebook.com/AmboUniversityofficial/"
               class="text-white hover:text-gray-900 dark:hover:text-white"
             >
               <svg
@@ -49,7 +49,7 @@ export default function Footer() {
               
             </a>
             <a
-              href="https://twitter.com/IE_Networks?t=qpMzeqDu-lZosbTMIjF3lA&s=09"
+              href="https://www.instagram.com/ambouniversityofficial/"
               class="text-white hover:text-gray-900 dark:hover:text-white"
             >
               <svg
@@ -81,7 +81,7 @@ export default function Footer() {
               <span class="sr-only">GitHub account</span>
             </a> */}
             <a
-              href="https://www.linkedin.com/company/ie-network-solutions/"
+              href=""
               class="text-white hover:text-gray-900 dark:hover:text-white"
             >
               <svg

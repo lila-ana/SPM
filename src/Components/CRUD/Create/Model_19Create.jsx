@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { FaUserCircle } from 'react-icons/fa';
 import { API_BASE_URL } from '../../../api/endPoint';
 
-export default function Model_19Create() {
+export default function Model_19Create(props) {
     
     const BearerToken = localStorage.getItem("accessToken");
 
