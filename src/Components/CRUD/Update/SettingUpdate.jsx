@@ -8,7 +8,7 @@ export default function SettingUpdate(props) {
   
   const BearerToken = localStorage.getItem("accessToken");
 
-  const [fullName, setFullName]=useState("")
+  const [fullName, setFullName] = useState(props?.data?.name);
   const [email, setEmail]= useState("")
   const [department, setDepartment]=useState("")
   const [IdNo, setIdNo]=useState("")
@@ -31,7 +31,7 @@ export default function SettingUpdate(props) {
   const HandleSubmit = (e) => {
     e.preventDefault();
     axios
-      .patch(`${API_BASE_URL}model_19/${props?.data?.id}`, form, {
+      .patch(`${API_BASE_URL}user/${props?.data?.id}`, form, {
         headers: {
           // "Content-Type": "multipart/form-data",
           accept: "multipart/form-data",
@@ -98,13 +98,19 @@ export default function SettingUpdate(props) {
             type="text" 
             id="disabled-input" aria-label="disabled input" 
             class="mb-6 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-            value={item?.fullName} 
+            value={fullName} 
             disabled/>
           <input 
             type="text" 
             id="" 
             class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-            value={item?.fullName} 
+            value={item?.idNo} 
+            />
+          <input 
+            type="password" 
+            id="password" 
+            class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+            // value={item?.idNo} 
             />
         </div>
         )))} 

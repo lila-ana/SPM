@@ -9,7 +9,7 @@ return (
     <div>
        <Model_19Create/> 
        <Model_19Get/>
-       <Model_19Update/>
+       {/* <Model_19Update/> */}
     </div>
   )
 }

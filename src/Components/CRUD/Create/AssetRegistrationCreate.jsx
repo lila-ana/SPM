@@ -221,8 +221,6 @@ export default function AssetRegistrationCreate() {
                 ))}
               </select>
                 </div>
-               
-                
               </div>
               <div className='mx-[80px] flex justify-center items-center gap-[50px]'>
               <button 

@@ -4,7 +4,6 @@ import { API_BASE_URL } from '../../api/endPoint';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../header/header';
 import Footer from '../../Components/Footer/footer';
-import DirectorInterface from '../../Interface/DirectorInterface';
 
 export default function Registration() {
    
@@ -41,6 +40,7 @@ export default function Registration() {
 
     const handleUserTypeChange = (e) => {
         const selectedUserType = e.target.value;
+        console.log("--->",selectedUserType)
         setUserType(selectedUserType);
            
         let registration={
@@ -51,13 +51,14 @@ export default function Registration() {
             IdNo:IdNo,
             role: role,
             password:password,
-            userType: selectedUserType,
+            isAdmin: userType,
             }
+            console.log(registration, "input data")
 
             axios
             .post(`${API_BASE_URL}user/create`, registration, {
               headers: {
-                // "Content-Type": "application/json",
+                "Content-Type": "application/json",
                 accept: "application/json",
                 authorization: "Bearer " + BearerToken
             },
@@ -71,7 +72,7 @@ export default function Registration() {
               console.log(error, "errorrrrrrrrrrrrrrr");
             });
                 
-            console.log(registration, "input data")
+            
     };
 
     // const HandleSubmit=(e)=>{
@@ -172,8 +173,6 @@ return (
                     <option value="auditor">Auditor</option>
                     <option value="director">Director</option>
                 </select>
-                    {/* {userType === 'user' && <div>User Content</div>}
-                    {userType === 'admin' && <div>Admin Content</div>} */}
             </div>
             </div>
             <div className="grid md:grid-cols-2 md:gap-6 mb-[20px]">

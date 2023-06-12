@@ -26,10 +26,12 @@ export default function Login({setData}) {
             localStorage.setItem("accessToken", response?.data?.accessToken);
             localStorage.setItem("role",response.data.data.isAdmin)
             setData(response.data.data.isAdmin)
-            // console.log("---->",response.data.data);
-            // window.location.replace("/AssetRegistration");
-            navigate("/AssetRegistration");
-            
+            console.log("---->",response.data.data.isAdmin);
+            if(response.data.data.isAdmin === "Admin") navigate("/AssetRegistration");
+            else if(response.data.data.isAdmin === "Purchaser") navigate("/Model_20");
+            else if(response.data.data.isAdmin === "Auditor") navigate("/AssetRegistration");
+            else if(response.data.data.isAdmin === "Director") navigate("/statusPage");
+            else if(response.data.data.isAdmin === "User") navigate("/Model_20");
           })
           .catch((err) => {
             // setMessage(err?.response?.data?.message?.message);
@@ -41,15 +43,6 @@ export default function Login({setData}) {
     <div>
         <div className="relative flex flex-col justify-center items-center  min-h-screen overflow-hidden">
            <Header/>
-           {/* <div>
-      {userType ? (
-        <>
-          {userType === 'user' ? <UserDashboard /> : <AdminDashboard />}
-        </>
-      ) : (
-        <LoginPage setUserType={setUserType} />
-      )}
-    </div> */}
             <div className="border-[1px] border-[#d99000] w-full p-6 m-auto bg-white rounded-md shadow-xl shadow-[#d4b87e]  lg:max-w-xl">
             <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white justify-center items-center flex">
                   Sign in to your account
